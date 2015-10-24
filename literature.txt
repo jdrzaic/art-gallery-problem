@@ -1,0 +1,12 @@
+ČLANCI:
+http://www.ams.sunysb.edu/~jsbm/papers/alenex07.pdf
+http://www.cse.iitb.ac.in/~sharat/icvgip.org/ncvpripg2008/papers/36.pdf
+http://www.optimization-online.org/DB_FILE/2013/11/4106.pdf
+
+CGAL packages:
+http://www.cgal.org/project.html
+
+C++ -> JVM
+http://nestedvm.ibex.org/
+
+
