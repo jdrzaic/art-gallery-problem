@@ -12,6 +12,10 @@ http://cs.smith.edu/~orourke/books/ArtGalleryTheorems/Art_Gallery_Full_Book.pdf
 CGAL packages:
 http://www.cgal.org/project.html
 
+CGAL swig bindings:
+installation https://github.com/CGAL/cgal-swig-bindings/wiki/Installation
+->u CMakeList.txt dodati: set(SWIG_EXECUTABLE swig exec file) 
+
 C++ -> JVM
 http://nestedvm.ibex.org/
 http://depth-first.com/articles/2007/12/03/from-c-source-code-to-platform-independent-executable-jarfile-using-nestedvm-to-build-jinchi/
