@@ -5,6 +5,8 @@ http://www.optimization-online.org/DB_FILE/2013/11/4106.pdf
 http://researcher.ibm.com/researcher/files/il-ELIP/ws-ijcga.pdf
 
 http://www.computer.org/csdl/proceedings/focs/1991/2445/00/0185346.pdf
+TO READ:
+http://porto.polito.it/2376824/2/PR%20Submission%203.1.pdf
 
 ART GALLERY THEOREMS AND ALGORITHMS BOOK
 http://cs.smith.edu/~orourke/books/ArtGalleryTheorems/Art_Gallery_Full_Book.pdf
