@@ -31,6 +31,10 @@ public class Camera extends Coordinate{
 		super(x, y);
 	}
 	
+	public Camera(Coordinate closestPoint) {
+		super(closestPoint);
+	}
+
 	/**
 	 * Method determining visibility polygon of a camera in
 	 * a given {@link GalleryInstance}.
@@ -50,7 +54,7 @@ public class Camera extends Coordinate{
 	}
 
 	private void goOver(GalleryInstance gi, TreeMap<Double, Coordinate> vPolygonCoords, int n) {
-		List<Coordinate> ends = n == -1 ? gi.getVertices() : gi.getHoleOnIndex(n).getVertices();
+		List<Coordinate> ends = (n == -1) ? gi.getVertices() : gi.getHoleOnIndex(n).getVertices();
 		for(int i = 0; i < ends.size(); ++i) {
 			Coordinate c = ends.get(i);
 			LineSegment ls = new LineSegment(this, c);
