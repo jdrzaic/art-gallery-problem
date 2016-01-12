@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.collections.FXCollections ?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <Label text="Heuristički greedy" textFill="#8f8686d7" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
+         <font>
+            <Font name="Arial Rounded MT Bold" size="17.0" />
+         </font>
+      </Label>
+   </top>
+   <bottom>
+      <VBox>
+         <children>
+            <Button fx:id="raspored" disable="true" mnemonicParsing="false" prefHeight="32.0" prefWidth="467.0" text="Odredi raspored kamera" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </BorderPane.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </Button>
+            <ProgressBar prefHeight="20.0" prefWidth="469.0" progress="0.01">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </ProgressBar>
+         </children>
+      </VBox>
+   </bottom>
+   <center>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <ComboBox fx:id="heuristika" prefHeight="27.0" prefWidth="224.0" promptText="najveća površina">
+            <items>
+        		<FXCollections fx:factory="observableArrayList">
+          			<String fx:value="najveća površina" />
+          			<String fx:value="najveći opseg" />
+        		</FXCollections>
+      		</items>
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+     </ComboBox> 
+         </children>
+      </HBox>
+   </center>
+   <right>
+      <ComboBox fx:id="pokrivac" prefHeight="27.0" prefWidth="236.0" promptText="triangulacija poligona" BorderPane.alignment="CENTER">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Vrhovi poligona" />
+          <String fx:value="Triangulacija poligona" />
+        </FXCollections>
+      </items>
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
+     </ComboBox> 
+   </right>
+</BorderPane>
