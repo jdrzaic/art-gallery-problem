@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
@@ -21,11 +23,11 @@
                         <MenuItem mnemonicParsing="false" text="Nacrtaj tlocrt" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Pomoć">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="O programu" />
-                  </items>
-                </Menu>
+                  <Menu mnemonicParsing="false" text="Uređivanje">
+                     <items>
+                        <MenuItem fx:id="ocisti" mnemonicParsing="false" onAction="#onClearClicked" text="Očisti prostor za crtanje" />
+                     </items>
+                  </Menu>
               </menus>
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -35,7 +37,7 @@
       </VBox>
    </top>
    <right>
-      <VBox BorderPane.alignment="CENTER">
+      <VBox prefHeight="300.0" prefWidth="181.0" BorderPane.alignment="CENTER">
          <children>
             <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="142.0" text="Algoritam" textAlignment="CENTER" textOverrun="CLIP">
                <padding>
@@ -67,7 +69,7 @@
       </VBox>
    </right>
    <bottom>
-      <HBox prefHeight="41.0" prefWidth="581.0" BorderPane.alignment="CENTER">
+      <HBox alignment="TOP_CENTER" prefHeight="41.0" prefWidth="581.0">
          <children>
             <Label fx:id="odabr_dat" prefHeight="17.0" prefWidth="246.0" text="odabrana datoteka :  -">
                <HBox.margin>
@@ -83,18 +85,21 @@
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
+               <toggleGroup>
+                  <ToggleGroup fx:id="resurs" />
+               </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="radio_dat" mnemonicParsing="false" prefHeight="28.0" prefWidth="138.0" selected="true" text="datoteka">
+            <RadioButton fx:id="radio_dat" mnemonicParsing="false" prefHeight="28.0" prefWidth="138.0" selected="true" text="datoteka" textAlignment="JUSTIFY" toggleGroup="$resurs">
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
             </RadioButton>
-            <Button fx:id="button_nast" mnemonicParsing="false" onAction="#onButtonNext" prefHeight="34.0" prefWidth="149.0" text="Nastavi">
+            <Button fx:id="button_nast" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onButtonNext" prefHeight="34.0" prefWidth="149.0" text="Nastavi" HBox.hgrow="NEVER">
                <font>
                   <Font name="System Bold Italic" size="13.0" />
                </font>
                <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="20.0" top="5.0" />
+                  <Insets bottom="5.0" left="5.0" right="2.0" top="5.0" />
                </HBox.margin>
             </Button>
          </children>
@@ -104,6 +109,6 @@
       </HBox>
    </bottom>
    <center>
-      <ImageView fx:id="canvas" fitHeight="272.0" fitWidth="409.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+      <Canvas fx:id="canvas" height="424.0" onMouseClicked="#onImageViewClicked" width="457.0" />
    </center>
 </BorderPane>

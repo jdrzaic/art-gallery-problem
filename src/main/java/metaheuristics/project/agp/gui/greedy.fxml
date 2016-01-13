@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.collections.FXCollections ?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="metaheuristics.project.agp.gui.GreedyController">
    <top>
       <Label text="Heuristički greedy" textFill="#8f8686d7" BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -25,7 +25,7 @@
    <bottom>
       <VBox>
          <children>
-            <Button fx:id="raspored" disable="true" mnemonicParsing="false" prefHeight="32.0" prefWidth="467.0" text="Odredi raspored kamera" BorderPane.alignment="CENTER">
+            <Button fx:id="izvrsi" mnemonicParsing="false" onAction="#onExecGreedy" prefHeight="32.0" prefWidth="467.0" text="Odredi raspored kamera" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </BorderPane.margin>
@@ -36,7 +36,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </Button>
-            <ProgressBar prefHeight="20.0" prefWidth="469.0" progress="0.01">
+            <ProgressBar fx:id="progres" prefHeight="20.0" prefWidth="469.0" progress="0.01">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
@@ -47,7 +47,7 @@
    <center>
       <HBox BorderPane.alignment="CENTER">
          <children>
-            <ComboBox fx:id="heuristika" prefHeight="27.0" prefWidth="224.0" promptText="najveća površina">
+            <ComboBox fx:id="heuristika" prefHeight="27.0" prefWidth="224.0" promptText="(odaberite heuristiku)">
             <items>
         		<FXCollections fx:factory="observableArrayList">
           			<String fx:value="najveća površina" />
@@ -62,7 +62,7 @@
       </HBox>
    </center>
    <right>
-      <ComboBox fx:id="pokrivac" prefHeight="27.0" prefWidth="236.0" promptText="triangulacija poligona" BorderPane.alignment="CENTER">
+      <ComboBox fx:id="pokrivac" prefHeight="27.0" prefWidth="236.0" promptText="(odaberite početni pokrivač)" BorderPane.alignment="CENTER">
       <items>
         <FXCollections fx:factory="observableArrayList">
           <String fx:value="Vrhovi poligona" />
