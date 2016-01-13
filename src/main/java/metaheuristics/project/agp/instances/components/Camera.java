@@ -22,6 +22,7 @@ public class Camera extends Coordinate{
 
 	public static double ALPHA = 0.0000000001;
 	public static double EPSILON = 0.0000001;
+	
 	/**
 	 * Class constructor.
 	 * @param x x coordinate value.
@@ -31,6 +32,9 @@ public class Camera extends Coordinate{
 		super(x, y);
 	}
 	
+	public Camera(Coordinate c) {
+		super(c);
+	}
 	/**
 	 * Method determining visibility polygon of a camera in
 	 * a given {@link GalleryInstance}.
