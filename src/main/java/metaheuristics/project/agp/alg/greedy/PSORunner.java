@@ -34,9 +34,10 @@ public class PSORunner {
 
 	public static double EPSILON = 0.01;
 
-	public static void init(int epsilon, int iteracije) {
+	public static void init(double epsilon, int iteracije, int population) {
 		EPSILON = epsilon;
 		iteration = iteracije;
+		populationNumPerTriang = population;
 	}
 	/**
 	 * 
@@ -133,30 +134,6 @@ public class PSORunner {
 				updateCoveredArea();
 			}
 		}
-
-//		// idi po svim trokutima
-//		for (TriangleOptimization to : psoTriangles) {
-//			br++;
-//			// stavi kameru
-//			cover.add(to.visiblePolygon);
-//			// updateaj povrsinu
-//			updateCoveredArea();
-//			
-//			double curArea = union.getArea();
-//			 if ( curArea - unnecessaryCamCheck <= EPSILON ) {
-////			System.out.println("Micem kameru!" + br);
-//				cover.remove(to);
-//				continue;
-//			}
-//				
-//			// provjeri da li smo pokrili cijeli prostor
-//			if (giArea - curArea <= EPSILON && giArea - curArea >= 0 ) {
-//			//	System.out.println("Zavrsili smo s potragom!");
-//				break;
-//			}
-//			
-//			unnecessaryCamCheck = curArea;
-//		}
 	}
 
 	private static void updateCoveredArea() {
