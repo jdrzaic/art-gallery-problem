@@ -20,9 +20,9 @@ import metaheuristics.project.agp.instances.util.BenchmarkFileInstanceLoader;
 
 public class PSORunner {
 
-	private static int populationNumPerTriang = 8;
+	private static int populationNumPerTriang = 3;
 
-	private static int iteration = 100;
+	private static int iteration = 30;
 
 	private static GalleryInstance gi;
 	
@@ -43,17 +43,17 @@ public class PSORunner {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		/*List<TriangleOptimization> psoTriangles = new ArrayList<>();
+		List<TriangleOptimization> psoTriangles = new ArrayList<>();
 
 		long time = System.currentTimeMillis();
 
-		findBestCameraPositions(psoTriangles);
+		findBestCameraPositions(psoTriangles, "/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem/results/triang_A7/random.pol");
 		calculateMinCameraNum(psoTriangles);
 
 		System.out.println(cover.size() + " camera pokriva  "
 				+ union.buffer(0).getArea() + "  od  " + giArea);
 		System.out.println(	"Proslo vrijeme: " + (System.currentTimeMillis() - time));
-		*/
+
 	}
 	
 	public static int process(String filename) {
@@ -101,17 +101,7 @@ public class PSORunner {
 		Collections.sort(psoTriangles);
 	}
 
-//	private static void printGeom(GeometryCollection gc) {
-//		DecimalFormat df = new DecimalFormat("0.000");
-//		System.out.println(gc.getCoordinates().length);
-//		int br = 0;
-//		for(Coordinate c : gc.getCoordinates()){
-//			if(br++ % 4 == 0){
-//				System.out.println("\n");
-//			}
-//			System.out.println(df.format(c.x) + "   " + df.format(c.y));
-//		}
-//	}
+
 
 	/**
 	 * @param psoTriangles
@@ -137,8 +127,10 @@ public class PSORunner {
 		for(TriangleOptimization to : psoTriangles){
 			cover.remove(to.visiblePolygon);
 			updateCoveredArea();
+			System.out.println(to.getBestValue());
 			if(max - union.getArea() > EPSILON){
 				cover.add(to.visiblePolygon);
+				updateCoveredArea();
 			}
 		}
 
