@@ -159,8 +159,9 @@ public class Controller implements Initializable {
 						benchmark = new File(other.getAbsolutePath());
 					}
 					draw = 0;
-					GalleryInstance gi = bfil.load(benchmark.getAbsolutePath());
-					
+					PSOController psoc = new PSOController();
+					System.err.println(benchmark.getAbsolutePath());
+					psoc.process(null, benchmark.getAbsolutePath());
 				} catch(Exception e) {
 					Alert wrongFileAlert = new Alert(AlertType.ERROR, 
 							"Odabrana datoteka ne sadrži primjer u korektnom zapisu! Pokušajte ponovo.",
@@ -181,9 +182,9 @@ public class Controller implements Initializable {
 					wrongFileAlert.setHeaderText("Greška");
 					wrongFileAlert.showAndWait();
 				} else {
-					
-					GreedyController gc = new GreedyController();
-					gc.process(drawing.gi, "res.txt");
+					PSOController psoc = new PSOController();
+					generateBenchmarkFromDraw();
+					psoc.process(drawing.gi, "cam.txt");
 				}
 			}
 		}

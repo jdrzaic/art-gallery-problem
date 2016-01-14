@@ -56,7 +56,7 @@ public class PSORunner {
 		*/
 	}
 	
-	public static void process(String filename) {
+	public static int process(String filename) {
 		List<TriangleOptimization> psoTriangles = new ArrayList<>();
 
 		long time = System.currentTimeMillis();
@@ -67,6 +67,7 @@ public class PSORunner {
 		System.out.println(cover.size() + " camera pokriva  "
 				+ union.buffer(0).getArea() + "  od  " + giArea);
 		System.out.println(	"Proslo vrijeme: " + (System.currentTimeMillis() - time));
+		return cover.size();
 	}
 
 	/**
