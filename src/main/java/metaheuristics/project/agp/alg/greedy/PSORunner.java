@@ -15,14 +15,13 @@ import com.vividsolutions.jts.geom.Polygon;
 import com.vividsolutions.jts.triangulate.ConformingDelaunayTriangulationBuilder;
 
 import metaheuristics.project.agp.instances.GalleryInstance;
-import metaheuristics.project.agp.instances.components.Camera;
 import metaheuristics.project.agp.instances.util.BenchmarkFileInstanceLoader;
 
 public class PSORunner {
 
 	private static int populationNumPerTriang = 4;
 
-	private static int iteration = 100;
+	private static int iteration = 30;
 
 	private static GalleryInstance gi;
 	
@@ -34,26 +33,27 @@ public class PSORunner {
 
 	public static double EPSILON = 0.01;
 
-	public static void init(int epsilon, int iteracije) {
+	public static void init(double epsilon, int iteracije, int population) {
 		EPSILON = epsilon;
 		iteration = iteracije;
+		populationNumPerTriang = population;
 	}
 	/**
 	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		/*List<TriangleOptimization> psoTriangles = new ArrayList<>();
+		List<TriangleOptimization> psoTriangles = new ArrayList<>();
 
 		long time = System.currentTimeMillis();
 
-		findBestCameraPositions(psoTriangles);
+		findBestCameraPositions(psoTriangles, "/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem/results/triang_A7/random.pol");
 		calculateMinCameraNum(psoTriangles);
 
 		System.out.println(cover.size() + " camera pokriva  "
 				+ union.buffer(0).getArea() + "  od  " + giArea);
 		System.out.println(	"Proslo vrijeme: " + (System.currentTimeMillis() - time));
-		*/
+
 	}
 	
 	public static int process(String filename) {
@@ -101,17 +101,7 @@ public class PSORunner {
 		Collections.sort(psoTriangles);
 	}
 
-//	private static void printGeom(GeometryCollection gc) {
-//		DecimalFormat df = new DecimalFormat("0.000");
-//		System.out.println(gc.getCoordinates().length);
-//		int br = 0;
-//		for(Coordinate c : gc.getCoordinates()){
-//			if(br++ % 4 == 0){
-//				System.out.println("\n");
-//			}
-//			System.out.println(df.format(c.x) + "   " + df.format(c.y));
-//		}
-//	}
+
 
 	/**
 	 * @param psoTriangles
@@ -137,34 +127,12 @@ public class PSORunner {
 		for(TriangleOptimization to : psoTriangles){
 			cover.remove(to.visiblePolygon);
 			updateCoveredArea();
+			System.out.println(to.getBestValue());
 			if(max - union.getArea() > EPSILON){
 				cover.add(to.visiblePolygon);
+				updateCoveredArea();
 			}
 		}
-
-//		// idi po svim trokutima
-//		for (TriangleOptimization to : psoTriangles) {
-//			br++;
-//			// stavi kameru
-//			cover.add(to.visiblePolygon);
-//			// updateaj povrsinu
-//			updateCoveredArea();
-//			
-//			double curArea = union.getArea();
-//			 if ( curArea - unnecessaryCamCheck <= EPSILON ) {
-////			System.out.println("Micem kameru!" + br);
-//				cover.remove(to);
-//				continue;
-//			}
-//				
-//			// provjeri da li smo pokrili cijeli prostor
-//			if (giArea - curArea <= EPSILON && giArea - curArea >= 0 ) {
-//			//	System.out.println("Zavrsili smo s potragom!");
-//				break;
-//			}
-//			
-//			unnecessaryCamCheck = curArea;
-//		}
 	}
 
 	private static void updateCoveredArea() {
