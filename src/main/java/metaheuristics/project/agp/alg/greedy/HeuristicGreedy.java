@@ -26,6 +26,7 @@ import metaheuristics.project.agp.alg.greedy.heuristics.Heuristic;
 import metaheuristics.project.agp.instances.GalleryInstance;
 import metaheuristics.project.agp.instances.components.Camera;
 import metaheuristics.project.agp.instances.util.BenchmarkFileInstanceLoader;
+import metaheuristics.project.agp.instances.util.Maths;
 
 public class HeuristicGreedy implements Algorithm{
 
@@ -85,7 +86,9 @@ public class HeuristicGreedy implements Algorithm{
 		try {
 			if(main.difference(union).getArea() < areaAll * EPSILON) return true;
 		}catch(Exception e) {
-			return false;
+			//System.out.println("problem difference");
+			//e.printStackTrace();
+			return true;
 		}
 		return false;
 	}
@@ -95,6 +98,7 @@ public class HeuristicGreedy implements Algorithm{
 		Camera max = null;
 		for(Camera c : visPolygons.keySet()) {
 			double mi = h.utilValue(visPolygons.get(c), cover, gf);
+			//System.out.println("value" + mi);
 			if(maxmi == -1 || mi > maxmi) {
 				maxmi = mi;
 				max = c;
@@ -134,7 +138,6 @@ public class HeuristicGreedy implements Algorithm{
 			Coordinate centr = t.centroid();
 			if(gf.createPoint(centr).within(main)) {
 				ini.add(new Camera(centr.x, centr.y));
-				System.out.println("new camera added");
 			}
 		}
 		return ini;
@@ -158,23 +161,23 @@ public class HeuristicGreedy implements Algorithm{
 
 	private Camera calcInside(List<Coordinate> vertices, Coordinate v, Coordinate bisector) {
 		double norm = Math.sqrt(bisector.x * bisector.x + bisector.y * bisector.y);
-		Coordinate vbNormalized = new Coordinate(bisector.x / norm, bisector.y / norm);
-		Coordinate cand1 = new Coordinate(v.x + vbNormalized.x * EPSILON, v.y + vbNormalized.y * EPSILON);
-		Coordinate cand2 = new Coordinate(v.x - vbNormalized.x * EPSILON, v.y - vbNormalized.y * EPSILON);
+		Coordinate vbNormalized = Maths.cRound(new Coordinate(bisector.x / norm, bisector.y / norm));
+		Coordinate cand1 = Maths.cRound(new Coordinate(v.x + vbNormalized.x * EPSILON, v.y + vbNormalized.y * EPSILON));
+		Coordinate cand2 = Maths.cRound(new Coordinate(v.x - vbNormalized.x * EPSILON, v.y - vbNormalized.y * EPSILON));
 		Point p1 = gf.createPoint(cand1);
 		if(p1.within(main)) return new Camera(cand1.x, cand1.y);
 		return new Camera(cand2.x, cand2.y);
 	}
 
 	private Coordinate calcBisector(LineSegment side1, LineSegment side2) {
-		Coordinate v1 = new Coordinate(side1.p1.x - side1.p0.x, side1.p1.y - side1.p0.y);
-		Coordinate v2 = new Coordinate(side2.p1.x - side2.p0.x, side2.p1.y - side2.p0.y);
-		Coordinate vb = new Coordinate((v1.x + v2.x) / 2, (v1.y + v2.y) / 2);
+		Coordinate v1 = Maths.cRound(new Coordinate(side1.p1.x - side1.p0.x, side1.p1.y - side1.p0.y));
+		Coordinate v2 = Maths.cRound(new Coordinate(side2.p1.x - side2.p0.x, side2.p1.y - side2.p0.y));
+		Coordinate vb = Maths.cRound(new Coordinate((v1.x + v2.x) / 2, (v1.y + v2.y) / 2));
 		//LineSegment bis = new LineSegment(side1.p0, new Coordinate(side1.p0.x + vb.x, side1.p0.y + vb.y));
 		return vb;
 	}
 	
-	public void saveResults(String fname) {
+	public int saveResults(String fname) {
 		File file = new File(fname);
 		StringBuilder sb = new StringBuilder();
 		for(Camera c : cover.keySet()) {
@@ -183,11 +186,13 @@ public class HeuristicGreedy implements Algorithm{
 		try {
 			FileUtils.writeStringToFile(file, sb.toString());
 		} catch (IOException ignorable) {}
+		return cover.keySet().size();
 	}
 	
 	public static void main(String[] args) {
-		HeuristicGreedy hg = new HeuristicGreedy(InitialSet.VERTEX_COVER, new A7());
-		GalleryInstance gi = new BenchmarkFileInstanceLoader().load("randsimple-60-6.pol");
+		HeuristicGreedy hg = new HeuristicGreedy(InitialSet.TRIANGULATION_COVER, new A7());
+		GalleryInstance gi = new BenchmarkFileInstanceLoader().load("randsimple-20-4.pol");
+		System.out.println(gi.getVertices().toString());
 		hg.process(gi);
 		hg.saveResults("camera60-6.sabmple");
 		System.out.println(hg.cover.size());

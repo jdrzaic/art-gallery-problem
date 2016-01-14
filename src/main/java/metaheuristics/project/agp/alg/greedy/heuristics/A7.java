@@ -10,7 +10,7 @@ import com.vividsolutions.jts.geom.Polygon;
 import metaheuristics.project.agp.instances.components.Camera;
 
 public class A7 extends Heuristic{
-
+  
 	@Override
 	public double utilValue(Polygon polygon, HashMap<Camera, Polygon> cover, GeometryFactory gf) {
 		Polygon[] polygons = cover.values().toArray(new Polygon[cover.size()]);
@@ -20,6 +20,7 @@ public class A7 extends Heuristic{
 		try {
 			rest = polygon.difference(union);
 		}catch(Exception e) {
+			//e.printStackTrace();
 			return 0;
 		}
 		return rest.getArea();

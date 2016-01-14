@@ -2,6 +2,8 @@ package metaheuristics.project.agp.instances.util;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,6 +95,7 @@ public class BenchmarkFileInstanceLoader implements InstanceLoader{
 	 */
 	private double parseFraction(String string) {
 		String[] nums = string.split("/");
-		return Double.valueOf(nums[0]) / Double.valueOf(nums[1]);
+		return Maths.round(Double.valueOf(nums[0]) / Double.valueOf(nums[1]), 10);
 	}
+	
 }

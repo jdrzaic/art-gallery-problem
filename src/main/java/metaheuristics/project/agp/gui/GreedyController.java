@@ -69,6 +69,8 @@ public class GreedyController {
 	public void onExecGreedy() {
 		String heur = (String) heuristika.getSelectionModel().getSelectedItem().toString();
 		String initc = (String) pokrivac.getSelectionModel().getSelectedItem().toString();
+		System.out.println(heur);
+		System.out.println(initc);
 		Service<Void> service = new Service<Void>() {
 			@Override
 			protected Task<Void> createTask() {
@@ -77,8 +79,8 @@ public class GreedyController {
 					@Override
 					protected Void call() throws Exception {
 						HeuristicGreedy hg = new HeuristicGreedy(
-								cover.get(pokrivac.getValue()), 
-								heuristics.get(heuristika.getValue()));
+								cover.get(initc), 
+								heuristics.get(heur));
 	                    final CountDownLatch latch = new CountDownLatch(1);
 						Platform.runLater(new Runnable() {                          
 	                        @Override
@@ -90,16 +92,17 @@ public class GreedyController {
 	                            }
 	                        }
 	                    });
-	                    latch.await();  						
+	                    latch.await();  	
+	                    System.out.println("Before processed");
 	                    hg.process(gi); 
-						hg.saveResults(filename);
-						
+	                    System.out.println("processed");
+						int n = hg.saveResults(filename);
+						Controller.runVisualisation();
 						Platform.runLater(new Runnable() {                          
 	                        @Override
 	                        public void run() {
 	                            try{
-	        						Controller.generateVisualisation();
-	                                progres.setProgress(1.0);
+	        						Controller.openResult(n);
 	                            }finally{
 	                                latch.countDown();
 	                            }

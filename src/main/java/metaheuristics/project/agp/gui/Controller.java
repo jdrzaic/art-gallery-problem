@@ -17,6 +17,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
+import metaheuristics.project.agp.alg.greedy.PSORunner;
 import metaheuristics.project.agp.instances.GalleryInstance;
 import metaheuristics.project.agp.instances.components.Polygon;
 import metaheuristics.project.agp.instances.util.BenchmarkFileInstanceLoader;
@@ -26,6 +27,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import org.apache.commons.io.FileUtils;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.LineSegment;
@@ -38,6 +41,9 @@ public class Controller implements Initializable {
 	private static Drawing drawing;
 
 	static File benchmark;
+	static File other;
+	static int draw = 0;
+
 	static BenchmarkFileInstanceLoader bfil = new BenchmarkFileInstanceLoader();
 
 	/**
@@ -108,8 +114,14 @@ public class Controller implements Initializable {
 	
 	public void onButtonNext() {
 		if(heur_ger.isSelected()) {
+			if(benchmark != null) System.out.println(benchmark.getName());
 			if(radio_dat.isSelected()) {
+				
 				try {
+					if(draw == 1 && other != null) {
+						benchmark = new File(other.getAbsolutePath());
+					}
+					draw = 0;
 					GalleryInstance gi = bfil.load(benchmark.getAbsolutePath());
 						GreedyController gc = new GreedyController();
 						gc.process(gi, "res.txt");
@@ -121,8 +133,48 @@ public class Controller implements Initializable {
 					wrongFileAlert.showAndWait();
 				}
 			} else {
+				if(draw == 0 && benchmark != null) {
+					other = new File(benchmark.getAbsolutePath());
+				}
+				draw = 1;
 				//benchmark = null;
-				if(drawing.gi.getVertices().size() < 3) {
+				if(drawing.gi == null || drawing.gi.getVertices().size() < 3) {
+					Alert wrongFileAlert = new Alert(AlertType.ERROR, 
+							"Tlocrt galerija nemoguće je obraditi. Pokušajte ponovo.",
+							ButtonType.OK);
+					wrongFileAlert.setHeaderText("Greška");
+					wrongFileAlert.showAndWait();
+				} else {
+					
+					GreedyController gc = new GreedyController();
+					gc.process(drawing.gi, "res.txt");
+				}
+			}
+		} else if (pso_gen.isSelected()) {
+			if(benchmark != null) System.out.println(benchmark.getName());
+			if(radio_dat.isSelected()) {
+				
+				try {
+					if(draw == 1 && other != null) {
+						benchmark = new File(other.getAbsolutePath());
+					}
+					draw = 0;
+					GalleryInstance gi = bfil.load(benchmark.getAbsolutePath());
+					
+				} catch(Exception e) {
+					Alert wrongFileAlert = new Alert(AlertType.ERROR, 
+							"Odabrana datoteka ne sadrži primjer u korektnom zapisu! Pokušajte ponovo.",
+							ButtonType.OK);
+					wrongFileAlert.setHeaderText("Greška");
+					wrongFileAlert.showAndWait();
+				}
+			} else {
+				if(draw == 0 && benchmark != null) {
+					other = new File(benchmark.getAbsolutePath());
+				}
+				draw = 1;
+				//benchmark = null;
+				if(drawing.gi == null || drawing.gi.getVertices().size() < 3) {
 					Alert wrongFileAlert = new Alert(AlertType.ERROR, 
 							"Tlocrt galerija nemoguće je obraditi. Pokušajte ponovo.",
 							ButtonType.OK);
@@ -179,8 +231,7 @@ public class Controller implements Initializable {
 		public void add(double x, double y) {
 			this.tmpx = x;
 			this.tmpy = y;
-			tmpHole.add(new Coordinate(x, y));
-			if(tmpHole.size() > 2 && new LineSegment(new Coordinate(tmpx, tmpy), tmpHole.get(0)).getLength() < 5) {
+			if(tmpHole.size() > 2 && new LineSegment(new Coordinate(tmpx, tmpy), tmpHole.get(0)).getLength() < 8) {
 				tmpx = tmpy = -1;
 				if(curr == 0) {
 					gi = new GalleryInstance((new ArrayList<>(tmpHole)));
@@ -196,21 +247,57 @@ public class Controller implements Initializable {
 				}
 				tmpHole.clear();
 				curr++;
+			}else{
+				tmpHole.add(new Coordinate(x, y));
 			}
 		}
 	}
 
-	public static void generateVisualisation() {
-		//if()
-		try {
-			Runtime.getRuntime().exec("/Users/jelenadrzaic/Documents/repos/art-gallery-problem/ArtGallery " +  
-					benchmark.getAbsolutePath() +  " /Users/jelenadrzaic/Documents/repos/art-gallery-problem/res.txt  /Users/jelenadrzaic/Documents/repos/art-gallery-problem/cam.png");
-		} catch (IOException e) {
-			e.printStackTrace();
+	public static void runVisualisation() {
+		//nacrtana galerija
+		if(draw == 1) {
+			generateBenchmarkFromDraw();
 		}
-		ResultsView rv = new ResultsView();
-		rv.openWindow();
+		try {
+			Process p = Runtime.getRuntime().exec("/Users/jelenadrzaic/Documents/repos/art-gallery-problem/ArtGallery " +  
+					benchmark.getAbsolutePath() +  " /Users/jelenadrzaic/Documents/repos/art-gallery-problem/res.txt  /Users/jelenadrzaic/Documents/repos/art-gallery-problem/cam.png");
+			try {
+				p.waitFor();
+			} catch (InterruptedException e) {
+				System.err.println("Error wainting bash");
+			}
+		} catch (IOException e) {
+			System.err.println("Error executing bash");
+		}
 	}
 
-	
+	private static void generateBenchmarkFromDraw() {
+		StringBuilder sb = new StringBuilder();
+		GalleryInstance gi = drawing.gi;
+		sb.append(gi.getVertices().size()).append(" ");
+		for(Coordinate c : gi.getVertices()) {
+			sb.append(new Double(c.x).intValue() + "/1 ").append(new Double(c.y).intValue() + "/1 ");
+		}
+		if(gi.getHoles().size() > 0) sb.append(gi.getHoles().size());
+		for(Polygon h : gi.getHoles()) {
+			sb.append(" " + h.getVertices().size() + " ");
+			for(Coordinate c : h.getVertices()) {
+				sb.append(new Double(c.x).intValue() + "/1 ").append(new Double(c.y).intValue() + "/1 ");
+			}
+		}
+		System.out.println("tu sad");
+		System.out.println(sb.toString());
+		try {
+			FileUtils.writeStringToFile(new File("cam.txt"), sb.toString());
+		} catch (IOException ignorable) {
+			ignorable.printStackTrace();
+		}
+		benchmark = new File("cam.txt");
+		System.out.println();
+	}
+
+	public static void openResult(int n) {
+		ResultsView rv = new ResultsView();
+		rv.openWindow(n, benchmark.getName());
+	}
 }

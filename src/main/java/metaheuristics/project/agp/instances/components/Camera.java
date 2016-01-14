@@ -10,6 +10,7 @@ import com.vividsolutions.jts.math.Vector2D;
 
 import metaheuristics.project.agp.instances.GalleryInstance;
 import metaheuristics.project.agp.instances.util.BenchmarkFileInstanceLoader;
+import metaheuristics.project.agp.instances.util.Maths;
 
 /**
  * Class represents one camera.
@@ -29,11 +30,11 @@ public class Camera extends Coordinate{
 	 * @param y x coordinate value.
 	 */
 	public Camera(double x, double y) {
-		super(x, y);
+		super(Maths.round(x, 10), Maths.round(y,10));
 	}
 	
 	public Camera(Coordinate c) {
-		super(c);
+		super(new Coordinate(Maths.round(c.x,10), Maths.round(c.y, 10)));
 	}
 
 	/**
@@ -76,7 +77,7 @@ public class Camera extends Coordinate{
 			LineSegment side = new LineSegment(gi.getVertices().get(i % size), 
 					gi.getVertices().get((i + 1) % size));
 			Coordinate is;
-			if((is = ls.lineIntersection(side)) == null) continue;
+			if((is = Maths.cRound(ls.lineIntersection(side))) == null) continue;
 			double dist = is.distance(ls.p0);
 			if((mindist == -1 || dist < mindist) && side.distance(is) < EPSILON && 
 					new Vector2D(ls.p0, ls.p1).dot(new Vector2D(ls.p0, is)) >= 0) {
@@ -89,7 +90,7 @@ public class Camera extends Coordinate{
 			for(int i = 0; i < size; ++i) {
 				LineSegment side = new LineSegment(hole.getVertices().get(i % size),
 					hole.getVertices().get((i + 1) % size));
-				Coordinate is = ls.lineIntersection(side);
+				Coordinate is = Maths.cRound(ls.lineIntersection(side));
 				double dist = is.distance(ls.p0);
 				if((mindist == -1 || dist < mindist) && side.distance(is) < EPSILON && 
 						//so that is on the right side
@@ -118,7 +119,7 @@ public class Camera extends Coordinate{
 		double ry = vx * sin + vy * cos;
 		double nx = ls.p0.x + rx;
 		double ny = ls.p0.y + ry;
-		return new LineSegment(ls.p0, new Coordinate(nx, ny));
+		return new LineSegment(ls.p0, Maths.cRound(new Coordinate(nx, ny)));
 	}
 	
 	public String toString() {

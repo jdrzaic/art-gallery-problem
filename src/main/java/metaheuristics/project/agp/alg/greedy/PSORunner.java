@@ -34,12 +34,16 @@ public class PSORunner {
 
 	public static double EPSILON = 0.01;
 
+	public static void init(int epsilon, int iteracije) {
+		EPSILON = epsilon;
+		iteration = iteracije;
+	}
 	/**
 	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		List<TriangleOptimization> psoTriangles = new ArrayList<>();
+		/*List<TriangleOptimization> psoTriangles = new ArrayList<>();
 
 		long time = System.currentTimeMillis();
 
@@ -49,17 +53,28 @@ public class PSORunner {
 		System.out.println(cover.size() + " camera pokriva  "
 				+ union.buffer(0).getArea() + "  od  " + giArea);
 		System.out.println(	"Proslo vrijeme: " + (System.currentTimeMillis() - time));
+		*/
 	}
 	
+	public static void process(String filename) {
+		List<TriangleOptimization> psoTriangles = new ArrayList<>();
 
+		long time = System.currentTimeMillis();
+
+		findBestCameraPositions(psoTriangles, filename);
+		calculateMinCameraNum(psoTriangles);
+
+		System.out.println(cover.size() + " camera pokriva  "
+				+ union.buffer(0).getArea() + "  od  " + giArea);
+		System.out.println(	"Proslo vrijeme: " + (System.currentTimeMillis() - time));
+	}
 
 	/**
 	 * 
 	 * @param psoTriangles
 	 */
-	private static void findBestCameraPositions(List<TriangleOptimization> psoTriangles) {
-		gi = new BenchmarkFileInstanceLoader().load(
-				"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem/results/triang_A7/randsimple-60-9.pol");
+	private static void findBestCameraPositions(List<TriangleOptimization> psoTriangles, String filename) {
+		gi = new BenchmarkFileInstanceLoader().load(filename);
 		ConformingDelaunayTriangulationBuilder cdtb = new ConformingDelaunayTriangulationBuilder();
 		
 
