@@ -20,7 +20,7 @@ import metaheuristics.project.agp.instances.util.BenchmarkFileInstanceLoader;
 
 public class PSORunner {
 
-	private static int populationNumPerTriang = 8;
+	private static int populationNumPerTriang = 4;
 
 	private static int iteration = 100;
 

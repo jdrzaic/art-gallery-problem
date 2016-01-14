@@ -37,7 +37,7 @@ public class HeuristicGreedy implements Algorithm{
 		TRIANGULATION_COVER
 	}
 	
-	public static double EPSILON = 0.01;
+	public static double EPSILON = 0.03;
 
 	private GeometryFactory gf = new GeometryFactory();
 	
@@ -60,8 +60,10 @@ public class HeuristicGreedy implements Algorithm{
 		this.main = createPolygon(gi.getVertices());
 		this.visPolygons = new HashMap<>();
 		List<Camera> init = createInitialSet(gi);
+		System.out.println("here" + init.toString());
 		for(int i = 0; i < init.size(); ++i) {
 			List<Coordinate> bound = init.get(i).visibilityPolygon(gi).getVertices();
+			System.out.println("poligon");
 			visPolygons.put(init.get(i), 
 					createPolygon(bound));
 		}
@@ -84,11 +86,14 @@ public class HeuristicGreedy implements Algorithm{
 		GeometryCollection polygonCollection = gf.createGeometryCollection(polygons);
 		Geometry union = polygonCollection.buffer(0);
 		try {
+			if(Math.abs(main.getArea() - union.getArea()) < areaAll * EPSILON) {
+				return true;
+			}
 			if(main.difference(union).getArea() < areaAll * EPSILON) return true;
 		}catch(Exception e) {
 			//System.out.println("problem difference");
 			//e.printStackTrace();
-			return true;
+			return false;
 		}
 		return false;
 	}

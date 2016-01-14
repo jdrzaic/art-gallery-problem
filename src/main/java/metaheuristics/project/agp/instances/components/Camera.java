@@ -21,7 +21,7 @@ import metaheuristics.project.agp.instances.util.Maths;
  */
 public class Camera extends Coordinate{
 
-	public static double ALPHA = 0.0000000001;
+	public static double ALPHA = 0.00000001;
 	public static double EPSILON = 0.0000001;
 	
 	/**
@@ -47,6 +47,7 @@ public class Camera extends Coordinate{
 		TreeMap<Double, Coordinate> vPolygonCoords = new TreeMap<Double, Coordinate>();
 		//last was already in cause neighbour of camera this.
 		goOver(gi, vPolygonCoords, -1);
+		System.out.println("over goOver");
 		for(int i = 0; i < gi.getHoles().size(); ++i) {
 			goOver(gi, vPolygonCoords, i);
 		}
@@ -77,7 +78,7 @@ public class Camera extends Coordinate{
 			LineSegment side = new LineSegment(gi.getVertices().get(i % size), 
 					gi.getVertices().get((i + 1) % size));
 			Coordinate is;
-			if((is = Maths.cRound(ls.lineIntersection(side))) == null) continue;
+			if((is = (ls.lineIntersection(side))) == null) continue;
 			double dist = is.distance(ls.p0);
 			if((mindist == -1 || dist < mindist) && side.distance(is) < EPSILON && 
 					new Vector2D(ls.p0, ls.p1).dot(new Vector2D(ls.p0, is)) >= 0) {

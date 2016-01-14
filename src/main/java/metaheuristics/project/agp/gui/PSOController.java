@@ -3,7 +3,6 @@ package metaheuristics.project.agp.gui;
 import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
 
-import apple.laf.JRSUIUtils.TabbedPane;
 import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
