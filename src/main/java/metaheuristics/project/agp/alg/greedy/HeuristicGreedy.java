@@ -49,6 +49,8 @@ public class HeuristicGreedy implements Algorithm{
 	private HashMap<Camera, Polygon> visPolygons;
 	
 	HashMap<Camera, Polygon> cover;
+	
+	Geometry coverUnion;
 
 	public HeuristicGreedy(InitialSet is, Heuristic h) {
 		this.is = is;
@@ -57,6 +59,7 @@ public class HeuristicGreedy implements Algorithm{
 	
 	@Override
 	public void process(GalleryInstance gi) {
+		this.visPolygons = new HashMap<>();
 		this.main = createPolygon(gi.getVertices());
 		this.visPolygons = new HashMap<>();
 		List<Camera> init = createInitialSet(gi);
@@ -72,33 +75,45 @@ public class HeuristicGreedy implements Algorithm{
 		while(!covered) {
 			Camera c = findBest();
 			if(c != null) {
-				cover.put(c, visPolygons.get(c));
-				visPolygons.remove(c);
-				covered = checkIfCovered();
+				covered = checkIfCovered(c);
 				System.out.println("camera in cover");
 			}
 		}
  	}
 	
-	private boolean checkIfCovered() {
+	private boolean checkIfCovered(Camera c) {
 		double areaAll = main.getArea();
-		Polygon[] polygons = cover.values().toArray(new Polygon[cover.values().size()]);
-		GeometryCollection polygonCollection = gf.createGeometryCollection(polygons);
-		Geometry union = polygonCollection.buffer(0);
-		try {
-			if(Math.abs(main.getArea() - union.getArea()) < areaAll * EPSILON) {
-				return true;
-			}
-			if(main.difference(union).getArea() < areaAll * EPSILON) return true;
-		}catch(Exception e) {
-			//System.out.println("problem difference");
-			//e.printStackTrace();
-			return false;
+		if(coverUnion == null) {
+			coverUnion = visPolygons.get(c);
+		} else {
+			coverUnion = coverUnion.union(visPolygons.get(c));
 		}
-		return false;
+		cover.put(c, visPolygons.get(c));
+		visPolygons.remove(c);
+        if(Math.abs(areaAll - coverUnion.getArea()) < areaAll * EPSILON) {
+            return true;
+        }
+        return false;
 	}
 
 	private Camera findBest() {
+		double maxmi = -1;
+		Camera max = null;
+		for(Camera c : visPolygons.keySet()) {
+			double mi = h.utilValue(visPolygons.get(c), cover, gf);
+			if(maxmi == -1 || mi > maxmi) {
+				maxmi = mi;
+				max = c;
+			}
+		}
+		return max;
+	}
+
+    /**
+     *
+     * @TODO ubacivanje vise kamera u jednom koraku.
+     */
+	private Camera findBest(int k) {
 		double maxmi = -1;
 		Camera max = null;
 		for(Camera c : visPolygons.keySet()) {
@@ -111,7 +126,7 @@ public class HeuristicGreedy implements Algorithm{
 		}
 		return max;
 	}
-
+	
 	Polygon createPolygon(List<Coordinate> bound) {
 		Coordinate[] boundary = new Coordinate[bound.size() + 1];
 		for(int i = 0; i < boundary.length - 1; ++i) boundary[i] = bound.get(i);
