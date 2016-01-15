@@ -48,9 +48,11 @@ public class HeuristicGreedy implements Algorithm{
 	
 	private HashMap<Camera, Polygon> visPolygons;
 	
-	HashMap<Camera, Polygon> cover;
+	//HashMap<Camera, Polygon> cover;
 	
 	Geometry coverUnion;
+	
+	GalleryInstance gi;
 
 	public HeuristicGreedy(InitialSet is, Heuristic h) {
 		this.is = is;
@@ -59,9 +61,10 @@ public class HeuristicGreedy implements Algorithm{
 	
 	@Override
 	public void process(GalleryInstance gi) {
+		
+		this.gi = gi;
 		this.visPolygons = new HashMap<>();
 		this.main = createPolygon(gi.getVertices());
-		this.visPolygons = new HashMap<>();
 		List<Camera> init = createInitialSet(gi);
 		System.out.println("here" + init.toString());
 		for(int i = 0; i < init.size(); ++i) {
@@ -70,7 +73,6 @@ public class HeuristicGreedy implements Algorithm{
 			visPolygons.put(init.get(i), 
 					createPolygon(bound));
 		}
-		cover = new HashMap<>();
 		boolean covered = false;
 		while(!covered) {
 			Camera c = findBest();
@@ -88,7 +90,7 @@ public class HeuristicGreedy implements Algorithm{
 		} else {
 			coverUnion = coverUnion.union(visPolygons.get(c));
 		}
-		cover.put(c, visPolygons.get(c));
+		gi.addCamera(c);
 		visPolygons.remove(c);
         if(Math.abs(areaAll - coverUnion.getArea()) < areaAll * EPSILON) {
             return true;
@@ -100,7 +102,7 @@ public class HeuristicGreedy implements Algorithm{
 		double maxmi = -1;
 		Camera max = null;
 		for(Camera c : visPolygons.keySet()) {
-			double mi = h.utilValue(visPolygons.get(c), cover, gf);
+			double mi = h.utilValue(visPolygons.get(c), coverUnion, gf);
 			if(maxmi == -1 || mi > maxmi) {
 				maxmi = mi;
 				max = c;
@@ -117,7 +119,7 @@ public class HeuristicGreedy implements Algorithm{
 		double maxmi = -1;
 		Camera max = null;
 		for(Camera c : visPolygons.keySet()) {
-			double mi = h.utilValue(visPolygons.get(c), cover, gf);
+			double mi = h.utilValue(visPolygons.get(c), coverUnion, gf);
 			//System.out.println("value" + mi);
 			if(maxmi == -1 || mi > maxmi) {
 				maxmi = mi;
@@ -200,13 +202,13 @@ public class HeuristicGreedy implements Algorithm{
 	public int saveResults(String fname) {
 		File file = new File(fname);
 		StringBuilder sb = new StringBuilder();
-		for(Camera c : cover.keySet()) {
+		for(Camera c : gi.getCameras()) {
 			sb.append(c.toString() + " ");
 		}
 		try {
 			FileUtils.writeStringToFile(file, sb.toString());
 		} catch (IOException ignorable) {}
-		return cover.keySet().size();
+		return gi.cameraNum();
 	}
 	
 	public static void main(String[] args) {
@@ -215,6 +217,6 @@ public class HeuristicGreedy implements Algorithm{
 		System.out.println(gi.getVertices().toString());
 		hg.process(gi);
 		hg.saveResults("camera60-6.sabmple");
-		System.out.println(hg.cover.size());
+		System.out.println(gi.cameraNum());
 	}
 }

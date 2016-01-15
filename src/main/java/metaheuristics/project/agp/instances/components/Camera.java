@@ -21,7 +21,7 @@ import metaheuristics.project.agp.instances.util.Maths;
  */
 public class Camera extends Coordinate{
 
-	public static double ALPHA = 0.00000001;
+	public static double ALPHA = 0.000000001;
 	public static double EPSILON = 0.0000001;
 	
 	/**

@@ -12,10 +12,8 @@ import metaheuristics.project.agp.instances.components.Camera;
 public class A6 extends Heuristic {
 
 	@Override
-	public double utilValue(Polygon polygon, HashMap<Camera, Polygon> cover, GeometryFactory gf) {
-		Polygon[] polygons = cover.values().toArray(new Polygon[cover.size()]);
-		GeometryCollection polygonCollection = gf.createGeometryCollection(polygons);
-		Geometry union = polygonCollection.buffer(0);
+	public double utilValue(Polygon polygon, Geometry union, GeometryFactory gf) {
+		
 		Geometry rest;
 		try {
 			rest = polygon.difference(union);

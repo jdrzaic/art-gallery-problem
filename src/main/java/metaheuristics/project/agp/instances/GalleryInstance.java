@@ -111,6 +111,14 @@ public class GalleryInstance extends Polygon{
 		}
 	}
 	
+	public void addCamera(Camera c) {
+		cameras.add(c);
+	}
+	
+	public int cameraNum() {
+		return cameras.size();
+	}
+	
 	/**
 	 * Method calculating area of holes.
 	 * @return area of holes.
