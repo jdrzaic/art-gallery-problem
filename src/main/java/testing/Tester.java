@@ -42,14 +42,14 @@ public class Tester {
 		Writer bw = null;
 		@Override
 		public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
-			currentToWrite = Paths.get("testing/" + dir.getFileName() + ".txt");
-			File f  = new File("testing/" + dir.getFileName() + ".txt");
+			currentToWrite = Paths.get("test_res/" + dir.getFileName() + ".txt");
+			File f  = new File("test_res/" + dir.getFileName() + ".txt");
 			f.getParentFile().mkdirs(); 
 			f.createNewFile();
 			bw = new BufferedWriter(
 					 new OutputStreamWriter(
 					 new BufferedOutputStream(
-					 new FileOutputStream("testing/" + dir.getFileName() + ".txt")),"UTF-8"));
+					 new FileOutputStream("test_res/" + dir.getFileName() + ".txt")),"UTF-8"));
 			return FileVisitResult.CONTINUE;
 		}
 
@@ -57,8 +57,28 @@ public class Tester {
 		public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
 			if((file.getFileName().toString()).compareTo(".DS_Store") == 0) return FileVisitResult.CONTINUE;
 			System.out.println(file.toString());
-			sb.append(createResult(alg, file));
+			try {
+				sb.append(createResult(alg, file));
+			} catch(IllegalArgumentException e) {
+				System.err.println(file.toString());
+				return FileVisitResult.CONTINUE;
+			}
 			sb.append(System.getProperty("line.separator"));
+			/*File f  = new File("test_res/" + file.getFileName() + ".newtxt");
+			f.getParentFile().mkdirs(); 
+			f.createNewFile();
+			bw = new BufferedWriter(
+					 new OutputStreamWriter(
+					 new BufferedOutputStream(
+					 new FileOutputStream("test_res/" + file.getFileName() + ".newtxt")),"UTF-8"));
+			try {
+				bw.write(createResult(alg, file));
+			} catch(IllegalArgumentException e) {
+				System.err.println(file.toString());
+				return FileVisitResult.CONTINUE;
+			}
+			bw.flush();
+			bw.close();*/
 			return FileVisitResult.CONTINUE;
 		}
 
