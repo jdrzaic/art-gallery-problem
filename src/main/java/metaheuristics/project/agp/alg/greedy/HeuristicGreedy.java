@@ -16,6 +16,7 @@ import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryCollection;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.LineSegment;
+import com.vividsolutions.jts.geom.LinearRing;
 import com.vividsolutions.jts.geom.Polygon;
 import com.vividsolutions.jts.triangulate.ConformingDelaunayTriangulationBuilder;
 
@@ -37,7 +38,10 @@ public class HeuristicGreedy implements Algorithm{
 		TRIANGULATION_COVER
 	}
 	
-	public static double EPSILON = 0.03;
+	//how many cameras at once
+	public static int k = 2;
+	
+	public static double EPSILON = 0.02;
 
 	private GeometryFactory gf = new GeometryFactory();
 	
@@ -47,9 +51,7 @@ public class HeuristicGreedy implements Algorithm{
 	private InitialSet is;
 	
 	private HashMap<Camera, Polygon> visPolygons;
-	
-	//HashMap<Camera, Polygon> cover;
-	
+		
 	Geometry coverUnion;
 	
 	GalleryInstance gi;
@@ -60,25 +62,32 @@ public class HeuristicGreedy implements Algorithm{
 	}
 	
 	@Override
-	public void process(GalleryInstance gi) {
+	public void process(GalleryInstance gi) throws 	IllegalArgumentException {
 		
 		this.gi = gi;
 		this.visPolygons = new HashMap<>();
-		this.main = createPolygon(gi.getVertices());
+		this.coverUnion = null;
+		this.main = createPolygon(gi.getVertices(), gi.getHoles());
 		List<Camera> init = createInitialSet(gi);
 		System.out.println("here" + init.toString());
 		for(int i = 0; i < init.size(); ++i) {
 			List<Coordinate> bound = init.get(i).visibilityPolygon(gi).getVertices();
-			System.out.println("poligon");
 			visPolygons.put(init.get(i), 
-					createPolygon(bound));
+					//za rupe, al ovdje ne treba
+					createPolygon(bound, new ArrayList<>()));
 		}
 		boolean covered = false;
 		while(!covered) {
-			Camera c = findBest();
-			if(c != null) {
-				covered = checkIfCovered(c);
+			//changing manualy!!
+			Camera[] cams = findBest2();
+			if(cams.length > 0) {
+				covered = checkIfCovered(cams[0]);
 				System.out.println("camera in cover");
+				if(cams.length > 1 && !covered) {
+					covered = checkIfCovered(cams[1]);
+				}
+			} else {
+				throw new IllegalArgumentException();
 			}
 		}
  	}
@@ -92,6 +101,7 @@ public class HeuristicGreedy implements Algorithm{
 		}
 		gi.addCamera(c);
 		visPolygons.remove(c);
+		System.out.println(areaAll - coverUnion.getArea() + "\n");
         if(Math.abs(areaAll - coverUnion.getArea()) < areaAll * EPSILON) {
             return true;
         }
@@ -112,24 +122,44 @@ public class HeuristicGreedy implements Algorithm{
 	}
 
     /**
-     *
-     * @TODO ubacivanje vise kamera u jednom koraku.
+     * Method returns 1 or 2 best cameras to chose, depending on the heuristic used.
+     * if 1 camera has better score than all of pairs, it is returned. Otherwise, best pair is returned.
      */
-	private Camera findBest(int k) {
+	private Camera[] findBest2() {
+		if(k == 1) {
+			Camera[] toAdd = new Camera[1];
+			toAdd[0] = findBest();
+			return toAdd;
+		}
+		Camera[] toAdd = new Camera[2];
+		Camera best1 = null;
 		double maxmi = -1;
-		Camera max = null;
+		double maxmi1 = -1;
 		for(Camera c : visPolygons.keySet()) {
-			double mi = h.utilValue(visPolygons.get(c), coverUnion, gf);
-			//System.out.println("value" + mi);
-			if(maxmi == -1 || mi > maxmi) {
-				maxmi = mi;
-				max = c;
+			double mi1 = h.utilValue(visPolygons.get(c), coverUnion, gf);
+			if(maxmi1 == -1 ||  mi1 > maxmi1) {
+				best1 = c;
+				maxmi1 = mi1;
+			}
+			for(Camera d : visPolygons.keySet()) {
+				if(d == c) continue;
+				double mi = h.utilValue(visPolygons.get(c).union(visPolygons.get(d)), coverUnion, gf);
+				if(maxmi == -1 || mi > maxmi) {
+					maxmi = mi;
+					toAdd[0] = c;
+					toAdd[1] = d;
+				}
 			}
 		}
-		return max;
+		if(maxmi > maxmi1) {
+			return toAdd;
+		}
+		Camera[] toAdd1 = new Camera[1];
+		toAdd1[0] = best1;
+		return toAdd1;
 	}
 	
-	Polygon createPolygon(List<Coordinate> bound) {
+	Polygon createPolygon(List<Coordinate> bound, List<metaheuristics.project.agp.instances.components.Polygon> holes) {
 		Coordinate[] boundary = new Coordinate[bound.size() + 1];
 		for(int i = 0; i < boundary.length - 1; ++i) boundary[i] = bound.get(i);
 		boundary[boundary.length - 1] = bound.get(0);
@@ -184,8 +214,10 @@ public class HeuristicGreedy implements Algorithm{
 	private Camera calcInside(List<Coordinate> vertices, Coordinate v, Coordinate bisector) {
 		double norm = Math.sqrt(bisector.x * bisector.x + bisector.y * bisector.y);
 		Coordinate vbNormalized = Maths.cRound(new Coordinate(bisector.x / norm, bisector.y / norm));
-		Coordinate cand1 = Maths.cRound(new Coordinate(v.x + vbNormalized.x * EPSILON, v.y + vbNormalized.y * EPSILON));
-		Coordinate cand2 = Maths.cRound(new Coordinate(v.x - vbNormalized.x * EPSILON, v.y - vbNormalized.y * EPSILON));
+		Coordinate cand1 = Maths.cRound(new Coordinate(v.x + vbNormalized.x * EPSILON, 
+				v.y + vbNormalized.y * EPSILON));
+		Coordinate cand2 = Maths.cRound(new Coordinate(v.x - vbNormalized.x * EPSILON, 
+				v.y - vbNormalized.y * EPSILON));
 		Point p1 = gf.createPoint(cand1);
 		if(p1.within(main)) return new Camera(cand1.x, cand1.y);
 		return new Camera(cand2.x, cand2.y);
@@ -195,7 +227,6 @@ public class HeuristicGreedy implements Algorithm{
 		Coordinate v1 = Maths.cRound(new Coordinate(side1.p1.x - side1.p0.x, side1.p1.y - side1.p0.y));
 		Coordinate v2 = Maths.cRound(new Coordinate(side2.p1.x - side2.p0.x, side2.p1.y - side2.p0.y));
 		Coordinate vb = Maths.cRound(new Coordinate((v1.x + v2.x) / 2, (v1.y + v2.y) / 2));
-		//LineSegment bis = new LineSegment(side1.p0, new Coordinate(side1.p0.x + vb.x, side1.p0.y + vb.y));
 		return vb;
 	}
 	

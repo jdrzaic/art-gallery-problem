@@ -83,7 +83,7 @@ public class TriangleOptimization
 
 	@Override
 	public int compareTo(TriangleOptimization o) {
-		return -Double.valueOf(maxAreaCovered).compareTo(o.maxAreaCovered);
+		return Double.valueOf(maxAreaCovered).compareTo(o.maxAreaCovered);
 	}
 
 	/**
