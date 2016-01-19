@@ -7,65 +7,53 @@
 <?import javafx.scene.layout.*?>
 
 
-<TabPane fx:id="pane" xmlns="http://javafx.com/javafx/8"
-	xmlns:fx="http://javafx.com/fxml/1" fx:controller="metaheuristics.project.agp.gui.PSOController">
-	<tabs>
-		<Tab>
-			<content>
-				<HBox>
-					<children>
-						<VBox prefHeight="352.0" prefWidth="236.0">
-							<children>
-								<Label text="broj iteracija: ">
-									<font>
-										<Font size="18.0" />
-									</font>
-									<VBox.margin>
-										<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-									</VBox.margin>
-								</Label>
-								<TextField fx:id="iteracija" />
-								<Label text="broj jedinki: ">
-                                    <font>
-                                        <Font size="18.0" />
-                                    </font>
-                                    <VBox.margin>
-                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                    </VBox.margin>
-                                </Label>
-                                <TextField fx:id="populacija" />
-								<Label prefHeight="17.0" prefWidth="169.0" text="tolerancija:">
-									<font>
-										<Font size="18.0" />
-									</font>
-									<VBox.margin>
-										<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-									</VBox.margin>
-								</Label>
-								<TextField fx:id="tolerancija" />
-								<Button fx:id="kreni" mnemonicParsing="false" onAction="#onExecPSO"
-									text="Kreni">
-									<VBox.margin>
-										<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-									</VBox.margin>
-								</Button>
-								<Label text="Rezultat:">
-									<VBox.margin>
-										<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-									</VBox.margin>
-								</Label>
-								<Label fx:id="rezultat" prefHeight="17.0" prefWidth="71.0">
-									<VBox.margin>
-										<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-									</VBox.margin>
-								</Label>
-								<Button fx:id="zatvori" mnemonicParsing="false" onAction="#onClose"
-									text="Zatvori" />
-							</children>
-						</VBox>
-					</children>
-				</HBox>
-			</content>
-		</Tab>
-	</tabs>
+<TabPane fx:id="pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="metaheuristics.project.agp.gui.PSOController">
+   <tabs>
+      <Tab>
+         <content>
+            <HBox>
+               <children>
+                  <VBox prefHeight="352.0" prefWidth="236.0">
+                     <children>
+                        <Label text="broj iteracija: ">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="iteracija" />
+                        <Label prefHeight="17.0" prefWidth="169.0" text="tolerancija:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="tolerancija" />
+                        <Button fx:id="kreni" mnemonicParsing="false" onAction="#onExecPSO" text="Kreni">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Label text="Rezultat:">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="rezultat" prefHeight="17.0" prefWidth="71.0">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Button fx:id="zatvori" mnemonicParsing="false" onAction="#onClose" text="Zatvori" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </content>
+      </Tab>
+   </tabs>
 </TabPane>

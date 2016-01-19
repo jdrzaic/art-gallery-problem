@@ -37,7 +37,7 @@ public class HeuristicGreedy implements Algorithm{
 		TRIANGULATION_COVER
 	}
 	
-	public static double EPSILON = 0.01;
+	public static double EPSILON = 0.03;
 
 	private GeometryFactory gf = new GeometryFactory();
 	
@@ -48,7 +48,11 @@ public class HeuristicGreedy implements Algorithm{
 	
 	private HashMap<Camera, Polygon> visPolygons;
 	
-	HashMap<Camera, Polygon> cover;
+	//HashMap<Camera, Polygon> cover;
+	
+	Geometry coverUnion;
+	
+	GalleryInstance gi;
 
 	public HeuristicGreedy(InitialSet is, Heuristic h) {
 		this.is = is;
@@ -57,48 +61,48 @@ public class HeuristicGreedy implements Algorithm{
 	
 	@Override
 	public void process(GalleryInstance gi) {
-		this.main = createPolygon(gi.getVertices());
+		
+		this.gi = gi;
 		this.visPolygons = new HashMap<>();
+		this.main = createPolygon(gi.getVertices());
 		List<Camera> init = createInitialSet(gi);
+		System.out.println("here" + init.toString());
 		for(int i = 0; i < init.size(); ++i) {
 			List<Coordinate> bound = init.get(i).visibilityPolygon(gi).getVertices();
+			System.out.println("poligon");
 			visPolygons.put(init.get(i), 
 					createPolygon(bound));
 		}
-		cover = new HashMap<>();
 		boolean covered = false;
 		while(!covered) {
 			Camera c = findBest();
 			if(c != null) {
-				cover.put(c, visPolygons.get(c));
-				visPolygons.remove(c);
-				covered = checkIfCovered();
+				covered = checkIfCovered(c);
 				System.out.println("camera in cover");
 			}
 		}
  	}
 	
-	private boolean checkIfCovered() {
+	private boolean checkIfCovered(Camera c) {
 		double areaAll = main.getArea();
-		Polygon[] polygons = cover.values().toArray(new Polygon[cover.values().size()]);
-		GeometryCollection polygonCollection = gf.createGeometryCollection(polygons);
-		Geometry union = polygonCollection.buffer(0);
-		try {
-			if(main.difference(union).getArea() < areaAll * EPSILON) return true;
-		}catch(Exception e) {
-			//System.out.println("problem difference");
-			//e.printStackTrace();
-			return true;
+		if(coverUnion == null) {
+			coverUnion = visPolygons.get(c);
+		} else {
+			coverUnion = coverUnion.union(visPolygons.get(c));
 		}
-		return false;
+		gi.addCamera(c);
+		visPolygons.remove(c);
+        if(Math.abs(areaAll - coverUnion.getArea()) < areaAll * EPSILON) {
+            return true;
+        }
+        return false;
 	}
 
 	private Camera findBest() {
 		double maxmi = -1;
 		Camera max = null;
 		for(Camera c : visPolygons.keySet()) {
-			double mi = h.utilValue(visPolygons.get(c), cover, gf);
-			//System.out.println("value" + mi);
+			double mi = h.utilValue(visPolygons.get(c), coverUnion, gf);
 			if(maxmi == -1 || mi > maxmi) {
 				maxmi = mi;
 				max = c;
@@ -107,6 +111,24 @@ public class HeuristicGreedy implements Algorithm{
 		return max;
 	}
 
+    /**
+     *
+     * @TODO ubacivanje vise kamera u jednom koraku.
+     */
+	private Camera findBest(int k) {
+		double maxmi = -1;
+		Camera max = null;
+		for(Camera c : visPolygons.keySet()) {
+			double mi = h.utilValue(visPolygons.get(c), coverUnion, gf);
+			//System.out.println("value" + mi);
+			if(maxmi == -1 || mi > maxmi) {
+				maxmi = mi;
+				max = c;
+			}
+		}
+		return max;
+	}
+	
 	Polygon createPolygon(List<Coordinate> bound) {
 		Coordinate[] boundary = new Coordinate[bound.size() + 1];
 		for(int i = 0; i < boundary.length - 1; ++i) boundary[i] = bound.get(i);
@@ -180,13 +202,13 @@ public class HeuristicGreedy implements Algorithm{
 	public int saveResults(String fname) {
 		File file = new File(fname);
 		StringBuilder sb = new StringBuilder();
-		for(Camera c : cover.keySet()) {
+		for(Camera c : gi.getCameras()) {
 			sb.append(c.toString() + " ");
 		}
 		try {
 			FileUtils.writeStringToFile(file, sb.toString());
 		} catch (IOException ignorable) {}
-		return cover.keySet().size();
+		return gi.cameraNum();
 	}
 	
 	public static void main(String[] args) {
@@ -195,6 +217,6 @@ public class HeuristicGreedy implements Algorithm{
 		System.out.println(gi.getVertices().toString());
 		hg.process(gi);
 		hg.saveResults("camera60-6.sabmple");
-		System.out.println(hg.cover.size());
+		System.out.println(gi.cameraNum());
 	}
 }

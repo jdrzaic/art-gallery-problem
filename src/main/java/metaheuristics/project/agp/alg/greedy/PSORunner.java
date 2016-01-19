@@ -15,12 +15,11 @@ import com.vividsolutions.jts.geom.Polygon;
 import com.vividsolutions.jts.triangulate.ConformingDelaunayTriangulationBuilder;
 
 import metaheuristics.project.agp.instances.GalleryInstance;
-import metaheuristics.project.agp.instances.components.Camera;
 import metaheuristics.project.agp.instances.util.BenchmarkFileInstanceLoader;
 
 public class PSORunner {
 
-	private static int populationNumPerTriang = 3;
+	private static int populationNumPerTriang = 4;
 
 	private static int iteration = 30;
 
