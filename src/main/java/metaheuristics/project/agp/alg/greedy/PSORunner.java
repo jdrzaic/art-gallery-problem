@@ -20,11 +20,8 @@ import metaheuristics.project.agp.instances.util.BenchmarkFileInstanceLoader;
 public class PSORunner {
 
 	private static int populationNumPerTriang = 4;
-<<<<<<< Updated upstream
-=======
 	
 	private static int[] populationTestChange = {1, 3, 5, 10};
->>>>>>> Stashed changes
 
 	private static int iteration = 30;
 	
