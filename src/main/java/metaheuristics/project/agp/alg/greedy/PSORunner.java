@@ -20,8 +20,15 @@ import metaheuristics.project.agp.instances.util.BenchmarkFileInstanceLoader;
 public class PSORunner {
 
 	private static int populationNumPerTriang = 4;
+<<<<<<< Updated upstream
+=======
+	
+	private static int[] populationTestChange = {1, 3, 5, 10};
+>>>>>>> Stashed changes
 
 	private static int iteration = 30;
+	
+	private static int[] iterationTestChange = {5, 10, 15, 30, 50, 100};
 
 	private static GalleryInstance gi;
 	
@@ -32,6 +39,19 @@ public class PSORunner {
 	private static double giArea;
 
 	public static double EPSILON = 0.01;
+	
+	public static String[] testFiles = {"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/test/min-8-1.pol",
+																				"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/test/randsimple-60-23.pol",
+																				"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/test/randsimple-60-2.pol",
+																				"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/test/randsimple-40-5.pol",
+																				"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/test/randsimple-20-8.pol",
+																				"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/test/randsimple-80-18.pol",
+																				"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/results/triang_A7/randsimple-60-3.pol",
+																				"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/results/triang_A7/randsimple-40-22.pol",
+																				"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/results/triang_A7/randsimple-60-9.pol",
+																				"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2007-minarea/min-120-1.pol",
+																				"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2007-minarea/min-194-1.pol",
+																				"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2007-minarea/min-200-1.pol"};
 
 	public static void init(double epsilon, int iteracije, int population) {
 		EPSILON = epsilon;
@@ -46,7 +66,6 @@ public class PSORunner {
 		List<TriangleOptimization> psoTriangles = new ArrayList<>();
 
 		long time = System.currentTimeMillis();
-
 		findBestCameraPositions(psoTriangles, "/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem/results/triang_A7/random.pol");
 		calculateMinCameraNum(psoTriangles);
 
@@ -64,9 +83,6 @@ public class PSORunner {
 		findBestCameraPositions(psoTriangles, filename);
 		calculateMinCameraNum(psoTriangles);
 
-		System.out.println(cover.size() + " camera pokriva  "
-				+ union.buffer(0).getArea() + "  od  " + giArea);
-		System.out.println(	"Proslo vrijeme: " + (System.currentTimeMillis() - time));
 		return cover.size();
 	}
 
