@@ -47,7 +47,6 @@ public class Camera extends Coordinate{
 		TreeMap<Double, Coordinate> vPolygonCoords = new TreeMap<Double, Coordinate>();
 		//last was already in cause neighbour of camera this.
 		goOver(gi, vPolygonCoords, -1);
-		System.out.println("over goOver");
 		for(int i = 0; i < gi.getHoles().size(); ++i) {
 			goOver(gi, vPolygonCoords, i);
 		}
@@ -132,7 +131,6 @@ public class Camera extends Coordinate{
 		
 		GalleryInstance gig = bfil.load("test.pol");
 		Camera cc = new Camera(1.5, 0.9999);
-		System.out.println(cc.visibilityPolygon(gig).getVertices().toString());
 		
 	}
 }

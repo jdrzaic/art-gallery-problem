@@ -104,14 +104,6 @@ public class Particle {
 		speedBounds[0][1] = -x / maxDivisor;
 		speedBounds[1][0] = y / maxDivisor;
 		speedBounds[1][1] = -y / maxDivisor;
-
-		// System.out.println("TRIANGLE:( " + cor[0].x + " " + cor[0].y + ")" +
-		// "( " + cor[1].x + " " + cor[1].y + ")" + "( " + cor[2].x + " " +
-		// cor[2].y + ")");
-		// System.out.println("x: " + speedBounds[0][0] + " y:" +
-		// speedBounds[1][0]);
-		// System.out.println("------------------------------------------CHECKOUT
-		// SPEED BOUNDS---------------------------------------------");
 	}
 
 	/**
@@ -145,11 +137,6 @@ public class Particle {
 		double y = (1 - Math.sqrt(r1)) * verts[0].y
 				+ (Math.sqrt(r1) * (1 - r2)) * verts[1].y
 				+ (Math.sqrt(r1) * r2) * verts[2].y;
-
-		// Point point = gf.createPoint(new Coordinate(x, y));
-		// System.out.println(point.within(triangle));
-		// System.out.println("-----------------------------------------------------------------------------------------------------------------------------------");
-
 		speed[0] = rand.nextDouble() * (speedBounds[0][0] - speedBounds[0][1])
 				- speedBounds[0][1];
 		speed[1] = rand.nextDouble() * (speedBounds[1][0] - speedBounds[1][1])
@@ -194,11 +181,6 @@ public class Particle {
 		speed[0] = xCord;
 		speed[1] = yCord;
 		checkSpeedBounds();
-		// System.out.println("Speed update: " + xCord + ", " + yCord);
-		// System.out.println("Personal best camera: " +pBestCam.x + " " +
-		// pBestCam.y );
-		// System.out.println("Global best camera: " +gBest.x + " " + gBest.y );
-		// System.out.println("-----------------------------------------------------------------------------------------------------------------------------------");
 	}
 
 	/**
@@ -225,12 +207,6 @@ public class Particle {
 		if ((c = ls1.intersection(speedVec)) != null) {
 
 			cam = new Camera( c);
-//			System.out.println("Bum u zid!");
-//			Point point = gf.createPoint(cam);
-//			System.out.println("1......  " + cam.x + ",  " + cam.y);
-//			System.out.println(point.within(triangle));
-//			System.out.println(
-//					"-----------------------------------------------------------------------------------------------------------------------------------");
 			
 			Point point = gf.createPoint(cam);
 			if(!point.within(triangle)){
@@ -238,13 +214,6 @@ public class Particle {
 			}
 		} else if ((c = ls2.intersection(speedVec)) != null) {
 			cam = new Camera( c);
-//			System.out.println("Bum u zid!");
-//			Point point = gf.createPoint(cam);
-//			System.out.println(point.within(triangle));
-//			System.out.println("2...... " + cam.x + ",  " + cam.y);
-//			System.out.println("2......c " + c.x + ",  " + c.y);
-//			System.out.println(
-//					"-----------------------------------------------------------------------------------------------------------------------------------");
 			
 			Point point = gf.createPoint(c);
 			if(!point.within(triangle)){
@@ -252,26 +221,14 @@ public class Particle {
 			}
 		} else if ((c = ls3.intersection(speedVec)) != null) {
 			cam = new Camera(c);	
-//			System.out.println("Bum u zid!");
-//			System.out.println("" + cam.x + ",  " + cam.y);
 				Point point = gf.createPoint(c);
 				if(!point.within(triangle)){
 					System.out.println("Vani je.........");
 				}
-//			System.out.println(
-//					"-----------------------------------------------------------------------------------------------------------------------------------");
 		} else {
-			// System.out.println("SPEED: " + speed[0] + " , " + speed[1]);
 			cam.x = speed[0] + cam.x;
 			cam.y = speed[1] + cam.y;
-//			System.out.println("4......  " + cam.x + ",  " + cam.y);
-//			Point point = gf.createPoint(cam);
-//			System.out.println(point.within(triangle));
-//			System.out.println(
-//					"-----------------------------------------------------------------------------------------------------------------------------------");
 		}
-		// Point point = gf.createPoint(cam);
-		// System.out.println(point.within(triangle));
 	}
 
 	/**
