@@ -3,18 +3,23 @@ package testing;
 import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
+
+import org.apache.commons.io.FileUtils;
 
 import metaheuristics.project.agp.alg.Algorithm;
 import metaheuristics.project.agp.alg.greedy.HeuristicGreedy;
 import metaheuristics.project.agp.alg.greedy.HeuristicGreedy.InitialSet;
 import metaheuristics.project.agp.alg.greedy.heuristics.A7;
 import metaheuristics.project.agp.instances.GalleryInstance;
+import metaheuristics.project.agp.instances.components.Camera;
 import metaheuristics.project.agp.instances.util.BenchmarkFileInstanceLoader;
 
 public class Tester {
@@ -59,26 +64,11 @@ public class Tester {
 			System.out.println(file.toString());
 			try {
 				sb.append(createResult(alg, file));
-			} catch(IllegalArgumentException e) {
+			} catch(Exception e) {
 				System.err.println(file.toString());
 				return FileVisitResult.CONTINUE;
 			}
 			sb.append(System.getProperty("line.separator"));
-			/*File f  = new File("test_res/" + file.getFileName() + ".newtxt");
-			f.getParentFile().mkdirs(); 
-			f.createNewFile();
-			bw = new BufferedWriter(
-					 new OutputStreamWriter(
-					 new BufferedOutputStream(
-					 new FileOutputStream("test_res/" + file.getFileName() + ".newtxt")),"UTF-8"));
-			try {
-				bw.write(createResult(alg, file));
-			} catch(IllegalArgumentException e) {
-				System.err.println(file.toString());
-				return FileVisitResult.CONTINUE;
-			}
-			bw.flush();
-			bw.close();*/
 			return FileVisitResult.CONTINUE;
 		}
 
@@ -99,11 +89,38 @@ public class Tester {
 	public static String createResult(Algorithm alg, Path file) {
 		StringBuilder sb = new StringBuilder();
 		GalleryInstance gi = bfil.load(file.toString());
+		long start = System.currentTimeMillis();
 		gi.setCameras(alg);
-		sb.append(file.getFileName() + "   " + gi.cameraNum());
+		long length = (System.currentTimeMillis() - start) / 1000;
+		saveCameras(gi, file);
+		sb.append(file.getFileName() + "   " + gi.cameraNum() + " " + length);
 		return sb.toString();
 	}
 	
+	private static void saveCameras(GalleryInstance gi, Path dir) {
+		BufferedWriter bw = null;
+		try {
+			File f  = new File("cameras/" + dir.getFileName() + ".txt");
+			f.getParentFile().mkdirs(); 
+			f.createNewFile();
+			bw = new BufferedWriter(
+					 new OutputStreamWriter(
+					 new BufferedOutputStream(
+					 new FileOutputStream("cameras/" + dir.getFileName() + ".txt")),"UTF-8"));
+			StringBuilder sb = new StringBuilder();
+			for(Camera c : gi.getCameras()) {
+				sb.append(c.toString() + " ");
+			}
+			bw.write(sb.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				bw.close();
+			} catch (IOException e) {}
+		}
+	}
+
 	public static void main(String[] args) {
 		Tester.testAlgorithm(new HeuristicGreedy(InitialSet.TRIANGULATION_COVER, new A7()), "agp2009a-simplerand");
 	}

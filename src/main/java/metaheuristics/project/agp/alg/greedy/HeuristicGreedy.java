@@ -34,14 +34,14 @@ public class HeuristicGreedy implements Algorithm{
 	public enum InitialSet {
 		VERTEX_COVER,
 		SIDES_EXTENSION,
-		VISIBILITY_EXTENSION,
+		VERTEX_TRIANGULATION_COVER,
 		TRIANGULATION_COVER
 	}
 	
 	//how many cameras at once
 	public static int k = 2;
 	
-	public static double EPSILON = 0.02;
+	public static double EPSILON = 0.01;
 
 	private GeometryFactory gf = new GeometryFactory();
 	
@@ -80,6 +80,7 @@ public class HeuristicGreedy implements Algorithm{
 		while(!covered) {
 			//changing manualy!!
 			Camera[] cams = findBest2();
+			if(visPolygons.size() <= 2) covered = true;
 			if(cams.length > 0) {
 				covered = checkIfCovered(cams[0]);
 				System.out.println("camera in cover");
@@ -159,6 +160,7 @@ public class HeuristicGreedy implements Algorithm{
 		return toAdd1;
 	}
 	
+	/** @TODO add holes support */
 	Polygon createPolygon(List<Coordinate> bound, List<metaheuristics.project.agp.instances.components.Polygon> holes) {
 		Coordinate[] boundary = new Coordinate[bound.size() + 1];
 		for(int i = 0; i < boundary.length - 1; ++i) boundary[i] = bound.get(i);
@@ -172,6 +174,10 @@ public class HeuristicGreedy implements Algorithm{
 			return createInitialVertexCover(gi);
 		case TRIANGULATION_COVER:
 			return createInitialTriangCover(gi);
+		case VERTEX_TRIANGULATION_COVER:
+			List<Camera> initVertexTrian = createInitialVertexCover(gi);
+			initVertexTrian.addAll(createInitialTriangCover(gi));
+			return initVertexTrian;
 		default:
 			return null;
 		}
