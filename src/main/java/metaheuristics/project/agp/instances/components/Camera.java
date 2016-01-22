@@ -131,7 +131,6 @@ public class Camera extends Coordinate{
 		
 		GalleryInstance gig = bfil.load("test.pol");
 		Camera cc = new Camera(1.5, 0.9999);
-		System.out.println(cc.visibilityPolygon(gig).getVertices().toString());
 		
 	}
 }

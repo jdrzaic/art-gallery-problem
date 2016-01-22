@@ -137,11 +137,6 @@ public class Particle {
 		double y = (1 - Math.sqrt(r1)) * verts[0].y
 				+ (Math.sqrt(r1) * (1 - r2)) * verts[1].y
 				+ (Math.sqrt(r1) * r2) * verts[2].y;
-
-		// Point point = gf.createPoint(new Coordinate(x, y));
-		// System.out.println(point.within(triangle));
-		// System.out.println("-----------------------------------------------------------------------------------------------------------------------------------");
-
 		speed[0] = rand.nextDouble() * (speedBounds[0][0] - speedBounds[0][1])
 				- speedBounds[0][1];
 		speed[1] = rand.nextDouble() * (speedBounds[1][0] - speedBounds[1][1])
@@ -210,18 +205,29 @@ public class Particle {
 
 		Coordinate c;
 		if ((c = ls1.intersection(speedVec)) != null) {
+
 			cam = new Camera( c);
 			
+			Point point = gf.createPoint(cam);
+			if(!point.within(triangle)){
+				System.out.println("Vani je.........");
+			}
 		} else if ((c = ls2.intersection(speedVec)) != null) {
 			cam = new Camera( c);
-
+			
+			Point point = gf.createPoint(c);
+			if(!point.within(triangle)){
+				System.out.println("Vani je.........");
+			}
 		} else if ((c = ls3.intersection(speedVec)) != null) {
 			cam = new Camera(c);	
-			
+				Point point = gf.createPoint(c);
+				if(!point.within(triangle)){
+					System.out.println("Vani je.........");
+				}
 		} else {
 			cam.x = speed[0] + cam.x;
 			cam.y = speed[1] + cam.y;
-			
 		}
 	}
 

@@ -2,7 +2,6 @@ package metaheuristics.project.agp.gui;
 
 import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
-
 import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
@@ -23,6 +22,7 @@ public class PSOController {
 
 	@FXML private TextField iteracija;
 	@FXML private TextField tolerancija;
+	@FXML private TextField populacija;
 	@FXML private Button kreni;
 	@FXML private Label rezultat;
 	@FXML private Button zatvori;
@@ -58,6 +58,7 @@ public class PSOController {
 	public void onExecPSO() {
 		String iter = iteracija.getText();
 		String tol = tolerancija.getText();
+		String pop = populacija.getText();
 		System.out.println(iter);
 		System.out.println(tol);
 		Service<Void> service = new Service<Void>() {
