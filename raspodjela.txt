@@ -1,9 +1,13 @@
 Elementi projekta:
     Grafičko sučelje           - Jelena
     Vizualizacije rješenja     - Luka
-    Model                      - Gegor
+    Model                      - Jelena
     Algoritmi:
         Genetski               - Luka
         Lokalno traženje       - Jelena
         2 inspirirana prirodom - Gregor
+    Testiranje:
+    	Analiza				   - ????
+    Projektna dokumentacija:   - ????
+    
     Konačna prezentacija       - Jelena?

@@ -21,8 +21,8 @@ import metaheuristics.project.agp.instances.util.Maths;
  */
 public class Camera extends Coordinate{
 
-	public static double ALPHA = 0.000001;
-	public static double EPSILON = 0.0000001;
+	public static double ALPHA = 0.00001;
+	public static double EPSILON = 0.00000001;
 	
 	/**
 	 * Class constructor.
@@ -30,11 +30,11 @@ public class Camera extends Coordinate{
 	 * @param y x coordinate value.
 	 */
 	public Camera(double x, double y) {
-		super(Maths.round(x, 10), Maths.round(y,10));
+		super(Maths.round(x, 11), Maths.round(y,11));
 	}
 	
 	public Camera(Coordinate c) {
-		super(new Coordinate(Maths.round(c.x,10), Maths.round(c.y, 10)));
+		super(new Coordinate(Maths.round(c.x,11), Maths.round(c.y, 11)));
 	}
 
 	/**

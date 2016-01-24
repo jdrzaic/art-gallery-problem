@@ -99,6 +99,7 @@ public class Controller implements Initializable {
 		gc.strokeLine(canvas.maxWidth(0), canvas.maxHeight(0), canvas.maxWidth(0), 0);
 		gc.strokeLine(canvas.maxWidth(0), canvas.maxHeight(0), 0, canvas.maxHeight(0));
 		gc.strokeLine(0, 0, 0,canvas.maxHeight(0));
+		
 		onClearClicked();
 	}
 	
@@ -160,7 +161,6 @@ public class Controller implements Initializable {
 					}
 					draw = 0;
 					PSOController psoc = new PSOController();
-					System.err.println(benchmark.getAbsolutePath());
 					psoc.process(null, benchmark.getAbsolutePath());
 				} catch(Exception e) {
 					Alert wrongFileAlert = new Alert(AlertType.ERROR, 
@@ -286,8 +286,6 @@ public class Controller implements Initializable {
 				sb.append(new Double(c.x).intValue() + "/1 ").append(new Double(c.y).intValue() + "/1 ");
 			}
 		}
-		System.out.println("tu sad");
-		System.out.println(sb.toString());
 		try {
 			FileUtils.writeStringToFile(new File("cam.txt"), sb.toString());
 		} catch (IOException ignorable) {

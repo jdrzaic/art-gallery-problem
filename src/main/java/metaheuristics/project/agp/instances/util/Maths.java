@@ -15,6 +15,6 @@ public class Maths {
 	    return bd.doubleValue();
 	}
 	public static Coordinate cRound(Coordinate c) {
-		return new Coordinate(round(c.x, 10), round(c.y, 10));
+		return new Coordinate(round(c.x, 11), round(c.y, 11));
 	}
 }
