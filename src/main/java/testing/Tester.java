@@ -42,19 +42,17 @@ public class Tester {
 		}
 		
 		Algorithm alg;
-		Path currentToWrite = null;
 		StringBuilder sb = new StringBuilder();
 		Writer bw = null;
 		@Override
 		public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
-			currentToWrite = Paths.get("test_res/" + dir.getFileName() + ".txt");
-			File f  = new File("test_res/" + dir.getFileName() + ".txt");
+			File f  = new File("simplep-simpllehAGP2013-greedy/" + dir.getFileName() + ".txt");
 			f.getParentFile().mkdirs(); 
 			f.createNewFile();
 			bw = new BufferedWriter(
 					 new OutputStreamWriter(
 					 new BufferedOutputStream(
-					 new FileOutputStream("test_res/" + dir.getFileName() + ".txt")),"UTF-8"));
+					 new FileOutputStream("simplep-simpllehAGP2013-greedy/" + dir.getFileName() + ".txt")),"UTF-8"));
 			return FileVisitResult.CONTINUE;
 		}
 
@@ -93,20 +91,20 @@ public class Tester {
 		gi.setCameras(alg);
 		long length = (System.currentTimeMillis() - start) / 1000;
 		saveCameras(gi, file);
-		sb.append(file.getFileName() + "   " + gi.cameraNum() + " " + length);
+		sb.append(file.getFileName() + " " + gi.getVertices().size() + " " + gi.getHoles().size() + " " + gi.cameraNum() + " " + length);
 		return sb.toString();
 	}
 	
 	private static void saveCameras(GalleryInstance gi, Path dir) {
 		BufferedWriter bw = null;
 		try {
-			File f  = new File("cameras/" + dir.getFileName() + ".txt");
+			File f  = new File("simplep-simpllehAGP2013-greedy/" + dir.getFileName() + ".txt");
 			f.getParentFile().mkdirs(); 
 			f.createNewFile();
 			bw = new BufferedWriter(
 					 new OutputStreamWriter(
 					 new BufferedOutputStream(
-					 new FileOutputStream("cameras/" + dir.getFileName() + ".txt")),"UTF-8"));
+					 new FileOutputStream("simplep-simpllehAGP2013-greedy/" + dir.getFileName() + ".txt")),"UTF-8"));
 			StringBuilder sb = new StringBuilder();
 			for(Camera c : gi.getCameras()) {
 				sb.append(c.toString() + " ");
@@ -122,6 +120,6 @@ public class Tester {
 	}
 
 	public static void main(String[] args) {
-		Tester.testAlgorithm(new HeuristicGreedy(InitialSet.TRIANGULATION_COVER, new A7()), "agp2009a-simplerand");
+		Tester.testAlgorithm(new HeuristicGreedy(InitialSet.VERTEX_TRIANGULATION_COVER, new A7()), "simple_polygons_with_simple_holes_AGP2013");
 	}
 }
