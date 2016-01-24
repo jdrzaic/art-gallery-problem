@@ -2,6 +2,7 @@ package metaheuristics.project.agp.gui;
 
 import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
+
 import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
@@ -15,8 +16,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import metaheuristics.project.agp.alg.greedy.PSORunner;
+import metaheuristics.project.agp.alg.greedy.PSO;
 import metaheuristics.project.agp.instances.GalleryInstance;
+import metaheuristics.project.agp.instances.util.BenchmarkFileInstanceLoader;
 
 public class PSOController {
 
@@ -68,8 +70,10 @@ public class PSOController {
 
 					@Override
 					protected Void call() throws Exception {
-						n = PSORunner.process(filename);
-						System.out.println(n);
+						GalleryInstance gi = new BenchmarkFileInstanceLoader().load(filename);
+						PSO pso = new PSO(); 
+						pso.process(gi);
+						n = pso.cover.size(); 
 						 final CountDownLatch latch = new CountDownLatch(1);
 							Platform.runLater(new Runnable() {                          
 		                        @Override
