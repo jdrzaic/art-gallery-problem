@@ -25,65 +25,68 @@ import metaheuristics.project.agp.instances.GalleryInstance;
 import metaheuristics.project.agp.instances.components.Camera;
 import metaheuristics.project.agp.instances.util.BenchmarkFileInstanceLoader;
 
-public class PSO implements Algorithm{
+public class PSO implements Algorithm {
 
-	public  int populationNumPerTriang = 4;
+	public int populationNumPerTriang = 4;
 
-	public  int[] populationTestChange = { 1, 3, 5, 10, 20 };
+	public int[] populationTestChange = { 1, 5, 10 };
 
-	public  int iteration = 30;
+	public int iteration = 30;
 
-	public  int[] iterationTestChange = { 5, 10, 15, 30, 50 };
+	public int[] iterationTestChange = {1, 5, 10 };
 
-	public  GalleryInstance gi;
+	public GalleryInstance gi;
 
-	public  GeometryFactory gf = new GeometryFactory();
+	public GeometryFactory gf = new GeometryFactory();
 
-	public  List<Polygon> cover;
-	
-	public  List<Camera> finalCameras;
+	public List<Polygon> cover;
 
-	public  double giArea;
+	public List<Camera> finalCameras;
 
-	public  double EPSILON = 0.01;
+	public double giArea;
 
-	public  String[] testFiles = {
-//			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/test/min-8-1.pol",  
-//			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/test/randsimple-60-23.pol",
-//			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/test/randsimple-60-2.pol",
-//			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/test/randsimple-40-5.pol",
-//			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/test/randsimple-20-8.pol",
-//			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/test/randsimple-80-18.pol" 
-			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/results/triang_A7/randsimple-60-3.pol",
-			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/results/triang_A7/randsimple-40-22.pol",
-			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/results/triang_A7/randsimple-60-9.pol",
-			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2007-minarea/min-120-1.pol",
-			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2007-minarea/min-194-1.pol",
-			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2007-minarea/min-200-1.pol" 
-		};
-			
-	public  void init(double epsilon, int iteracije, int population) {
+	public double EPSILON = 0.01;
+
+	public String[] testFiles = {
+			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-80-5.pol",
+			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-80-10.pol",
+			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-80-15.pol",
+			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-80-20.pol",
+			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-80-25.pol",
+			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-80-30.pol",
+			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-100-1.pol",
+			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-100-5.pol",
+			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-100-10.pol",
+			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-100-15.pol",
+			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-100-20.pol",
+			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-100-25.pol",
+			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-100-30.pol" };
+
+	// "
+
+	public void init(double epsilon, int iteracije, int population) {
 		EPSILON = epsilon;
 		iteration = iteracije;
 		populationNumPerTriang = population;
 	}
-	
-	public  int ID = 0;
+
+	public int ID = 0;
 
 	/**
 	 * 
 	 * @param args
 	 */
-	public static  void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws FileNotFoundException {
 		try {
 			// information about test output
 			FileOutputStream fos = new FileOutputStream(new File(
-					"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/results/TestingResults/ShortResGBB.txt"));
+					"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/results/TestingResults/results80-100.txt"));
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
 			// points output with apropriate ID
 			FileOutputStream fos2 = new FileOutputStream(new File(
-					"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/results/TestingResults/PointsGBB.txt"));
-			BufferedWriter bw2 = new BufferedWriter(new OutputStreamWriter(fos2));
+					"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/results/TestingResults/points80-100.txt"));
+			BufferedWriter bw2 = new BufferedWriter(
+					new OutputStreamWriter(fos2));
 			PSO pso = new PSO();
 			for (String file : pso.testFiles) {
 				System.out.println("Poceo sam za :  " + file);
@@ -95,21 +98,26 @@ public class PSO implements Algorithm{
 						pso.iteration = iter;
 						bw.write("ID:   " + pso.ID + "\n");
 						bw.write("Test sample:  " + file + "\n");
-						bw.write("Population number:  " +  pop + "\n");
-						bw.write("Number of iterations:  " +  iter + "\n");
+						bw.write("Population number:  " + pop + "\n");
+						bw.write("Number of iterations:  " + iter + "\n");
 						List<TriangleOptimization> psoTriangles = new ArrayList<>();
 						long time = System.currentTimeMillis();
 						pso.findBestCameraPositions(psoTriangles, pso.gi);
 						pso.calculateMinCameraNum(psoTriangles);
-						bw.write("Proslo vrijeme: " + (System.currentTimeMillis() - time) + " \nBroj potrebnih kamera: " + pso.cover.size() + "\n");
-						bw.write("Kamere pokrivaju:  " +  pso.union.buffer(0).getArea() + "  od  " + pso.giArea + "\n" );
+						bw.write("Proslo vrijeme: "
+								+ (System.currentTimeMillis() - time)
+								+ " \nBroj potrebnih kamera: "
+								+ pso.cover.size() + "\n");
+						bw.write("Kamere pokrivaju:  "
+								+ pso.union.buffer(0).getArea() + "  od  "
+								+ pso.giArea + "\n");
 						bw.write("Points: \n");
 						int newLine = 0;
 						bw2.write("ID:   " + pso.ID + "\n");
-						for(Camera cam : pso.finalCameras){
+						for (Camera cam : pso.finalCameras) {
 							newLine++;
 							bw2.write("(" + cam.x + ", " + cam.y + "),  ");
-							if(newLine % 6 == 0){
+							if (newLine % 6 == 0) {
 								bw2.write("\n");
 							}
 						}
@@ -132,8 +140,8 @@ public class PSO implements Algorithm{
 	 * 
 	 * @param psoTriangles
 	 */
-	public  void findBestCameraPositions(
-		List<TriangleOptimization> psoTriangles, GalleryInstance gi) {
+	public void findBestCameraPositions(List<TriangleOptimization> psoTriangles,
+			GalleryInstance gi) {
 		ConformingDelaunayTriangulationBuilder cdtb = new ConformingDelaunayTriangulationBuilder();
 
 		cdtb.setSites(createPolygon(gi.getVertices()));
@@ -163,10 +171,9 @@ public class PSO implements Algorithm{
 	 * @param psoTriangles
 	 * 
 	 */
-	public  Geometry union;
+	public Geometry union;
 
-	public  void calculateMinCameraNum(
-			List<TriangleOptimization> psoTriangles) {
+	public void calculateMinCameraNum(List<TriangleOptimization> psoTriangles) {
 		cover = new ArrayList();
 		finalCameras = new ArrayList<>();
 		// provjera da li se dodavanjem kamere neznatno povecala vidljivost
@@ -192,9 +199,13 @@ public class PSO implements Algorithm{
 				updateCoveredArea();
 			}
 		}
+
+		for (Camera c : finalCameras) {
+			gi.addCamera(c);
+		}
 	}
 
-	public  void updateCoveredArea() {
+	public void updateCoveredArea() {
 		Polygon[] polygons = cover.toArray(new Polygon[cover.size()]);
 		GeometryCollection polygonCollection = gf
 				.createGeometryCollection(polygons);
@@ -206,7 +217,7 @@ public class PSO implements Algorithm{
 	 * @param bound
 	 * @return
 	 */
-	 Polygon createPolygon(List<Coordinate> bound) {
+	Polygon createPolygon(List<Coordinate> bound) {
 		Coordinate[] boundary = new Coordinate[bound.size() + 1];
 		for (int i = 0; i < boundary.length - 1; ++i)
 			boundary[i] = bound.get(i);
