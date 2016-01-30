@@ -176,7 +176,7 @@ public class PSORunner {
 
 	private static void calculateMinCameraNum(
 			List<TriangleOptimization> psoTriangles) {
-		cover = new ArrayList();
+		cover = new ArrayList<>();
 		finalCameras = new ArrayList<>();
 		// provjera da li se dodavanjem kamere neznatno povecala vidljivost
 		double unnecessaryCamCheck = 0;

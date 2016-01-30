@@ -34,7 +34,6 @@ public class PSOController {
 	
 	public void process(GalleryInstance gi, String filename) {
 		this.gi = gi;
-		//System.out.println(gi.getVertices().toString());
 		this.filename = filename;
 		openHeurChoser();
 	}
