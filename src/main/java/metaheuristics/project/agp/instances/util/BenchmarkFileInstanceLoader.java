@@ -41,13 +41,15 @@ public class BenchmarkFileInstanceLoader implements InstanceLoader{
 			inputStream = new FileInputStream(filename);
 		    everything = IOUtils.toString(inputStream);
 		} catch(IOException e) {
-			System.err.println();
+			System.out.println(e.getMessage());
 		}finally {
 		    try {
 		    	if(inputStream != null) {
 		    		inputStream.close();
 		    	}
-			} catch (IOException ignorable) {}
+			} catch (IOException ignorable) {
+				ignorable.getMessage();
+			}
 		}
 		return everything;
 	}

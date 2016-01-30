@@ -40,6 +40,7 @@ public class GreedyController {
 		cover = new HashMap<>();
 		cover.put("Vrhovi poligona", InitialSet.VERTEX_COVER);
 		cover.put("Triangulacija poligona", InitialSet.TRIANGULATION_COVER);
+		cover.put("Unija prve dvije opcije", InitialSet.VERTEX_TRIANGULATION_COVER);
 	}
 	
 	//heuristic greedy fxml
@@ -67,6 +68,7 @@ public class GreedyController {
 	}
 
 	public void onExecGreedy() {
+		System.out.println("Greedy called");
 		String heur = (String) heuristika.getSelectionModel().getSelectedItem().toString();
 		String initc = (String) pokrivac.getSelectionModel().getSelectedItem().toString();
 		System.out.println(heur);
@@ -96,7 +98,7 @@ public class GreedyController {
 	                    System.out.println("Before processed");
 	                    hg.process(gi); 
 	                    System.out.println("processed");
-						int n = hg.saveResults(filename);
+						int n = gi.saveResults(filename);
 						Controller.runVisualisation();
 						Platform.runLater(new Runnable() {                          
 	                        @Override
@@ -119,6 +121,7 @@ public class GreedyController {
 	}
 	
 	public void openHeurChoser() {
+		System.out.println("Open heur chooser called");
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("greedy.fxml"));
         Parent root1;
 		try {

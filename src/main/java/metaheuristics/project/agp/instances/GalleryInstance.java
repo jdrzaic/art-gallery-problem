@@ -1,9 +1,13 @@
 package metaheuristics.project.agp.instances;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import org.apache.commons.io.FileUtils;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.CoordinateSequence;
@@ -129,6 +133,18 @@ public class GalleryInstance extends Polygon{
 			area += h.calculateArea();
 		}
 		return area;
+	}
+	
+	public int saveResults(String fname) {
+		File file = new File(fname);
+		StringBuilder sb = new StringBuilder();
+		for(Camera c : getCameras()) {
+			sb.append(c.toString() + " ");
+		}
+		try {
+			FileUtils.writeStringToFile(file, sb.toString());
+		} catch (IOException ignorable) {}
+		return cameraNum();
 	}
 	
 	@Override

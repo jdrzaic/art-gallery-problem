@@ -67,6 +67,7 @@
         <FXCollections fx:factory="observableArrayList">
           <String fx:value="Vrhovi poligona" />
           <String fx:value="Triangulacija poligona" />
+          <String fx:value="Unija prve dvije opcije" />          
         </FXCollections>
       </items>
          <BorderPane.margin>

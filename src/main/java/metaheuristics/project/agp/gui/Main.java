@@ -15,8 +15,7 @@ public class Main extends Application {
 			primaryStage.setTitle("gui");
 			primaryStage.setScene(new Scene(root, 800, 600));
 			primaryStage.show();
-		} catch(Exception e) {
-		}
+		} catch(Exception e) {}
 	}
 	 
 	public static void main(String[] args) {

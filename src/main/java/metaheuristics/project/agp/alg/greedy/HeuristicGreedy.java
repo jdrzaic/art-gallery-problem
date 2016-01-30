@@ -12,6 +12,7 @@ import org.apache.commons.io.FileUtils;
 import com.vividsolutions.jts.geom.Point;
 import com.vividsolutions.jts.geom.Triangle;
 import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.CoordinateSequence;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryCollection;
 import com.vividsolutions.jts.geom.GeometryFactory;
@@ -39,9 +40,9 @@ public class HeuristicGreedy implements Algorithm{
 	}
 	
 	//how many cameras at once
-	public static int k = 2;
+	public static int k = 1;
 	
-	public static double EPSILON = 0.01;
+	public static double EPSILON = 0.018;
 
 	private GeometryFactory gf = new GeometryFactory();
 	
@@ -165,7 +166,18 @@ public class HeuristicGreedy implements Algorithm{
 		Coordinate[] boundary = new Coordinate[bound.size() + 1];
 		for(int i = 0; i < boundary.length - 1; ++i) boundary[i] = bound.get(i);
 		boundary[boundary.length - 1] = bound.get(0);
-		return gf.createPolygon(boundary);
+		LinearRing boundRing = gf.createLinearRing(boundary);
+		LinearRing[] holesRing = new LinearRing[holes.size()];
+		int index = 0;
+		for(metaheuristics.project.agp.instances.components.Polygon h : holes) {
+			Coordinate[] boundarHole = new Coordinate[h.getVertices().size() + 1];
+			for(int i = 0; i < h.getVertices().size(); ++i) boundarHole[i] = h.getOnIndex(i);
+			boundarHole[h.getVertices().size()] = h.getOnIndex(0);
+			holesRing[index] = gf.createLinearRing(boundarHole);
+			++index;
+		}
+		Polygon p = gf.createPolygon(boundRing, holesRing);
+		return gf.createPolygon(boundRing, holesRing);
 	}
 
 	private List<Camera> createInitialSet(GalleryInstance gi) {
@@ -187,7 +199,7 @@ public class HeuristicGreedy implements Algorithm{
 		List<Camera> ini = new ArrayList<>();
 		ConformingDelaunayTriangulationBuilder cdtb =
 				new ConformingDelaunayTriangulationBuilder();
-		cdtb.setSites(main);
+		cdtb.setSites(this.main);
 		GeometryCollection gc = (GeometryCollection)cdtb.getTriangles(gf);
 		for(int i = 0; i < gc.getNumGeometries(); ++i) {
 			Polygon p = (Polygon)gc.getGeometryN(i);
@@ -236,24 +248,15 @@ public class HeuristicGreedy implements Algorithm{
 		return vb;
 	}
 	
-	public int saveResults(String fname) {
-		File file = new File(fname);
-		StringBuilder sb = new StringBuilder();
-		for(Camera c : gi.getCameras()) {
-			sb.append(c.toString() + " ");
-		}
-		try {
-			FileUtils.writeStringToFile(file, sb.toString());
-		} catch (IOException ignorable) {}
-		return gi.cameraNum();
-	}
+
 	
 	public static void main(String[] args) {
 		HeuristicGreedy hg = new HeuristicGreedy(InitialSet.TRIANGULATION_COVER, new A7());
-		GalleryInstance gi = new BenchmarkFileInstanceLoader().load("randsimple-20-4.pol");
+		GalleryInstance gi = new BenchmarkFileInstanceLoader().load(
+				"simple_polygons_with_simple_holes_AGP2013/gB_simple-simple_25:100v-10h_15.pol");
 		System.out.println(gi.getVertices().toString());
 		hg.process(gi);
-		hg.saveResults("camera60-6.sabmple");
+		//hg.saveResults("holes_test");
 		System.out.println(gi.cameraNum());
 	}
 }

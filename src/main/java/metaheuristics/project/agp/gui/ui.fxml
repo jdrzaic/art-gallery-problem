@@ -65,6 +65,11 @@
                   <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
                </VBox.margin>
             </RadioButton>
+            <RadioButton fx:id="hybrid" mnemonicParsing="false" text="Hibridni algoritam" toggleGroup="$algoritmi">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+               </VBox.margin>
+            </RadioButton>
          </children>
       </VBox>
    </right>

@@ -1,11 +1,14 @@
 package testing;
 
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
@@ -18,6 +21,7 @@ import metaheuristics.project.agp.alg.Algorithm;
 import metaheuristics.project.agp.alg.greedy.HeuristicGreedy;
 import metaheuristics.project.agp.alg.greedy.HeuristicGreedy.InitialSet;
 import metaheuristics.project.agp.alg.greedy.heuristics.A7;
+import metaheuristics.project.agp.alg.hybrid.HybridAlgorithm;
 import metaheuristics.project.agp.instances.GalleryInstance;
 import metaheuristics.project.agp.instances.components.Camera;
 import metaheuristics.project.agp.instances.util.BenchmarkFileInstanceLoader;
@@ -46,13 +50,13 @@ public class Tester {
 		Writer bw = null;
 		@Override
 		public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
-			File f  = new File("simplep-simpllehAGP2013-greedy/" + dir.getFileName() + ".txt");
+			File f  = new File("agp2009a-simplerand-hybrid/" + dir.getFileName() + ".txt");
 			f.getParentFile().mkdirs(); 
 			f.createNewFile();
 			bw = new BufferedWriter(
 					 new OutputStreamWriter(
 					 new BufferedOutputStream(
-					 new FileOutputStream("simplep-simpllehAGP2013-greedy/" + dir.getFileName() + ".txt")),"UTF-8"));
+					 new FileOutputStream("agp2009a-simplerand-hybrid/" + dir.getFileName() + ".txt")),"UTF-8"));
 			return FileVisitResult.CONTINUE;
 		}
 
@@ -61,7 +65,10 @@ public class Tester {
 			if((file.getFileName().toString()).compareTo(".DS_Store") == 0) return FileVisitResult.CONTINUE;
 			System.out.println(file.toString());
 			try {
-				sb.append(createResult(alg, file));
+				//sb.append(createResult(alg, file));
+				bw.write(createResult(file) + System.lineSeparator());
+				bw.flush();
+				//sb.append(createResult(file));
 			} catch(Exception e) {
 				System.err.println(file.toString());
 				return FileVisitResult.CONTINUE;
@@ -95,6 +102,33 @@ public class Tester {
 		return sb.toString();
 	}
 	
+	public static String createResult(Path file) {
+		HybridAlgorithm ha = new HybridAlgorithm(InitialSet.TRIANGULATION_COVER, new A7());
+		long start = System.currentTimeMillis();
+		ha.process(file.toString(), "agp2009a-simplerand-hybrid/" + file.getFileName() + ".txt");
+		long end = System.currentTimeMillis() - start;
+		GalleryInstance gi = new BenchmarkFileInstanceLoader().load(file.toString());
+		StringBuilder sb = new StringBuilder();
+		sb.append(file.getFileName() + " " + gi.getVertices().size() + " " + gi.getHoles().size());
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(
+					"agp2009a-simplerand-hybrid/" + file.getFileName() + ".txt"), "UTF-8"));
+			String[] coordinates = br.readLine().split("\\s+");
+			int cameraNum = coordinates.length / 2;
+			sb.append(" " + cameraNum + " " + end);
+			br.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return sb.toString();
+	}
+	
 	private static void saveCameras(GalleryInstance gi, Path dir) {
 		BufferedWriter bw = null;
 		try {
@@ -120,6 +154,6 @@ public class Tester {
 	}
 
 	public static void main(String[] args) {
-		Tester.testAlgorithm(new HeuristicGreedy(InitialSet.VERTEX_TRIANGULATION_COVER, new A7()), "simple_polygons_with_simple_holes_AGP2013");
+		Tester.testAlgorithm(new HeuristicGreedy(InitialSet.TRIANGULATION_COVER, new A7()), "agp2009a-simplerand");
 	}
 }
