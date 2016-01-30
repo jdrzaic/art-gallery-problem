@@ -63,6 +63,9 @@ public class Controller implements Initializable {
 	 * select greedy algorithm
 	 */
 	@FXML private RadioButton heur_ger;
+	
+	@FXML private RadioButton hybrid;
+	
 	/**
 	 * checked if file is selected
 	 */
@@ -124,9 +127,11 @@ public class Controller implements Initializable {
 					}
 					draw = 0;
 					GalleryInstance gi = bfil.load(benchmark.getAbsolutePath());
+					System.out.println(gi.getVertices().toString());
 						GreedyController gc = new GreedyController();
 						gc.process(gi, "res.txt");
 				} catch(Exception e) {
+					e.printStackTrace();
 					Alert wrongFileAlert = new Alert(AlertType.ERROR, 
 							"Odabrana datoteka ne sadrži primjer u korektnom zapisu! Pokušajte ponovo.",
 							ButtonType.OK);
@@ -151,7 +156,7 @@ public class Controller implements Initializable {
 					gc.process(drawing.gi, "res.txt");
 				}
 			}
-		} else if (pso_gen.isSelected()) {
+		}  else if (pso_gen.isSelected()) {
 			if(benchmark != null) System.out.println(benchmark.getName());
 			if(radio_dat.isSelected()) {
 				
@@ -187,7 +192,80 @@ public class Controller implements Initializable {
 					psoc.process(drawing.gi, "cam.txt");
 				}
 			}
-		}
+		} else if (radio_gen.isSelected()) {
+			if(benchmark != null) System.out.println(benchmark.getName());
+			if(radio_dat.isSelected()) {
+				
+				try {
+					if(draw == 1 && other != null) {
+						benchmark = new File(other.getAbsolutePath());
+					}
+					draw = 0;
+					GeneticController gc = new GeneticController();
+					System.out.println(benchmark.getAbsolutePath());
+					gc.process(benchmark.getAbsolutePath());
+				} catch(Exception e) {
+					Alert wrongFileAlert = new Alert(AlertType.ERROR, 
+							"Odabrana datoteka ne sadrži primjer u korektnom zapisu! Pokušajte ponovo.",
+							ButtonType.OK);
+					wrongFileAlert.setHeaderText("Greška");
+					wrongFileAlert.showAndWait();
+				}
+			} else {
+				if(draw == 0 && benchmark != null) {
+					other = new File(benchmark.getAbsolutePath());
+				}
+				draw = 1;
+				if(drawing.gi == null || drawing.gi.getVertices().size() < 3) {
+					Alert wrongFileAlert = new Alert(AlertType.ERROR, 
+							"Tlocrt galerija nemoguće je obraditi. Pokušajte ponovo.",
+							ButtonType.OK);
+					wrongFileAlert.setHeaderText("Greška");
+					wrongFileAlert.showAndWait();
+				} else {
+					GeneticController gc = new GeneticController();
+					generateBenchmarkFromDrawGenetic();
+					gc.process("cam.txt");
+				}
+			}
+		}else if(hybrid.isSelected()) {
+			if(benchmark != null) System.out.println(benchmark.getName());
+			if(radio_dat.isSelected()) {
+				
+				try {
+					if(draw == 1 && other != null) {
+						benchmark = new File(other.getAbsolutePath());
+					}
+					draw = 0;
+					HybridController hc = new HybridController();
+					hc.process(benchmark.getAbsolutePath(), "res.txt");
+				} catch(Exception e) {
+					e.printStackTrace();
+					Alert wrongFileAlert = new Alert(AlertType.ERROR, 
+							"Odabrana datoteka ne sadrži primjer u korektnom zapisu! Pokušajte ponovo.",
+							ButtonType.OK);
+					wrongFileAlert.setHeaderText("Greška");
+					wrongFileAlert.showAndWait();
+				}
+			} else {
+				if(draw == 0 && benchmark != null) {
+					other = new File(benchmark.getAbsolutePath());
+				}
+				draw = 1;
+				//benchmark = null;
+				if(drawing.gi == null || drawing.gi.getVertices().size() < 3) {
+					Alert wrongFileAlert = new Alert(AlertType.ERROR, 
+							"Tlocrt galerija nemoguće je obraditi. Pokušajte ponovo.",
+							ButtonType.OK);
+					wrongFileAlert.setHeaderText("Greška");
+					wrongFileAlert.showAndWait();
+				} else {
+					HybridController hc = new HybridController();
+					generateBenchmarkFromDrawGenetic();
+					hc.process("cam.txt", "res.txt");
+				}
+			}
+		} 
 	}
 
 	public void onImageViewClicked() {
@@ -260,8 +338,8 @@ public class Controller implements Initializable {
 			generateBenchmarkFromDraw();
 		}
 		try {
-			Process p = Runtime.getRuntime().exec("/Users/jelenadrzaic/Documents/repos/art-gallery-problem/ArtGallery " +  
-					benchmark.getAbsolutePath() +  " /Users/jelenadrzaic/Documents/repos/art-gallery-problem/res.txt  /Users/jelenadrzaic/Documents/repos/art-gallery-problem/cam.png");
+			Process p = Runtime.getRuntime().exec("./ArtGallery " +  
+					benchmark.getAbsolutePath() +  " res.txt  cam.png");
 			try {
 				p.waitFor();
 			} catch (InterruptedException e) {
@@ -272,6 +350,31 @@ public class Controller implements Initializable {
 		}
 	}
 
+	private static void generateBenchmarkFromDrawGenetic() {
+		StringBuilder sb = new StringBuilder();
+		GalleryInstance gi = drawing.gi;
+		sb.append(gi.getVertices().size()).append(" ");
+		for(int i = gi.getVertices().size() - 1; i >= 0; --i) {
+			Coordinate c = gi.getOnIndex(i);
+			sb.append(new Double(c.x).intValue() + "/1 ").append(new Double(c.y).intValue() + "/1 ");
+		}
+		if(gi.getHoles().size() > 0) sb.append(gi.getHoles().size());
+		for(int i = gi.getHoles().size() - 1; i >= 0; --i) {
+			Polygon h = gi.getHoleOnIndex(i);
+			sb.append(" " + h.getVertices().size() + " ");
+			for(Coordinate c : h.getVertices()) {
+				sb.append(new Double(c.x).intValue() + "/1 ").append(new Double(c.y).intValue() + "/1 ");
+			}
+		}
+		try {
+			FileUtils.writeStringToFile(new File("cam.txt"), sb.toString());
+		} catch (IOException ignorable) {
+			ignorable.printStackTrace();
+		}
+		benchmark = new File("cam.txt");
+		System.out.println();
+	}
+	
 	private static void generateBenchmarkFromDraw() {
 		StringBuilder sb = new StringBuilder();
 		GalleryInstance gi = drawing.gi;
