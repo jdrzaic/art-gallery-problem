@@ -16,7 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import metaheuristics.project.agp.alg.greedy.PSO;
+import metaheuristics.project.agp.alg.pso.PSO;
 import metaheuristics.project.agp.instances.GalleryInstance;
 import metaheuristics.project.agp.instances.util.BenchmarkFileInstanceLoader;
 
@@ -34,8 +34,8 @@ public class PSOController {
 	static int n;
 	static Stage stage;
 	
-	public void process(GalleryInstance gi, String filename) {
-		this.gi = gi;
+	public void process(String filename) {
+		this.gi = new BenchmarkFileInstanceLoader().load(filename);
 		this.filename = filename;
 		openHeurChoser();
 	}
@@ -69,10 +69,9 @@ public class PSOController {
 
 					@Override
 					protected Void call() throws Exception {
-						GalleryInstance gi = new BenchmarkFileInstanceLoader().load(filename);
 						PSO pso = new PSO(); 
 						pso.process(gi);
-						n = pso.cover.size(); 
+						n = gi.saveResults("/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/test_results_and_samples/res.txt"); 
 						 final CountDownLatch latch = new CountDownLatch(1);
 							Platform.runLater(new Runnable() {                          
 		                        @Override

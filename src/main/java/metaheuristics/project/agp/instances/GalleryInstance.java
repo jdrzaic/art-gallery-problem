@@ -108,11 +108,7 @@ public class GalleryInstance extends Polygon{
 	 * @return list of cameras.
 	 */
 	public Set<Camera> getCameras() {
-		if(cameras.size() > 0) {
 			return this.cameras;
-		}else {
-			return null;
-		}
 	}
 	
 	public void addCamera(Camera c) {

@@ -35,7 +35,7 @@ import metaheuristics.project.agp.instances.util.BenchmarkFileInstanceLoader;
 
 public class Controller implements Initializable {
 
-	public static final String fileResults = "res.txt";
+	public static final String fileResults = "test_results_and_samples/res.txt";
 	
 	private static Drawing drawing;
 
@@ -128,7 +128,7 @@ public class Controller implements Initializable {
 					GalleryInstance gi = bfil.load(benchmark.getAbsolutePath());
 					System.out.println(gi.getVertices().toString());
 						GreedyController gc = new GreedyController();
-						gc.process(gi, "res.txt");
+						gc.process(gi, "test_results_and_samples/res.txt");
 				} catch(Exception e) {
 					e.printStackTrace();
 					Alert wrongFileAlert = new Alert(AlertType.ERROR, 
@@ -152,7 +152,7 @@ public class Controller implements Initializable {
 				} else {
 					
 					GreedyController gc = new GreedyController();
-					gc.process(drawing.gi, "res.txt");
+					gc.process(drawing.gi, "test_results_and_samples/res.txt");
 				}
 			}
 		}  else if (pso_gen.isSelected()) {
@@ -165,7 +165,7 @@ public class Controller implements Initializable {
 					}
 					draw = 0;
 					PSOController psoc = new PSOController();
-					psoc.process(null, benchmark.getAbsolutePath());
+					psoc.process(benchmark.getAbsolutePath());
 				} catch(Exception e) {
 					Alert wrongFileAlert = new Alert(AlertType.ERROR, 
 							"Odabrana datoteka ne sadrži primjer u korektnom zapisu! Pokušajte ponovo.",
@@ -188,7 +188,7 @@ public class Controller implements Initializable {
 				} else {
 					PSOController psoc = new PSOController();
 					generateBenchmarkFromDraw();
-					psoc.process(drawing.gi, "cam.txt");
+					psoc.process("test_results_and_samples/test_results_and_samples/res.txt");
 				}
 			}
 		} else if (radio_gen.isSelected()) {
@@ -224,7 +224,7 @@ public class Controller implements Initializable {
 				} else {
 					GeneticController gc = new GeneticController();
 					generateBenchmarkFromDrawGenetic();
-					gc.process("cam.txt");
+					gc.process("test_results_and_samples/res.txt");
 				}
 			}
 		}else if(hybrid.isSelected()) {
@@ -237,7 +237,7 @@ public class Controller implements Initializable {
 					}
 					draw = 0;
 					HybridController hc = new HybridController();
-					hc.process(benchmark.getAbsolutePath(), "res.txt");
+					hc.process(benchmark.getAbsolutePath(), "test_results_and_samples/res.txt");
 				} catch(Exception e) {
 					e.printStackTrace();
 					Alert wrongFileAlert = new Alert(AlertType.ERROR, 
@@ -261,7 +261,7 @@ public class Controller implements Initializable {
 				} else {
 					HybridController hc = new HybridController();
 					generateBenchmarkFromDrawGenetic();
-					hc.process("cam.txt", "res.txt");
+					hc.process("test_results_and_samples/res.txt", "test_results_and_samples/res.txt");
 				}
 			}
 		} 
@@ -338,7 +338,7 @@ public class Controller implements Initializable {
 		}
 		try {
 			Process p = Runtime.getRuntime().exec("./ArtGallery " +  
-					benchmark.getAbsolutePath() +  " res.txt  cam.png");
+					benchmark.getAbsolutePath() +  " test_results_and_samples/res.txt  test_results_and_samples/res.png");
 			try {
 				p.waitFor();
 			} catch (InterruptedException e) {
@@ -366,11 +366,11 @@ public class Controller implements Initializable {
 			}
 		}
 		try {
-			FileUtils.writeStringToFile(new File("cam.txt"), sb.toString());
+			FileUtils.writeStringToFile(new File("test_results_and_samples/res.txt"), sb.toString());
 		} catch (IOException ignorable) {
 			ignorable.printStackTrace();
 		}
-		benchmark = new File("cam.txt");
+		benchmark = new File("test_results_and_samples/res.txt");
 		System.out.println();
 	}
 	
@@ -389,11 +389,11 @@ public class Controller implements Initializable {
 			}
 		}
 		try {
-			FileUtils.writeStringToFile(new File("cam.txt"), sb.toString());
+			FileUtils.writeStringToFile(new File("test_results_and_samples/res.txt"), sb.toString());
 		} catch (IOException ignorable) {
 			ignorable.printStackTrace();
 		}
-		benchmark = new File("cam.txt");
+		benchmark = new File("test_results_and_samples/res.txt");
 		System.out.println();
 	}
 
