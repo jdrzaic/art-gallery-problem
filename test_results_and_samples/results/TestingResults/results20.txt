@@ -1,0 +1,1260 @@
+ID:   0
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-1.pol
+Population number:  1
+Number of iterations:  5
+Proslo vrijeme: 735 
+Broj potrebnih kamera: 5
+Kamere pokrivaju:  45.175413997452836  od  45.17541399744094
+Points: 
+
+ID:   1
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-1.pol
+Population number:  1
+Number of iterations:  25
+Proslo vrijeme: 815 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  45.17541399751799  od  45.17541399744094
+Points: 
+
+ID:   2
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-1.pol
+Population number:  1
+Number of iterations:  50
+Proslo vrijeme: 1209 
+Broj potrebnih kamera: 5
+Kamere pokrivaju:  45.1754139974793  od  45.17541399744094
+Points: 
+
+
+ID:   3
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-1.pol
+Population number:  5
+Number of iterations:  5
+Proslo vrijeme: 687 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  45.17268581484295  od  45.17541399744094
+Points: 
+
+ID:   4
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-1.pol
+Population number:  5
+Number of iterations:  25
+Proslo vrijeme: 3247 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  45.1754139974923  od  45.17541399744094
+Points: 
+
+ID:   5
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-1.pol
+Population number:  5
+Number of iterations:  50
+Proslo vrijeme: 6498 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  45.17454753653077  od  45.17541399744094
+Points: 
+
+
+ID:   6
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-1.pol
+Population number:  10
+Number of iterations:  5
+Proslo vrijeme: 1832 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  45.17541399759442  od  45.17541399744094
+Points: 
+
+ID:   7
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-1.pol
+Population number:  10
+Number of iterations:  25
+Proslo vrijeme: 5830 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  45.17541399754603  od  45.17541399744094
+Points: 
+
+ID:   8
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-1.pol
+Population number:  10
+Number of iterations:  50
+Proslo vrijeme: 10871 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  45.17541399760554  od  45.17541399744094
+Points: 
+
+
+ID:   9
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-2.pol
+Population number:  1
+Number of iterations:  5
+Proslo vrijeme: 227 
+Broj potrebnih kamera: 5
+Kamere pokrivaju:  76.01097696659572  od  80.2163302626216
+Points: 
+
+ID:   10
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-2.pol
+Population number:  1
+Number of iterations:  25
+Proslo vrijeme: 524 
+Broj potrebnih kamera: 5
+Kamere pokrivaju:  78.80113355401201  od  80.2163302626216
+Points: 
+
+ID:   11
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-2.pol
+Population number:  1
+Number of iterations:  50
+Proslo vrijeme: 982 
+Broj potrebnih kamera: 5
+Kamere pokrivaju:  78.82779113897342  od  80.2163302626216
+Points: 
+
+
+ID:   12
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-2.pol
+Population number:  5
+Number of iterations:  5
+Proslo vrijeme: 526 
+Broj potrebnih kamera: 5
+Kamere pokrivaju:  78.83241907815611  od  80.2163302626216
+Points: 
+
+ID:   13
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-2.pol
+Population number:  5
+Number of iterations:  25
+Proslo vrijeme: 2482 
+Broj potrebnih kamera: 5
+Kamere pokrivaju:  78.82385077979086  od  80.2163302626216
+Points: 
+
+ID:   14
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-2.pol
+Population number:  5
+Number of iterations:  50
+Proslo vrijeme: 4798 
+Broj potrebnih kamera: 5
+Kamere pokrivaju:  78.80866834561996  od  80.2163302626216
+Points: 
+
+
+ID:   15
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-2.pol
+Population number:  10
+Number of iterations:  5
+Proslo vrijeme: 1055 
+Broj potrebnih kamera: 5
+Kamere pokrivaju:  78.84419781368288  od  80.2163302626216
+Points: 
+
+ID:   16
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-2.pol
+Population number:  10
+Number of iterations:  25
+Proslo vrijeme: 4866 
+Broj potrebnih kamera: 5
+Kamere pokrivaju:  78.79987266941238  od  80.2163302626216
+Points: 
+
+ID:   17
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-2.pol
+Population number:  10
+Number of iterations:  50
+Proslo vrijeme: 9187 
+Broj potrebnih kamera: 5
+Kamere pokrivaju:  78.81184299899576  od  80.2163302626216
+Points: 
+
+
+ID:   18
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-3.pol
+Population number:  1
+Number of iterations:  5
+Proslo vrijeme: 163 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  79.33950308874795  od  80.30496745757546
+Points: 
+
+ID:   19
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-3.pol
+Population number:  1
+Number of iterations:  25
+Proslo vrijeme: 588 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  80.1087775537213  od  80.30496745757546
+Points: 
+
+ID:   20
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-3.pol
+Population number:  1
+Number of iterations:  50
+Proslo vrijeme: 1176 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  80.29244178507801  od  80.30496745757546
+Points: 
+
+
+ID:   21
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-3.pol
+Population number:  5
+Number of iterations:  5
+Proslo vrijeme: 633 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  80.30254195497474  od  80.30496745757546
+Points: 
+
+ID:   22
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-3.pol
+Population number:  5
+Number of iterations:  25
+Proslo vrijeme: 2535 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  80.30205371935367  od  80.30496745757546
+Points: 
+
+ID:   23
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-3.pol
+Population number:  5
+Number of iterations:  50
+Proslo vrijeme: 5058 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  80.30496745757762  od  80.30496745757546
+Points: 
+
+
+ID:   24
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-3.pol
+Population number:  10
+Number of iterations:  5
+Proslo vrijeme: 1114 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  80.30496745769152  od  80.30496745757546
+Points: 
+
+ID:   25
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-3.pol
+Population number:  10
+Number of iterations:  25
+Proslo vrijeme: 5068 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  80.30496745758853  od  80.30496745757546
+Points: 
+
+ID:   26
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-3.pol
+Population number:  10
+Number of iterations:  50
+Proslo vrijeme: 9933 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  80.30496745764066  od  80.30496745757546
+Points: 
+
+
+ID:   27
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-4.pol
+Population number:  1
+Number of iterations:  5
+Proslo vrijeme: 184 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  85.99389267862803  od  86.00564389698836
+Points: 
+
+ID:   28
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-4.pol
+Population number:  1
+Number of iterations:  25
+Proslo vrijeme: 721 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  86.00102617248572  od  86.00564389698836
+Points: 
+
+ID:   29
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-4.pol
+Population number:  1
+Number of iterations:  50
+Proslo vrijeme: 1161 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  86.00564389709047  od  86.00564389698836
+Points: 
+
+
+ID:   30
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-4.pol
+Population number:  5
+Number of iterations:  5
+Proslo vrijeme: 634 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  86.00531425613272  od  86.00564389698836
+Points: 
+
+ID:   31
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-4.pol
+Population number:  5
+Number of iterations:  25
+Proslo vrijeme: 2834 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  86.0048054193  od  86.00564389698836
+Points: 
+
+ID:   32
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-4.pol
+Population number:  5
+Number of iterations:  50
+Proslo vrijeme: 5473 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  86.00553308943778  od  86.00564389698836
+Points: 
+
+
+ID:   33
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-4.pol
+Population number:  10
+Number of iterations:  5
+Proslo vrijeme: 1503 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  85.89696135272555  od  86.00564389698836
+Points: 
+
+ID:   34
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-4.pol
+Population number:  10
+Number of iterations:  25
+Proslo vrijeme: 5650 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  86.00385574605815  od  86.00564389698836
+Points: 
+
+ID:   35
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-4.pol
+Population number:  10
+Number of iterations:  50
+Proslo vrijeme: 10882 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  85.99092157446569  od  86.00564389698836
+Points: 
+
+
+ID:   36
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-5.pol
+Population number:  1
+Number of iterations:  5
+Proslo vrijeme: 225 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  59.34943638941195  od  59.34943638938826
+Points: 
+
+ID:   37
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-5.pol
+Population number:  1
+Number of iterations:  25
+Proslo vrijeme: 717 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  59.34943638944363  od  59.34943638938826
+Points: 
+
+ID:   38
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-5.pol
+Population number:  1
+Number of iterations:  50
+Proslo vrijeme: 1340 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  59.3494363894372  od  59.34943638938826
+Points: 
+
+
+ID:   39
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-5.pol
+Population number:  5
+Number of iterations:  5
+Proslo vrijeme: 723 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  59.34943638946876  od  59.34943638938826
+Points: 
+
+ID:   40
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-5.pol
+Population number:  5
+Number of iterations:  25
+Proslo vrijeme: 3258 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  59.341792580395975  od  59.34943638938826
+Points: 
+
+ID:   41
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-5.pol
+Population number:  5
+Number of iterations:  50
+Proslo vrijeme: 6431 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  59.34943638944296  od  59.34943638938826
+Points: 
+
+
+ID:   42
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-5.pol
+Population number:  10
+Number of iterations:  5
+Proslo vrijeme: 1371 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  59.34763577102481  od  59.34943638938826
+Points: 
+
+ID:   43
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-5.pol
+Population number:  10
+Number of iterations:  25
+Proslo vrijeme: 6602 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  59.34335406728663  od  59.34943638938826
+Points: 
+
+ID:   44
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-5.pol
+Population number:  10
+Number of iterations:  50
+Proslo vrijeme: 12665 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  59.349436389435546  od  59.34943638938826
+Points: 
+
+
+ID:   45
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-6.pol
+Population number:  1
+Number of iterations:  5
+Proslo vrijeme: 232 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  69.18168811019356  od  79.3944553746771
+Points: 
+
+ID:   46
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-6.pol
+Population number:  1
+Number of iterations:  25
+Proslo vrijeme: 753 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  69.0109444571926  od  79.3944553746771
+Points: 
+
+ID:   47
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-6.pol
+Population number:  1
+Number of iterations:  50
+Proslo vrijeme: 1502 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  70.76227543423008  od  79.3944553746771
+Points: 
+
+
+ID:   48
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-6.pol
+Population number:  5
+Number of iterations:  5
+Proslo vrijeme: 773 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  69.01872804028153  od  79.3944553746771
+Points: 
+
+ID:   49
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-6.pol
+Population number:  5
+Number of iterations:  25
+Proslo vrijeme: 3252 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  79.31676313852716  od  79.3944553746771
+Points: 
+
+ID:   50
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-6.pol
+Population number:  5
+Number of iterations:  50
+Proslo vrijeme: 6412 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  79.3235621069782  od  79.3944553746771
+Points: 
+
+
+ID:   51
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-6.pol
+Population number:  10
+Number of iterations:  5
+Proslo vrijeme: 1396 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  79.31399418858751  od  79.3944553746771
+Points: 
+
+ID:   52
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-6.pol
+Population number:  10
+Number of iterations:  25
+Proslo vrijeme: 6400 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  79.31644233394036  od  79.3944553746771
+Points: 
+
+ID:   53
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-6.pol
+Population number:  10
+Number of iterations:  50
+Proslo vrijeme: 12687 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  79.32113938857165  od  79.3944553746771
+Points: 
+
+
+ID:   54
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-7.pol
+Population number:  1
+Number of iterations:  5
+Proslo vrijeme: 196 
+Broj potrebnih kamera: 5
+Kamere pokrivaju:  82.68920286599212  od  82.68920286592682
+Points: 
+
+ID:   55
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-7.pol
+Population number:  1
+Number of iterations:  25
+Proslo vrijeme: 665 
+Broj potrebnih kamera: 5
+Kamere pokrivaju:  82.68920286600407  od  82.68920286592682
+Points: 
+
+ID:   56
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-7.pol
+Population number:  1
+Number of iterations:  50
+Proslo vrijeme: 1214 
+Broj potrebnih kamera: 6
+Kamere pokrivaju:  82.68920286603151  od  82.68920286592682
+Points: 
+
+
+ID:   57
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-7.pol
+Population number:  5
+Number of iterations:  5
+Proslo vrijeme: 657 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  82.68920286592413  od  82.68920286592682
+Points: 
+
+ID:   58
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-7.pol
+Population number:  5
+Number of iterations:  25
+Proslo vrijeme: 2972 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  82.6892028660065  od  82.68920286592682
+Points: 
+
+ID:   59
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-7.pol
+Population number:  5
+Number of iterations:  50
+Proslo vrijeme: 5873 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  82.6892028659895  od  82.68920286592682
+Points: 
+
+
+ID:   60
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-7.pol
+Population number:  10
+Number of iterations:  5
+Proslo vrijeme: 1342 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  82.68920286599793  od  82.68920286592682
+Points: 
+
+ID:   61
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-7.pol
+Population number:  10
+Number of iterations:  25
+Proslo vrijeme: 5887 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  82.68920286600617  od  82.68920286592682
+Points: 
+
+ID:   62
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-7.pol
+Population number:  10
+Number of iterations:  50
+Proslo vrijeme: 12288 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  82.68920286599095  od  82.68920286592682
+Points: 
+
+
+ID:   63
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-8.pol
+Population number:  1
+Number of iterations:  5
+Proslo vrijeme: 325 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  61.90263987758424  od  61.90263987755935
+Points: 
+
+ID:   64
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-8.pol
+Population number:  1
+Number of iterations:  25
+Proslo vrijeme: 904 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  61.902639877586225  od  61.90263987755935
+Points: 
+
+ID:   65
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-8.pol
+Population number:  1
+Number of iterations:  50
+Proslo vrijeme: 1663 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  61.90263987759067  od  61.90263987755935
+Points: 
+
+
+ID:   66
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-8.pol
+Population number:  5
+Number of iterations:  5
+Proslo vrijeme: 1175 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  61.89820732789966  od  61.90263987755935
+Points: 
+
+ID:   67
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-8.pol
+Population number:  5
+Number of iterations:  25
+Proslo vrijeme: 4094 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  61.902639877641725  od  61.90263987755935
+Points: 
+
+ID:   68
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-8.pol
+Population number:  5
+Number of iterations:  50
+Proslo vrijeme: 7931 
+Broj potrebnih kamera: 2
+Kamere pokrivaju:  61.90263987757116  od  61.90263987755935
+Points: 
+
+
+ID:   69
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-8.pol
+Population number:  10
+Number of iterations:  5
+Proslo vrijeme: 1673 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  61.90263987759371  od  61.90263987755935
+Points: 
+
+ID:   70
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-8.pol
+Population number:  10
+Number of iterations:  25
+Proslo vrijeme: 7693 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  61.901893510295494  od  61.90263987755935
+Points: 
+
+ID:   71
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-8.pol
+Population number:  10
+Number of iterations:  50
+Proslo vrijeme: 15198 
+Broj potrebnih kamera: 2
+Kamere pokrivaju:  61.90084644659681  od  61.90263987755935
+Points: 
+
+
+ID:   72
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-9.pol
+Population number:  1
+Number of iterations:  5
+Proslo vrijeme: 244 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  70.13646200780417  od  70.13646200773418
+Points: 
+
+ID:   73
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-9.pol
+Population number:  1
+Number of iterations:  25
+Proslo vrijeme: 731 
+Broj potrebnih kamera: 5
+Kamere pokrivaju:  70.13646200775749  od  70.13646200773418
+Points: 
+
+ID:   74
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-9.pol
+Population number:  1
+Number of iterations:  50
+Proslo vrijeme: 1647 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  70.1313124032161  od  70.13646200773418
+Points: 
+
+
+ID:   75
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-9.pol
+Population number:  5
+Number of iterations:  5
+Proslo vrijeme: 759 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  70.13646200777403  od  70.13646200773418
+Points: 
+
+ID:   76
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-9.pol
+Population number:  5
+Number of iterations:  25
+Proslo vrijeme: 3227 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  70.13646200778045  od  70.13646200773418
+Points: 
+
+ID:   77
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-9.pol
+Population number:  5
+Number of iterations:  50
+Proslo vrijeme: 6334 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  70.1364620077291  od  70.13646200773418
+Points: 
+
+
+ID:   78
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-9.pol
+Population number:  10
+Number of iterations:  5
+Proslo vrijeme: 1342 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  70.1364620077678  od  70.13646200773418
+Points: 
+
+ID:   79
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-9.pol
+Population number:  10
+Number of iterations:  25
+Proslo vrijeme: 7352 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  70.13646200776243  od  70.13646200773418
+Points: 
+
+ID:   80
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-9.pol
+Population number:  10
+Number of iterations:  50
+Proslo vrijeme: 12347 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  70.1364620078033  od  70.13646200773418
+Points: 
+
+
+ID:   81
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-10.pol
+Population number:  1
+Number of iterations:  5
+Proslo vrijeme: 193 
+Broj potrebnih kamera: 5
+Kamere pokrivaju:  74.99816702667044  od  75.12852288167464
+Points: 
+
+ID:   82
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-10.pol
+Population number:  1
+Number of iterations:  25
+Proslo vrijeme: 711 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  75.12852288178324  od  75.12852288167464
+Points: 
+
+ID:   83
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-10.pol
+Population number:  1
+Number of iterations:  50
+Proslo vrijeme: 1289 
+Broj potrebnih kamera: 5
+Kamere pokrivaju:  75.0023281141006  od  75.12852288167464
+Points: 
+
+
+ID:   84
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-10.pol
+Population number:  5
+Number of iterations:  5
+Proslo vrijeme: 696 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  75.12852288175388  od  75.12852288167464
+Points: 
+
+ID:   85
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-10.pol
+Population number:  5
+Number of iterations:  25
+Proslo vrijeme: 3151 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  75.12852288173637  od  75.12852288167464
+Points: 
+
+ID:   86
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-10.pol
+Population number:  5
+Number of iterations:  50
+Proslo vrijeme: 6296 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  75.12852288174716  od  75.12852288167464
+Points: 
+
+
+ID:   87
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-10.pol
+Population number:  10
+Number of iterations:  5
+Proslo vrijeme: 1319 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  75.1285228817316  od  75.12852288167464
+Points: 
+
+ID:   88
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-10.pol
+Population number:  10
+Number of iterations:  25
+Proslo vrijeme: 6369 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  75.12852288171169  od  75.12852288167464
+Points: 
+
+ID:   89
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-10.pol
+Population number:  10
+Number of iterations:  50
+Proslo vrijeme: 12513 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  75.12852288171  od  75.12852288167464
+Points: 
+
+
+ID:   90
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-11.pol
+Population number:  1
+Number of iterations:  5
+Proslo vrijeme: 163 
+Broj potrebnih kamera: 2
+Kamere pokrivaju:  76.80471587703676  od  76.80471587712029
+Points: 
+
+ID:   91
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-11.pol
+Population number:  1
+Number of iterations:  25
+Proslo vrijeme: 596 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  76.80471587712313  od  76.80471587712029
+Points: 
+
+ID:   92
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-11.pol
+Population number:  1
+Number of iterations:  50
+Proslo vrijeme: 1104 
+Broj potrebnih kamera: 2
+Kamere pokrivaju:  76.80471587711916  od  76.80471587712029
+Points: 
+
+
+ID:   93
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-11.pol
+Population number:  5
+Number of iterations:  5
+Proslo vrijeme: 588 
+Broj potrebnih kamera: 2
+Kamere pokrivaju:  76.80471587719092  od  76.80471587712029
+Points: 
+
+ID:   94
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-11.pol
+Population number:  5
+Number of iterations:  25
+Proslo vrijeme: 2694 
+Broj potrebnih kamera: 2
+Kamere pokrivaju:  76.80471587711774  od  76.80471587712029
+Points: 
+
+ID:   95
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-11.pol
+Population number:  5
+Number of iterations:  50
+Proslo vrijeme: 5369 
+Broj potrebnih kamera: 2
+Kamere pokrivaju:  76.80471587711948  od  76.80471587712029
+Points: 
+
+
+ID:   96
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-11.pol
+Population number:  10
+Number of iterations:  5
+Proslo vrijeme: 1124 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  76.8047158771348  od  76.80471587712029
+Points: 
+
+ID:   97
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-11.pol
+Population number:  10
+Number of iterations:  25
+Proslo vrijeme: 5349 
+Broj potrebnih kamera: 2
+Kamere pokrivaju:  76.80471587714253  od  76.80471587712029
+Points: 
+
+ID:   98
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-11.pol
+Population number:  10
+Number of iterations:  50
+Proslo vrijeme: 10654 
+Broj potrebnih kamera: 2
+Kamere pokrivaju:  76.80471587714365  od  76.80471587712029
+Points: 
+
+
+ID:   99
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-12.pol
+Population number:  1
+Number of iterations:  5
+Proslo vrijeme: 196 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  61.52098501431961  od  61.543666912163616
+Points: 
+
+ID:   100
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-12.pol
+Population number:  1
+Number of iterations:  25
+Proslo vrijeme: 700 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  61.51885605608137  od  61.543666912163616
+Points: 
+
+ID:   101
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-12.pol
+Population number:  1
+Number of iterations:  50
+Proslo vrijeme: 1305 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  61.52078906976116  od  61.543666912163616
+Points: 
+
+
+ID:   102
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-12.pol
+Population number:  5
+Number of iterations:  5
+Proslo vrijeme: 769 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  61.53890825406374  od  61.543666912163616
+Points: 
+
+ID:   103
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-12.pol
+Population number:  5
+Number of iterations:  25
+Proslo vrijeme: 3144 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  61.53207776864337  od  61.543666912163616
+Points: 
+
+ID:   104
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-12.pol
+Population number:  5
+Number of iterations:  50
+Proslo vrijeme: 6355 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  61.54366691228134  od  61.543666912163616
+Points: 
+
+
+ID:   105
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-12.pol
+Population number:  10
+Number of iterations:  5
+Proslo vrijeme: 1316 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  61.543666912244625  od  61.543666912163616
+Points: 
+
+ID:   106
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-12.pol
+Population number:  10
+Number of iterations:  25
+Proslo vrijeme: 6212 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  61.543666912294654  od  61.543666912163616
+Points: 
+
+ID:   107
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-12.pol
+Population number:  10
+Number of iterations:  50
+Proslo vrijeme: 12366 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  61.54366691220131  od  61.543666912163616
+Points: 
+
+
+ID:   108
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-13.pol
+Population number:  1
+Number of iterations:  5
+Proslo vrijeme: 274 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  58.27730349540263  od  58.27730349534684
+Points: 
+
+ID:   109
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-13.pol
+Population number:  1
+Number of iterations:  25
+Proslo vrijeme: 838 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  58.277303495431525  od  58.27730349534684
+Points: 
+
+ID:   110
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-13.pol
+Population number:  1
+Number of iterations:  50
+Proslo vrijeme: 1534 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  58.277303495411225  od  58.27730349534684
+Points: 
+
+
+ID:   111
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-13.pol
+Population number:  5
+Number of iterations:  5
+Proslo vrijeme: 851 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  58.27730349541097  od  58.27730349534684
+Points: 
+
+ID:   112
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-13.pol
+Population number:  5
+Number of iterations:  25
+Proslo vrijeme: 3702 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  58.277303495397646  od  58.27730349534684
+Points: 
+
+ID:   113
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-13.pol
+Population number:  5
+Number of iterations:  50
+Proslo vrijeme: 7468 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  58.27730349536959  od  58.27730349534684
+Points: 
+
+
+ID:   114
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-13.pol
+Population number:  10
+Number of iterations:  5
+Proslo vrijeme: 1538 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  58.271857025158695  od  58.27730349534684
+Points: 
+
+ID:   115
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-13.pol
+Population number:  10
+Number of iterations:  25
+Proslo vrijeme: 7449 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  58.27106645362775  od  58.27730349534684
+Points: 
+
+ID:   116
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-13.pol
+Population number:  10
+Number of iterations:  50
+Proslo vrijeme: 14702 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  58.273486222314354  od  58.27730349534684
+Points: 
+
+
+ID:   117
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-14.pol
+Population number:  1
+Number of iterations:  5
+Proslo vrijeme: 173 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  67.4383414759441  od  72.0642574843574
+Points: 
+
+ID:   118
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-14.pol
+Population number:  1
+Number of iterations:  25
+Proslo vrijeme: 612 
+Broj potrebnih kamera: 5
+Kamere pokrivaju:  68.22061434687906  od  72.0642574843574
+Points: 
+
+ID:   119
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-14.pol
+Population number:  1
+Number of iterations:  50
+Proslo vrijeme: 1132 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  67.88806178122294  od  72.0642574843574
+Points: 
+
+
+ID:   120
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-14.pol
+Population number:  5
+Number of iterations:  5
+Proslo vrijeme: 603 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  68.29857644157765  od  72.0642574843574
+Points: 
+
+ID:   121
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-14.pol
+Population number:  5
+Number of iterations:  25
+Proslo vrijeme: 2757 
+Broj potrebnih kamera: 5
+Kamere pokrivaju:  68.42828829039495  od  72.0642574843574
+Points: 
+
+ID:   122
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-14.pol
+Population number:  5
+Number of iterations:  50
+Proslo vrijeme: 5495 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  68.27074858831055  od  72.0642574843574
+Points: 
+
+
+ID:   123
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-14.pol
+Population number:  10
+Number of iterations:  5
+Proslo vrijeme: 1147 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  67.8160404329726  od  72.0642574843574
+Points: 
+
+ID:   124
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-14.pol
+Population number:  10
+Number of iterations:  25
+Proslo vrijeme: 5512 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  68.7015733254435  od  72.0642574843574
+Points: 
+
+ID:   125
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-14.pol
+Population number:  10
+Number of iterations:  50
+Proslo vrijeme: 10840 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  68.51779163733266  od  72.0642574843574
+Points: 
+
+
+ID:   126
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-15.pol
+Population number:  1
+Number of iterations:  5
+Proslo vrijeme: 209 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  67.580401965756  od  67.58040196571038
+Points: 
+
+ID:   127
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-15.pol
+Population number:  1
+Number of iterations:  25
+Proslo vrijeme: 715 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  67.58040196575698  od  67.58040196571038
+Points: 
+
+ID:   128
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-15.pol
+Population number:  1
+Number of iterations:  50
+Proslo vrijeme: 1323 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  67.5804019657829  od  67.58040196571038
+Points: 
+
+
+ID:   129
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-15.pol
+Population number:  5
+Number of iterations:  5
+Proslo vrijeme: 715 
+Broj potrebnih kamera: 4
+Kamere pokrivaju:  67.5804019657085  od  67.58040196571038
+Points: 
+
+ID:   130
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-15.pol
+Population number:  5
+Number of iterations:  25
+Proslo vrijeme: 3221 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  67.58040196579147  od  67.58040196571038
+Points: 
+
+ID:   131
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-15.pol
+Population number:  5
+Number of iterations:  50
+Proslo vrijeme: 6358 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  67.58040196573084  od  67.58040196571038
+Points: 
+
+
+ID:   132
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-15.pol
+Population number:  10
+Number of iterations:  5
+Proslo vrijeme: 1360 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  67.58040196576381  od  67.58040196571038
+Points: 
+
+ID:   133
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-15.pol
+Population number:  10
+Number of iterations:  25
+Proslo vrijeme: 6337 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  67.58040196579557  od  67.58040196571038
+Points: 
+
+ID:   134
+Test sample:  /home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-20-15.pol
+Population number:  10
+Number of iterations:  50
+Proslo vrijeme: 12618 
+Broj potrebnih kamera: 3
+Kamere pokrivaju:  67.58040196564237  od  67.58040196571038
+Points: 
+
+
