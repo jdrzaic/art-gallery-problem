@@ -105,6 +105,9 @@ public class Controller implements Initializable {
 		onClearClicked();
 	}
 	
+	/**
+	 * Method for choosing file for algorithms.
+	 */
 	public void onFileChooseClicked() {
 		FileChooser fc = new FileChooser();
 		File file = fc.showOpenDialog(null);
@@ -117,158 +120,158 @@ public class Controller implements Initializable {
 	
 	public void onButtonNext() {
 		if(heur_ger.isSelected()) {
-			if(benchmark != null) System.out.println(benchmark.getName());
-			if(radio_dat.isSelected()) {
-				
-				try {
-					if(draw == 1 && other != null) {
-						benchmark = new File(other.getAbsolutePath());
-					}
-					draw = 0;
-					GalleryInstance gi = bfil.load(benchmark.getAbsolutePath());
-					System.out.println(gi.getVertices().toString());
-						GreedyController gc = new GreedyController();
-						gc.process(gi, "test_results_and_samples/res.txt");
-				} catch(Exception e) {
-					e.printStackTrace();
-					Alert wrongFileAlert = new Alert(AlertType.ERROR, 
-							"Odabrana datoteka ne sadrži primjer u korektnom zapisu! Pokušajte ponovo.",
-							ButtonType.OK);
-					wrongFileAlert.setHeaderText("Greška");
-					wrongFileAlert.showAndWait();
-				}
-			} else {
-				if(draw == 0 && benchmark != null) {
-					other = new File(benchmark.getAbsolutePath());
-				}
-				draw = 1;
-				//benchmark = null;
-				if(drawing.gi == null || drawing.gi.getVertices().size() < 3) {
-					Alert wrongFileAlert = new Alert(AlertType.ERROR, 
-							"Tlocrt galerija nemoguće je obraditi. Pokušajte ponovo.",
-							ButtonType.OK);
-					wrongFileAlert.setHeaderText("Greška");
-					wrongFileAlert.showAndWait();
-				} else {
-					
-					GreedyController gc = new GreedyController();
-					gc.process(drawing.gi, "test_results_and_samples/res.txt");
-				}
-			}
+			GreedyCase();
 		}  else if (pso_gen.isSelected()) {
-			if(benchmark != null) System.out.println(benchmark.getName());
-			if(radio_dat.isSelected()) {
-				
-				try {
-					if(draw == 1 && other != null) {
-						benchmark = new File(other.getAbsolutePath());
-					}
-					draw = 0;
-					PSOController psoc = new PSOController();
-					psoc.process(benchmark.getAbsolutePath());
-				} catch(Exception e) {
-					Alert wrongFileAlert = new Alert(AlertType.ERROR, 
-							"Odabrana datoteka ne sadrži primjer u korektnom zapisu! Pokušajte ponovo.",
-							ButtonType.OK);
-					wrongFileAlert.setHeaderText("Greška");
-					wrongFileAlert.showAndWait();
-				}
-			} else {
-				if(draw == 0 && benchmark != null) {
-					other = new File(benchmark.getAbsolutePath());
-				}
-				draw = 1;
-				//benchmark = null;
-				if(drawing.gi == null || drawing.gi.getVertices().size() < 3) {
-					Alert wrongFileAlert = new Alert(AlertType.ERROR, 
-							"Tlocrt galerija nemoguće je obraditi. Pokušajte ponovo.",
-							ButtonType.OK);
-					wrongFileAlert.setHeaderText("Greška");
-					wrongFileAlert.showAndWait();
-				} else {
-					PSOController psoc = new PSOController();
-					generateBenchmarkFromDraw();
-					psoc.process("test_results_and_samples/test_results_and_samples/res.txt");
-				}
-			}
+			PSOCase();
 		} else if (radio_gen.isSelected()) {
-			if(benchmark != null) System.out.println(benchmark.getName());
-			if(radio_dat.isSelected()) {
-				
-				try {
-					if(draw == 1 && other != null) {
-						benchmark = new File(other.getAbsolutePath());
-					}
-					draw = 0;
-					GeneticController gc = new GeneticController();
-					System.out.println(benchmark.getAbsolutePath());
-					gc.process(benchmark.getAbsolutePath());
-				} catch(Exception e) {
-					Alert wrongFileAlert = new Alert(AlertType.ERROR, 
-							"Odabrana datoteka ne sadrži primjer u korektnom zapisu! Pokušajte ponovo.",
-							ButtonType.OK);
-					wrongFileAlert.setHeaderText("Greška");
-					wrongFileAlert.showAndWait();
-				}
-			} else {
-				if(draw == 0 && benchmark != null) {
-					other = new File(benchmark.getAbsolutePath());
-				}
-				draw = 1;
-				if(drawing.gi == null || drawing.gi.getVertices().size() < 3) {
-					Alert wrongFileAlert = new Alert(AlertType.ERROR, 
-							"Tlocrt galerija nemoguće je obraditi. Pokušajte ponovo.",
-							ButtonType.OK);
-					wrongFileAlert.setHeaderText("Greška");
-					wrongFileAlert.showAndWait();
-				} else {
-					GeneticController gc = new GeneticController();
-					generateBenchmarkFromDrawGenetic();
-					gc.process("test_results_and_samples/res.txt");
-				}
-			}
+			GenCase();
 		}else if(hybrid.isSelected()) {
-			if(benchmark != null) System.out.println(benchmark.getName());
-			if(radio_dat.isSelected()) {
-				
-				try {
-					if(draw == 1 && other != null) {
-						benchmark = new File(other.getAbsolutePath());
-					}
-					draw = 0;
-					HybridController hc = new HybridController();
-					hc.process(benchmark.getAbsolutePath(), "test_results_and_samples/res.txt");
-				} catch(Exception e) {
-					e.printStackTrace();
-					Alert wrongFileAlert = new Alert(AlertType.ERROR, 
-							"Odabrana datoteka ne sadrži primjer u korektnom zapisu! Pokušajte ponovo.",
-							ButtonType.OK);
-					wrongFileAlert.setHeaderText("Greška");
-					wrongFileAlert.showAndWait();
-				}
-			} else {
-				if(draw == 0 && benchmark != null) {
-					other = new File(benchmark.getAbsolutePath());
-				}
-				draw = 1;
-				//benchmark = null;
-				if(drawing.gi == null || drawing.gi.getVertices().size() < 3) {
-					Alert wrongFileAlert = new Alert(AlertType.ERROR, 
-							"Tlocrt galerija nemoguće je obraditi. Pokušajte ponovo.",
-							ButtonType.OK);
-					wrongFileAlert.setHeaderText("Greška");
-					wrongFileAlert.showAndWait();
-				} else {
-					HybridController hc = new HybridController();
-					generateBenchmarkFromDrawGenetic();
-					hc.process("test_results_and_samples/res.txt", "test_results_and_samples/res.txt");
-				}
-			}
+			HybridCase();
 		} 
 	}
 
+	private void HybridCase() {
+		if(benchmark != null) System.out.println(benchmark.getName());
+		if(radio_dat.isSelected()) {
+			
+			try {
+				if(draw == 1 && other != null) {
+					benchmark = new File(other.getAbsolutePath());
+				}
+				draw = 0;
+				HybridController hc = new HybridController();
+				hc.process(benchmark.getAbsolutePath(), "test_results_and_samples/res.txt");
+			} catch(Exception e) {
+				WrongFileAlert();
+			}
+		} else {
+			if(draw == 0 && benchmark != null) {
+				other = new File(benchmark.getAbsolutePath());
+			}
+			draw = 1;
+			//benchmark = null;
+			if(drawing.gi == null || drawing.gi.getVertices().size() < 3) {
+				GalleryError();
+			} else {
+				HybridController hc = new HybridController();
+				generateBenchmarkFromDrawGenetic();
+				hc.process("test_results_and_samples/res.txt", "test_results_and_samples/res.txt");
+			}
+		}
+	}
+
+	private void GenCase() {
+		if(benchmark != null) System.out.println(benchmark.getName());
+		if(radio_dat.isSelected()) {
+			
+			try {
+				if(draw == 1 && other != null) {
+					benchmark = new File(other.getAbsolutePath());
+				}
+				draw = 0;
+				GeneticController gc = new GeneticController();
+				System.out.println(benchmark.getAbsolutePath());
+				gc.process(benchmark.getAbsolutePath());
+			} catch(Exception e) {
+				WrongFileAlert();
+			}
+		} else {
+			if(draw == 0 && benchmark != null) {
+				other = new File(benchmark.getAbsolutePath());
+			}
+			draw = 1;
+			if(drawing.gi == null || drawing.gi.getVertices().size() < 3) {
+				GalleryError();
+			} else {
+				GeneticController gc = new GeneticController();
+				generateBenchmarkFromDrawGenetic();
+				gc.process("test_results_and_samples/res.txt");
+			}
+		}
+	}
+
+	private void PSOCase() {
+		if(benchmark != null) System.out.println(benchmark.getName());
+		if(radio_dat.isSelected()) {
+			
+			try {
+				if(draw == 1 && other != null) {
+					benchmark = new File(other.getAbsolutePath());
+				}
+				draw = 0;
+				PSOController psoc = new PSOController();
+				psoc.process(benchmark.getAbsolutePath());
+			} catch(Exception e) {
+				WrongFileAlert();
+			}
+		} else {
+			if(draw == 0 && benchmark != null) {
+				other = new File(benchmark.getAbsolutePath());
+			}
+			draw = 1;
+			//benchmark = null;
+			if(drawing.gi == null || drawing.gi.getVertices().size() < 3) {
+				GalleryError();
+			} else {
+				PSOController psoc = new PSOController();
+				generateBenchmarkFromDraw();
+				psoc.process("test_results_and_samples/test_results_and_samples/res.txt");
+			}
+		}
+	}
+
+	private void GreedyCase() {
+		if(benchmark != null) System.out.println(benchmark.getName());
+		if(radio_dat.isSelected()) {
+			try {
+				if(draw == 1 && other != null) {
+					benchmark = new File(other.getAbsolutePath());
+				}
+				draw = 0;
+				GalleryInstance gi = bfil.load(benchmark.getAbsolutePath());
+				System.out.println(gi.getVertices().toString());
+					GreedyController gc = new GreedyController();
+					gc.process(gi, "test_results_and_samples/res.txt");
+			} catch(Exception e) {
+				WrongFileAlert();
+			}
+		} else {
+			if(draw == 0 && benchmark != null) {
+				other = new File(benchmark.getAbsolutePath());
+			}
+			draw = 1;
+			//benchmark = null;
+			if(drawing.gi == null || drawing.gi.getVertices().size() < 3) {
+				GalleryError();
+			} else {
+				
+				GreedyController gc = new GreedyController();
+				gc.process(drawing.gi, "test_results_and_samples/res.txt");
+			}
+		}
+	}
+	
+	private void WrongFileAlert() {
+		Alert wrongFileAlert = new Alert(AlertType.ERROR, 
+				"Odabrana datoteka ne sadrži primjer u korektnom zapisu! Pokušajte ponovo.",
+				ButtonType.OK);
+		wrongFileAlert.setHeaderText("Greška");
+		wrongFileAlert.showAndWait();
+	}
+	
+
+	private void GalleryError() {
+		Alert wrongFileAlert = new Alert(AlertType.ERROR, 
+				"Tlocrt galerija nemoguće je obraditi. Pokušajte ponovo.",
+				ButtonType.OK);
+		wrongFileAlert.setHeaderText("Greška");
+		wrongFileAlert.showAndWait();
+	}
+
+	/**
+	 * 
+	 */
 	public void onImageViewClicked() {
-		
 	    canvas.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -284,9 +287,7 @@ public class Controller implements Initializable {
 				drawing.add(event.getX(), event.getY());
 			}
 	    	
-		}); 
-	    
-	    
+		}); 	    	
 	}
 	
 	

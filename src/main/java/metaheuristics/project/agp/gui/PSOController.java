@@ -72,6 +72,7 @@ public class PSOController {
 						PSO pso = new PSO(); 
 						pso.process(gi);
 						n = gi.saveResults("/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/test_results_and_samples/res.txt"); 
+						Controller.runVisualisation();
 						 final CountDownLatch latch = new CountDownLatch(1);
 							Platform.runLater(new Runnable() {                          
 		                        @Override
