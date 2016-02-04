@@ -84,18 +84,6 @@ public class HybridController {
 					protected Void call() throws Exception {
 						HybridAlgorithm ha = new HybridAlgorithm(cover.get(initc), heuristics.get(heur));
 	                    final CountDownLatch latch = new CountDownLatch(1);
-						Platform.runLater(new Runnable() {                          
-	                        @Override
-	                        public void run() {
-	                            try{
-	                                progres.setProgress(0.5);
-	                            }finally{
-	                                latch.countDown();
-	                            }
-	                        }
-	                    });
-	                    latch.await();  	
-	                    System.out.println("Before processedggg");
 	                    ha.process(polygonFile, toSaveIn);
 	                    System.out.println("processed");
 						Controller.runVisualisation();

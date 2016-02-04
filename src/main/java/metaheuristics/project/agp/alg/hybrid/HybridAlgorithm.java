@@ -24,7 +24,7 @@ public class HybridAlgorithm {
 		GalleryInstance gi = bfil.load(filePolygon);
 		HeuristicGreedy hg = new HeuristicGreedy(is, h);
 		gi.setCameras(hg);
-		gi.saveResults("geninit.txt");
+		gi.saveResults("test_results_and_samples/geninit.txt");
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -32,7 +32,7 @@ public class HybridAlgorithm {
 		}
 		System.out.println("calling genetic");
 		GeneticAlgorthm ga = new GeneticAlgorthm();
-		ga.process(filePolygon, fileToSaveFin, "geninit.txt");
+		ga.process(filePolygon, fileToSaveFin, "test_results_and_samples/geninit.txt");
 	}
 	
 	public static void main(String[] args) {

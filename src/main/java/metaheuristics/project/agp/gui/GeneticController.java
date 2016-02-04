@@ -31,12 +31,10 @@ public class GeneticController {
 	                    final CountDownLatch latch = new CountDownLatch(1);
 	                    System.out.println("Before processed");
 	                    System.out.println("benchmark: " + filename);
-	                    ga.process(filename, "res.txt");
+	                    ga.process(filename, "test_results_and_samples/res.txt");
 	                    Thread.sleep(1000);
 	                    System.out.println("processed");
 						Controller.runVisualisation();
-						System.out.println(Files.readAllLines(Paths.get("cam.txt")));
-						System.out.println(Files.readAllLines(Paths.get("res.txt")));
 						Platform.runLater(new Runnable() {                          
 	                        @Override
 	                        public void run() {

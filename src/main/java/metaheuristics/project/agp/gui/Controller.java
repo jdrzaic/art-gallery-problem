@@ -244,8 +244,8 @@ public class Controller implements Initializable {
 				GalleryError();
 			} else {
 				HybridController hc = new HybridController();
-				generateBenchmarkFromDrawGenetic();
-				hc.process("test_results_and_samples/res.txt", "test_results_and_samples/res.txt");
+				generateBenchmarkFromDraw();
+				hc.process("test_results_and_samples/pol.txt", "test_results_and_samples/res.txt");
 			}
 		}
 	}
@@ -274,8 +274,8 @@ public class Controller implements Initializable {
 				GalleryError();
 			} else {
 				GeneticController gc = new GeneticController();
-				generateBenchmarkFromDrawGenetic();
-				gc.process("test_results_and_samples/res.txt");
+				generateBenchmarkFromDraw();
+				gc.process("test_results_and_samples/pol.txt");
 			}
 		}
 	}
@@ -299,13 +299,12 @@ public class Controller implements Initializable {
 				other = new File(benchmark.getAbsolutePath());
 			}
 			draw = 1;
-			//benchmark = null;
 			if(drawing.gi == null || drawing.gi.getVertices().size() < 3) {
 				GalleryError();
 			} else {
 				PSOController psoc = new PSOController(pso_pop.getText(), pso_iter.getText(), pso_tol.getText());
 				generateBenchmarkFromDraw();
-				psoc.process("test_results_and_samples/res.txt", progress);
+				psoc.process("test_results_and_samples/pol.txt", progress);
 			}
 		}
 	}
@@ -330,7 +329,6 @@ public class Controller implements Initializable {
 				other = new File(benchmark.getAbsolutePath());
 			}
 			draw = 1;
-			//benchmark = null;
 			if(drawing.gi == null || drawing.gi.getVertices().size() < 3) {
 				GalleryError();
 			} else {
@@ -423,11 +421,6 @@ public class Controller implements Initializable {
 					System.out.println(drawing.gi.getVertices().toString());
 				}else {
 					gi.addHole(new Polygon(new ArrayList<Coordinate>(tmpHole)));
-					System.out.println(drawing.curr);
-					System.out.println(drawing.gi.getVertices().toString());
-					for(Polygon h: drawing.gi.getHoles()) {
-						System.out.println("rupa" + h.getVertices().toString());
-					}
 				}
 				tmpHole.clear();
 				curr++;
@@ -454,31 +447,6 @@ public class Controller implements Initializable {
 			System.err.println("Error executing bash");
 		}
 	}
-
-	private static void generateBenchmarkFromDrawGenetic() {
-		StringBuilder sb = new StringBuilder();
-		GalleryInstance gi = drawing.gi;
-		sb.append(gi.getVertices().size()).append(" ");
-		for(int i = gi.getVertices().size() - 1; i >= 0; --i) {
-			Coordinate c = gi.getOnIndex(i);
-			sb.append(new Double(c.x).intValue() + "/1 ").append(new Double(c.y).intValue() + "/1 ");
-		}
-		if(gi.getHoles().size() > 0) sb.append(gi.getHoles().size());
-		for(int i = gi.getHoles().size() - 1; i >= 0; --i) {
-			Polygon h = gi.getHoleOnIndex(i);
-			sb.append(" " + h.getVertices().size() + " ");
-			for(Coordinate c : h.getVertices()) {
-				sb.append(new Double(c.x).intValue() + "/1 ").append(new Double(c.y).intValue() + "/1 ");
-			}
-		}
-		try {
-			FileUtils.writeStringToFile(new File("test_results_and_samples/res.txt"), sb.toString());
-		} catch (IOException ignorable) {
-			ignorable.printStackTrace();
-		}
-		benchmark = new File("test_results_and_samples/res.txt");
-		System.out.println();
-	}
 	
 	private static void generateBenchmarkFromDraw() {
 		StringBuilder sb = new StringBuilder();
@@ -495,12 +463,9 @@ public class Controller implements Initializable {
 			}
 		}
 		try {
-			FileUtils.writeStringToFile(new File("test_results_and_samples/res.txt"), sb.toString());
-		} catch (IOException ignorable) {
-			ignorable.printStackTrace();
-		}
-		benchmark = new File("test_results_and_samples/res.txt");
-		System.out.println();
+			FileUtils.writeStringToFile(new File("test_results_and_samples/pol.txt"), sb.toString());
+		} catch (IOException ignorable) {}
+		benchmark = new File("test_results_and_samples/pol.txt");
 	}
 
 	public static void openResult(int n) {

@@ -76,10 +76,9 @@ public class GreedyController {
 	                    } catch(Exception e){
 	                    	e.printStackTrace();
 	                    }
-	                    System.out.println("processed");
+	                    System.out.println("procKKKXessed");
 						int n = gi.saveResults(filename);
 	                    final CountDownLatch latch = new CountDownLatch(1);
-	                    latch.await();  
 						Controller.runVisualisation();
 						Platform.runLater(new Runnable() {                          
 	                        @Override

@@ -2,6 +2,7 @@ package metaheuristics.project.agp.gui;
 
 import java.util.concurrent.CountDownLatch;
 
+import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
@@ -54,16 +55,25 @@ public class PSOController {
 			protected Task<Void> createTask() {
 				return new Task<Void>() {
 
+					 final CountDownLatch latch = new CountDownLatch(1);
 					@Override
 					protected Void call() throws Exception {
 						PSO pso = new PSO(); 
 	            		progress.setProgress(0);
 						pso.process(gi);
 	            		progress.setProgress(1);
-						n = gi.saveResults("/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/test_results_and_samples/res.txt"); 
+						n = gi.saveResults("test_results_and_samples/res.txt"); 
 						Controller.runVisualisation();
-						 final CountDownLatch latch = new CountDownLatch(1);
-		                    latch.await();  
+						Platform.runLater(new Runnable() {                          
+	                        @Override
+	                        public void run() {
+	                            try{
+	        						Controller.openResult(n);
+	                            }finally{
+	                                latch.countDown();
+	                            }
+	                        }
+	                    });
 						return null;
 					}
 				};
@@ -71,4 +81,5 @@ public class PSOController {
 		};
 		service.start();
 	}
+	
 }

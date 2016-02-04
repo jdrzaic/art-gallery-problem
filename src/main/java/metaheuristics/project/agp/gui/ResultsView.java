@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 public class ResultsView {
 	
 	public void openWindow(int n, String benchmark) {
-		
+		System.out.println("opening");
 		Stage primaryStage  = new Stage();
 		primaryStage.setWidth(700);
 		primaryStage.setHeight(500);
@@ -29,7 +29,7 @@ public class ResultsView {
         gridpane.setVgap(10);
         
         final ImageView imv = new ImageView();
-        final Image image2 = new Image("file:cam.png");
+        final Image image2 = new Image("file:test_results_and_samples/res.png");
         imv.setImage(image2);
         imv.setRotationAxis(Rotate.Y_AXIS);
         imv.setRotate(180);
