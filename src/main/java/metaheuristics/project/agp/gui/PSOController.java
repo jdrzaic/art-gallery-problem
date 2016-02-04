@@ -1,65 +1,52 @@
 package metaheuristics.project.agp.gui;
 
-import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
 
-import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.scene.control.ProgressIndicator;
 import metaheuristics.project.agp.alg.pso.PSO;
 import metaheuristics.project.agp.instances.GalleryInstance;
 import metaheuristics.project.agp.instances.util.BenchmarkFileInstanceLoader;
 
 public class PSOController {
-
-	@FXML private TextField iteracija;
-	@FXML private TextField tolerancija;
-	@FXML private TextField populacija;
-	@FXML private Button kreni;
-	@FXML private Label rezultat;
-	@FXML private Button zatvori;
+	
+	private int pop;
+	
+	private int iter;
+	
+	private double tol;
 	
 	static GalleryInstance gi;
-	static String filename; 
-	static int n;
-	static Stage stage;
 	
-	public void process(String filename) {
+	static String filename; 
+	
+	static int n;
+	
+	private ProgressIndicator progress;
+	
+	/**
+	 * @param pop
+	 * @param iter
+	 * @param tol
+	 */
+	public PSOController(String pop, String iter, String tol) {
+		super();
+		this.pop = Integer.parseInt(pop);
+		this.iter = Integer.parseInt(iter);
+		this.tol = Double.parseDouble(tol);
+		System.out.println("Stvoren");
+	}
+
+	public void process(String filename, ProgressIndicator progress) {
 		this.gi = new BenchmarkFileInstanceLoader().load(filename);
 		this.filename = filename;
-		openHeurChoser();
+		onExecPSO(progress);
 	}
 	
-	public void openHeurChoser() {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("pso.fxml"));
-        Parent root1;
-		try {
-			root1 = (Parent) fxmlLoader.load();
-	        stage = new Stage();
-	        stage.initModality(Modality.APPLICATION_MODAL);
-	        stage.initStyle(StageStyle.UNDECORATED);
-	        stage.setTitle("ABC");
-	        stage.setScene(new Scene(root1));  
-	        stage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void onExecPSO() {
-		String iter = iteracija.getText();
-		String tol = tolerancija.getText();
-		String pop = populacija.getText();
+	public void onExecPSO(ProgressIndicator progress) {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ui.fxml"));
 		System.out.println(iter);
 		System.out.println(tol);
 		Service<Void> service = new Service<Void>() {
@@ -70,20 +57,12 @@ public class PSOController {
 					@Override
 					protected Void call() throws Exception {
 						PSO pso = new PSO(); 
+	            		progress.setProgress(0);
 						pso.process(gi);
+	            		progress.setProgress(1);
 						n = gi.saveResults("/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/test_results_and_samples/res.txt"); 
 						Controller.runVisualisation();
 						 final CountDownLatch latch = new CountDownLatch(1);
-							Platform.runLater(new Runnable() {                          
-		                        @Override
-		                        public void run() {
-		                            try{
-		                        		rezultat.setText(String.valueOf(n));
-		                            }finally{
-		                                latch.countDown();
-		                            }
-		                        }
-		                    });
 		                    latch.await();  
 						return null;
 					}
@@ -91,9 +70,5 @@ public class PSOController {
 			}
 		};
 		service.start();
-	}
-	
-	public void onClose() {
-		stage.close();
 	}
 }

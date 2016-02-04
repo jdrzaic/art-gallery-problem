@@ -22,9 +22,12 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
@@ -90,10 +93,58 @@ public class Controller implements Initializable {
 	
 	@FXML private MenuItem ocisti;
 	
+
+	
+	/**
+	 * combobox to chose initial cover in greedy
+	 * 		 
+	 * */
+	@FXML private ComboBox<String> pokrivac;
+	/**
+	 * combobox to chose heuristic in greedy
+	 */
+	@FXML private ComboBox<String> heuristika;
+	
+	/**
+	 * 
+	 */
+	@FXML private Label pso_iter_txt;
+	
+	/**
+	 * 
+	 */
+	@FXML private Label pso_pop_txt;
+	
+	/**
+	 * 
+	 */
+	@FXML private Label pso_tol_txt;
+	
+	/**
+	 * 
+	 */
+	@FXML private TextField pso_iter;
+	
+	/**
+	 * 
+	 */
+	@FXML private TextField pso_pop;
+	
+	/**
+	 * 
+	 */
+	@FXML private TextField pso_tol;
+	
+	@FXML private ProgressIndicator progress;
+	
 	GraphicsContext gc;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		bindParametersVisibility();
+		setPSOParamsInvisible();
+		setGreedyParamsInvisible();
+		
 		gc = canvas.getGraphicsContext2D();
 		gc.setStroke(Color.BLACK);
 		gc.setLineWidth(0.5);
@@ -103,6 +154,45 @@ public class Controller implements Initializable {
 		gc.strokeLine(0, 0, 0,canvas.maxHeight(0));
 		
 		onClearClicked();
+	}
+
+	private void setGreedyParamsInvisible() {
+		pokrivac.setVisible(false);
+		heuristika.setVisible(false);
+	}
+
+	private void setGreedyParamsVisible() {
+		pokrivac.setVisible(true);
+		heuristika.setVisible(true);
+	}
+	
+	private void setPSOParamsInvisible() {
+		pso_pop.setVisible(false);
+		pso_iter.setVisible(false);
+		pso_tol_txt.setVisible(false);
+		pso_pop_txt.setVisible(false);
+		pso_iter_txt.setVisible(false);
+		pso_tol.setVisible(false);
+	}
+	
+	private void setPSOParamsVisible() {
+		pso_pop.setVisible(true);
+		pso_iter.setVisible(true);
+		pso_tol_txt.setVisible(true);
+		pso_pop_txt.setVisible(true);
+		pso_iter_txt.setVisible(true);
+		pso_tol.setVisible(true);
+	}
+
+	private void bindParametersVisibility() {
+		pso_iter_txt.managedProperty().bind(pso_iter_txt.visibleProperty());
+		pso_pop_txt.managedProperty().bind(pso_iter_txt.visibleProperty());
+		pso_tol_txt.managedProperty().bind(pso_iter_txt.visibleProperty());
+		pso_iter.managedProperty().bind(pso_iter_txt.visibleProperty());
+		pso_pop.managedProperty().bind(pso_iter_txt.visibleProperty());
+		pso_tol.managedProperty().bind(pso_iter_txt.visibleProperty());
+		pokrivac.managedProperty().bind(pokrivac.visibleProperty());
+		heuristika.managedProperty().bind(heuristika.visibleProperty());
 	}
 	
 	/**
@@ -199,8 +289,8 @@ public class Controller implements Initializable {
 					benchmark = new File(other.getAbsolutePath());
 				}
 				draw = 0;
-				PSOController psoc = new PSOController();
-				psoc.process(benchmark.getAbsolutePath());
+				PSOController psoc = new PSOController(pso_pop.getText(), pso_iter.getText(), pso_tol.getText());
+				psoc.process(benchmark.getAbsolutePath(), progress);
 			} catch(Exception e) {
 				WrongFileAlert();
 			}
@@ -213,9 +303,9 @@ public class Controller implements Initializable {
 			if(drawing.gi == null || drawing.gi.getVertices().size() < 3) {
 				GalleryError();
 			} else {
-				PSOController psoc = new PSOController();
+				PSOController psoc = new PSOController(pso_pop.getText(), pso_iter.getText(), pso_tol.getText());
 				generateBenchmarkFromDraw();
-				psoc.process("test_results_and_samples/test_results_and_samples/res.txt");
+				psoc.process("test_results_and_samples/res.txt", progress);
 			}
 		}
 	}
@@ -230,8 +320,8 @@ public class Controller implements Initializable {
 				draw = 0;
 				GalleryInstance gi = bfil.load(benchmark.getAbsolutePath());
 				System.out.println(gi.getVertices().toString());
-					GreedyController gc = new GreedyController();
-					gc.process(gi, "test_results_and_samples/res.txt");
+				GreedyController gc = new GreedyController(pokrivac.getSelectionModel().getSelectedItem().toString(), heuristika.getSelectionModel().getSelectedItem().toString());
+				gc.process(gi, "test_results_and_samples/res.txt", progress);
 			} catch(Exception e) {
 				WrongFileAlert();
 			}
@@ -244,9 +334,8 @@ public class Controller implements Initializable {
 			if(drawing.gi == null || drawing.gi.getVertices().size() < 3) {
 				GalleryError();
 			} else {
-				
-				GreedyController gc = new GreedyController();
-				gc.process(drawing.gi, "test_results_and_samples/res.txt");
+				GreedyController gc = new GreedyController(pokrivac.getSelectionModel().getSelectedItem().toString(), heuristika.getSelectionModel().getSelectedItem().toString());
+				gc.process(drawing.gi, "test_results_and_samples/res.txt", progress);
 			}
 		}
 	}
@@ -288,6 +377,22 @@ public class Controller implements Initializable {
 			}
 	    	
 		}); 	    	
+	}
+	
+	/**
+	 * 
+	 */
+	public void showPSOParameters(){
+		setGreedyParamsInvisible();
+		setPSOParamsVisible();
+	}
+	
+	/**
+	 * 
+	 */
+	public void showGreedyParameters(){
+		setPSOParamsInvisible();
+		setGreedyParamsVisible();
 	}
 	
 	
