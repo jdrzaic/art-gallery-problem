@@ -13,12 +13,10 @@ public class Main extends Application{
 	public void start(Stage primaryStage) {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("ui.fxml"));	
-			primaryStage.setTitle("gui");
+			primaryStage.setTitle("Art gallery problem");
 			primaryStage.setScene(new Scene(root, 800, 600));
 			primaryStage.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		} catch(Exception e) {}
 	}
 	 
 	public static void main(String[] args) {

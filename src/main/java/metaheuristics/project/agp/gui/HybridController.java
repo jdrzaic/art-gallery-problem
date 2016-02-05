@@ -79,14 +79,14 @@ public class HybridController {
 						HybridAlgorithm ha = new HybridAlgorithm(cover.get(initc), heuristics.get(heur));
 	                    final CountDownLatch latch = new CountDownLatch(1);
 	            		progress.setProgress(0);
-	                    ha.process(polygonFile, toSaveIn);
+	                    int n = ha.process(polygonFile, toSaveIn);
 	            		progress.setProgress(1);
 						Controller.runVisualisation();
 						Platform.runLater(new Runnable() {                          
 	                        @Override
 	                        public void run() {
 	                            try{
-	        						Controller.openResult(0);
+	        						Controller.openResult(n);
 	                            }finally{
 	                                latch.countDown();
 	                            }

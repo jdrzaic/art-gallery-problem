@@ -1,17 +1,15 @@
 package metaheuristics.project.agp.instances;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.commons.io.FileUtils;
-
 import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.CoordinateSequence;
-import com.vividsolutions.jts.geom.GeometryFactory;
+
 
 import metaheuristics.project.agp.alg.Algorithm;
 import metaheuristics.project.agp.instances.components.Camera;
@@ -36,7 +34,7 @@ public class GalleryInstance extends Polygon{
 	 * List of cameras( positions where they should be put) to cover 
 	 * the gallery.
 	 */
-	private Set<Camera> cameras;
+	public Set<Camera> cameras;
 	
 	/**
 	 * Class constructor.
@@ -138,7 +136,11 @@ public class GalleryInstance extends Polygon{
 			sb.append(c.toString() + " ");
 		}
 		try {
-			FileUtils.writeStringToFile(file, sb.toString());
+			FileWriter fw = new FileWriter(file, false);
+			fw.write(sb.toString());
+			fw.flush();
+			fw.close();
+			//FileUtils.writeStringToFile(file, sb.toString());
 		} catch (IOException ignorable) {}
 		return cameraNum();
 	}

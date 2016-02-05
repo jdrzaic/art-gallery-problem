@@ -18,7 +18,7 @@ public class HybridAlgorithm {
 		this.h= h;
 	}
 	
-	public void process(String filePolygon, String fileToSaveFin) {
+	public int process(String filePolygon, String fileToSaveFin) {
 		System.out.println("processing");
 		BenchmarkFileInstanceLoader bfil = new BenchmarkFileInstanceLoader();
 		GalleryInstance gi = bfil.load(filePolygon);
@@ -26,7 +26,7 @@ public class HybridAlgorithm {
 		gi.setCameras(hg);
 		gi.saveResults("test_results_and_samples/geninit.txt");
 		GeneticAlgorthm ga = new GeneticAlgorthm();
-		ga.process(filePolygon, fileToSaveFin, "test_results_and_samples/geninit.txt");
+		return ga.process(filePolygon, fileToSaveFin, "test_results_and_samples/geninit.txt");
 	}
 	
 	public static void main(String[] args) {

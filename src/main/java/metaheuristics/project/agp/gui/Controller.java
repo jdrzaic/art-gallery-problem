@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.ResourceBundle;
 
 import org.apache.commons.io.FileUtils;
@@ -42,6 +43,7 @@ public class Controller implements Initializable {
 	
 	private static Drawing drawing;
 
+	static String algorithm;
 	static File benchmark;
 	static File other;
 	static int draw = 0;
@@ -106,17 +108,27 @@ public class Controller implements Initializable {
 	@FXML private ComboBox<String> heuristika;
 	
 	/**
-	 * 
+	 * combobox to chose initial cover in greedy
+	 * 		 
+	 * */
+	@FXML private ComboBox<String> hybPokrivac;
+	/**
+	 * combobox to chose heuristic in greedy
+	 */
+	@FXML private ComboBox<String> hybHeuristika;
+	
+	/**
+	 * Label above pso iteration input.
 	 */
 	@FXML private Label pso_iter_txt;
 	
 	/**
-	 * 
+	 * Label above pso population input.
 	 */
 	@FXML private Label pso_pop_txt;
 	
 	/**
-	 * 
+	 * Label above pso toleration input.
 	 */
 	@FXML private Label pso_tol_txt;
 	
@@ -135,6 +147,10 @@ public class Controller implements Initializable {
 	 */
 	@FXML private TextField pso_tol;
 	
+	@FXML private TextField gre_tol;
+	
+	@FXML private Label gre_tol_txt;
+	
 	@FXML private ProgressIndicator progress;
 	
 	GraphicsContext gc;
@@ -144,8 +160,10 @@ public class Controller implements Initializable {
 		bindParametersVisibility();
 		setPSOParamsInvisible();
 		setGreedyParamsInvisible();
-		
+		setHybParamsInvisible();
 		gc = canvas.getGraphicsContext2D();
+	    canvas.setStyle("-fx-background-color: #336699;");
+
 		gc.setStroke(Color.BLACK);
 		gc.setLineWidth(0.5);
 		gc.strokeLine(0, 0, canvas.maxWidth(0), 0);
@@ -159,11 +177,25 @@ public class Controller implements Initializable {
 	private void setGreedyParamsInvisible() {
 		pokrivac.setVisible(false);
 		heuristika.setVisible(false);
+		gre_tol.setVisible(false);
+		gre_tol_txt.setVisible(false);
 	}
 
 	private void setGreedyParamsVisible() {
 		pokrivac.setVisible(true);
 		heuristika.setVisible(true);
+		gre_tol.setVisible(true);
+		gre_tol_txt.setVisible(true);
+	}
+	
+	private void setHybParamsInvisible() {
+		hybPokrivac.setVisible(false);
+		hybHeuristika.setVisible(false);
+	}
+
+	private void setHybParamsVisible() {
+		hybPokrivac.setVisible(true);
+		hybHeuristika.setVisible(true);
 	}
 	
 	private void setPSOParamsInvisible() {
@@ -193,6 +225,11 @@ public class Controller implements Initializable {
 		pso_tol.managedProperty().bind(pso_iter_txt.visibleProperty());
 		pokrivac.managedProperty().bind(pokrivac.visibleProperty());
 		heuristika.managedProperty().bind(heuristika.visibleProperty());
+		hybPokrivac.managedProperty().bind(hybPokrivac.visibleProperty());
+		hybHeuristika.managedProperty().bind(hybHeuristika.visibleProperty());
+		gre_tol.managedProperty().bind(gre_tol_txt.visibleProperty());
+		gre_tol_txt.managedProperty().bind(gre_tol_txt.visibleProperty());
+
 	}
 	
 	/**
@@ -210,12 +247,16 @@ public class Controller implements Initializable {
 	
 	public void onButtonNext() {
 		if(heur_ger.isSelected()) {
+			algorithm = "Greedy algoritam";
 			GreedyCase();
 		}  else if (pso_gen.isSelected()) {
+			algorithm = "PSO Algoritam";
 			PSOCase();
 		} else if (radio_gen.isSelected()) {
+			algorithm = "Genetski algoritam";
 			GenCase();
 		}else if(hybrid.isSelected()) {
+			algorithm = "Hibridni algoritam";
 			HybridCase();
 		} 
 	}
@@ -227,8 +268,8 @@ public class Controller implements Initializable {
 					benchmark = new File(other.getAbsolutePath());
 				}
 				draw = 0;
-				HybridController hc = new HybridController();
-				hc.process(benchmark.getAbsolutePath(), "test_results_and_samples/res.txt");
+				HybridController hc = new HybridController(hybPokrivac.getSelectionModel().getSelectedItem().toString(), hybHeuristika.getSelectionModel().getSelectedItem().toString());
+				hc.process(benchmark.getAbsolutePath(), "test_results_and_samples/res.txt", progress);
 			} catch(Exception e) {
 				WrongFileAlert();
 			}
@@ -240,9 +281,10 @@ public class Controller implements Initializable {
 			if(drawing.gi == null || drawing.gi.getVertices().size() < 3) {
 				GalleryError();
 			} else {
-				HybridController hc = new HybridController();
+				drawing.gi.cameras = new HashSet<>();
+				HybridController hc = new HybridController(hybPokrivac.getSelectionModel().getSelectedItem().toString(), hybHeuristika.getSelectionModel().getSelectedItem().toString());
 				generateBenchmarkFromDraw();
-				hc.process("test_results_and_samples/pol.txt", "test_results_and_samples/res.txt");
+				hc.process("test_results_and_samples/pol.txt", "test_results_and_samples/res.txt", progress);
 			}
 		}
 	}
@@ -268,6 +310,7 @@ public class Controller implements Initializable {
 			if(drawing.gi == null || drawing.gi.getVertices().size() < 3) {
 				GalleryError();
 			} else {
+				drawing.gi.cameras = new HashSet<>();
 				GeneticController gc = new GeneticController();
 				generateBenchmarkFromDraw();
 				gc.process("test_results_and_samples/pol.txt");
@@ -295,6 +338,7 @@ public class Controller implements Initializable {
 			if(drawing.gi == null || drawing.gi.getVertices().size() < 3) {
 				GalleryError();
 			} else {
+				drawing.gi.cameras = new HashSet<>();
 				PSOController psoc = new PSOController(pso_pop.getText(), pso_iter.getText(), pso_tol.getText());
 				generateBenchmarkFromDraw();
 				psoc.process("test_results_and_samples/pol.txt", progress);
@@ -324,6 +368,7 @@ public class Controller implements Initializable {
 			if(drawing.gi == null || drawing.gi.getVertices().size() < 3) {
 				GalleryError();
 			} else {
+				drawing.gi.cameras = new HashSet<>();
 				GreedyController gc = new GreedyController(pokrivac.getSelectionModel().getSelectedItem().toString(), heuristika.getSelectionModel().getSelectedItem().toString());
 				gc.process(drawing.gi, "test_results_and_samples/res.txt", progress);
 			}
@@ -374,6 +419,7 @@ public class Controller implements Initializable {
 	 */
 	public void showPSOParameters(){
 		setGreedyParamsInvisible();
+		setHybParamsInvisible();
 		setPSOParamsVisible();
 	}
 	
@@ -382,7 +428,20 @@ public class Controller implements Initializable {
 	 */
 	public void showGreedyParameters(){
 		setPSOParamsInvisible();
+		setHybParamsInvisible();
 		setGreedyParamsVisible();
+	}
+	
+	public void showGenParameters() {
+		setGreedyParamsInvisible();
+		setHybParamsInvisible();
+		setPSOParamsInvisible();
+	}
+	
+	public void showHybParameters(){
+		setGreedyParamsInvisible();
+		setPSOParamsInvisible();
+		setHybParamsVisible();
 	}
 	
 	
@@ -465,6 +524,7 @@ public class Controller implements Initializable {
 
 	public static void openResult(int n) {
 		ResultsView rv = new ResultsView();
-		rv.openWindow(n, benchmark.getName());
+		GalleryInstance gi = new BenchmarkFileInstanceLoader().load(benchmark.getAbsolutePath());
+		rv.openWindow(n, benchmark.getName(), gi.getVertices().size(), gi.getHoles().size(), algorithm);
 	}
 }

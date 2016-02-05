@@ -47,7 +47,7 @@
    <center>
       <HBox BorderPane.alignment="CENTER">
          <children>
-            <ComboBox fx:id="heuristika" prefHeight="27.0" prefWidth="224.0" promptText="(odaberite heuristiku)">
+            <ComboBox fx:id="heuristika" prefHeight="27.0" prefWidth="224.0" promptText="(heuristika)">
             <items>
         		<FXCollections fx:factory="observableArrayList">
           			<String fx:value="najveća površina" />
@@ -62,7 +62,7 @@
       </HBox>
    </center>
    <right>
-      <ComboBox fx:id="pokrivac" prefHeight="27.0" prefWidth="236.0" promptText="(odaberite početni pokrivač)" BorderPane.alignment="CENTER">
+      <ComboBox fx:id="pokrivac" prefHeight="27.0" prefWidth="236.0" promptText="(početni pokrivač)" BorderPane.alignment="CENTER">
       <items>
         <FXCollections fx:factory="observableArrayList">
           <String fx:value="Vrhovi poligona" />

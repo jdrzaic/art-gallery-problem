@@ -1,0 +1,5 @@
+.canvas {
+    -fx-fill: green;
+    -fx-padding: 10;
+    -fx-spacing: 8;
+}

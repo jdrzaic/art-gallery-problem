@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.collections.FXCollections ?>
+<?scenebuilder-stylesheet ui.css?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="514.0" prefWidth="688.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="metaheuristics.project.agp.gui.Controller">
 	<top>
@@ -41,7 +42,7 @@
 	<right>
 		<VBox prefHeight="414.0" prefWidth="214.0" BorderPane.alignment="CENTER">
 			<children>
-				<Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="142.0" text="Algoritam" textAlignment="CENTER" textFill="#403939" textOverrun="CLIP">
+				<Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="142.0" text="Algoritam" textAlignment="CENTER" textOverrun="CLIP">
 					<padding>
 						<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
 					</padding>
@@ -67,12 +68,12 @@
 						<Insets top="5.0" />
 					</padding>
                <VBox.margin>
-                  <Insets left="15.0" />
+                  <Insets left="25.0" />
                </VBox.margin>
 				</Label>
 				<TextField fx:id="pso_iter">
 					<VBox.margin>
-						<Insets left="15.0" />
+						<Insets left="25.0" />
 					</VBox.margin>
 				</TextField>
 				<Label fx:id="pso_pop_txt" text=" Broj jedinki:">
@@ -80,27 +81,25 @@
 						<Insets top="5.0" />
 					</padding>
                <VBox.margin>
-                  <Insets left="15.0" />
+                  <Insets left="25.0" />
                </VBox.margin>
 				</Label>
 				<TextField fx:id="pso_pop">
                <VBox.margin>
-                  <Insets left="15.0" />
-               </VBox.margin>
-            </TextField>
+                  <Insets left="25.0" />
+               </VBox.margin></TextField>
 				<Label fx:id="pso_tol_txt" text=" Tolerancija:">
 					<padding>
 						<Insets top="5.0" />
 					</padding>
                <VBox.margin>
-                  <Insets left="15.0" />
+                  <Insets left="25.0" />
                </VBox.margin>
 				</Label>
 				<TextField fx:id="pso_tol">
                <VBox.margin>
-                  <Insets left="15.0" />
-               </VBox.margin>
-            </TextField>
+                  <Insets left="25.0" />
+               </VBox.margin></TextField>
 				<RadioButton fx:id="heur_ger" mnemonicParsing="false" onAction="#showGreedyParameters" text="Heur. greedy" toggleGroup="$algoritmi">
 					<VBox.margin>
 						<Insets />
@@ -120,10 +119,11 @@
 						<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
 					</HBox.margin>
                <VBox.margin>
-                  <Insets left="15.0" top="5.0" />
+                  <Insets left="25.0" top="5.0" />
                </VBox.margin>
 				</ComboBox>
-				<ComboBox fx:id="pokrivac" prefHeight="27.0" prefWidth="236.0" promptText="(početni pokrivač)" BorderPane.alignment="CENTER"><items>
+				<ComboBox fx:id="pokrivac" prefHeight="27.0" prefWidth="224.0" promptText="(početni pokrivač)" BorderPane.alignment="CENTER">
+					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:value="Vrhovi poligona" />
 							<String fx:value="Triangulacija poligona" />
@@ -134,15 +134,28 @@
 						<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
 					</BorderPane.margin>
                <VBox.margin>
-                  <Insets left="15.0" top="5.0" />
+                  <Insets left="25.0" top="5.0" />
                </VBox.margin>
 				</ComboBox>
-				<RadioButton fx:id="hybrid" mnemonicParsing="false" text="Hibridni algoritam" toggleGroup="$algoritmi"  onAction="#showHybParameters">
+            <Label fx:id="gre_tol_txt" layoutX="35.0" layoutY="216.0" text=" Tolerancija:">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets left="25.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="gre_tol" layoutX="35.0" layoutY="238.0">
+               <VBox.margin>
+                  <Insets left="25.0" />
+               </VBox.margin>
+            </TextField>
+				<RadioButton fx:id="hybrid" mnemonicParsing="false" onAction="#showHybParameters" text="Hibridni algoritam" toggleGroup="$algoritmi">
 					<VBox.margin>
 						<Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
 					</VBox.margin>
 				</RadioButton>
-           <ComboBox fx:id="hybHeuristika" prefHeight="27.0" prefWidth="224.0" promptText="(odaberite heuristiku)">
+           <ComboBox fx:id="hybHeuristika" prefHeight="27.0" prefWidth="224.0" promptText="(heuristika)">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="najveća površina" />
@@ -153,10 +166,10 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </HBox.margin>
                <VBox.margin>
-                  <Insets top="5.0" />
+                  <Insets left="25.0" top="5.0" />
                </VBox.margin>
                 </ComboBox>
-            <ComboBox fx:id="hybPokrivac" prefHeight="27.0" prefWidth="224.0" promptText="(odaberite početni pokrivač)" BorderPane.alignment="CENTER">
+            <ComboBox fx:id="hybPokrivac" prefHeight="27.0" prefWidth="224.0" promptText="(početni pokrivač)" BorderPane.alignment="CENTER">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="Vrhovi poligona" />
@@ -168,7 +181,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </BorderPane.margin>
                <VBox.margin>
-                  <Insets top="5.0" />
+                  <Insets left="25.0" top="5.0" />
                </VBox.margin>
                 </ComboBox>
 			</children>
@@ -203,10 +216,7 @@
 						<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
 					</HBox.margin>
 				</RadioButton>
-            <ProgressIndicator fx:id="progress" prefHeight="36.0" prefWidth="35.0" progress="0.0">
-               <HBox.margin>
-                  <Insets right="15.0" />
-               </HBox.margin></ProgressIndicator>
+            <ProgressIndicator fx:id="progress" progress="0.0" />
 				<Button fx:id="button_nast" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onButtonNext" prefHeight="34.0" prefWidth="149.0" text="Pokreni" HBox.hgrow="NEVER">
 					<font>
 						<Font name="System Bold Italic" size="13.0" />
@@ -222,6 +232,6 @@
 		</HBox>
 	</bottom>
 	<center>
-		<Canvas fx:id="canvas" height="424.0" onMouseClicked="#onImageViewClicked" opacity="0.94" width="490.0" />
+		<Canvas fx:id="canvas" height="424.0" onMouseClicked="#onImageViewClicked" styleClass="canvas" width="490.0" />
 	</center>
 </BorderPane>
