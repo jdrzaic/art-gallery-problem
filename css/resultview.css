@@ -1,0 +1,22 @@
+.vbox {
+    -fx-border-color: #2e8b57;
+    -fx-border-width: 2px;
+    -fx-padding: 10;
+    -fx-spacing: 8;
+    -fx-font-family: serif;
+    -fx-font-style: normal;
+    -fx-font-weight: 600; 
+}
+
+.image {
+    -fx-border-color: #2e8b57;
+    -fx-border-width: 2px;
+    -fx-padding: 10;
+    -fx-spacing: 8;
+}
+
+.infotitle {
+	-fx-font-family: serif;
+	-fx-font-weight: 900;
+	-fx-font-size: 24;
+}
