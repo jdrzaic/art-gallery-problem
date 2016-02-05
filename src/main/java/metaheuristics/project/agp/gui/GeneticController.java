@@ -1,7 +1,5 @@
  package metaheuristics.project.agp.gui;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.concurrent.CountDownLatch;
 
 import javafx.application.Platform;
@@ -31,15 +29,15 @@ public class GeneticController {
 	                    final CountDownLatch latch = new CountDownLatch(1);
 	                    System.out.println("Before processed");
 	                    System.out.println("benchmark: " + filename);
-	                    ga.process(filename, "test_results_and_samples/res.txt");
-	                    Thread.sleep(1000);
+	                    int n = ga.process(filename, "test_results_and_samples/res.txt");
+	                    //Thread.sleep(1000);
 	                    System.out.println("processed");
 						Controller.runVisualisation();
 						Platform.runLater(new Runnable() {                          
 	                        @Override
 	                        public void run() {
 	                            try{
-	        						Controller.openResult(0);
+	        						Controller.openResult(n);
 	                            }finally{
 	                                latch.countDown();
 	                            }

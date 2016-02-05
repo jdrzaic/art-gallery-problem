@@ -1,28 +1,24 @@
 package metaheuristics.project.agp.alg.genetic;
 
+import java.io.File;
 import java.io.IOException;
 
-import metaheuristics.project.agp.alg.Algorithm;
-import metaheuristics.project.agp.instances.GalleryInstance;
+import org.apache.commons.io.FileUtils;
 
 public class GeneticAlgorthm {
 	
 	public GeneticAlgorthm() {}
 
-	public void process(String filePolygon, String fileToSave) {
-		process(filePolygon, fileToSave, "");
+	public int process(String filePolygon, String fileToSave) {
+		return process(filePolygon, fileToSave, "");
 	}
 	
-	public void process(String filePolygon, String fileToSave, String initCover) {
+	public int process(String filePolygon, String fileToSave, String initCover) {
 		System.out.println("genetic calld");
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}
 		try {
 			Process p = Runtime.getRuntime().exec("./GeneticAlgorithm " +  
 				  filePolygon  + " " + initCover + " " + fileToSave);
+			System.out.println(filePolygon + "  " + fileToSave);
 			try {
 				p.waitFor();
 			} catch (InterruptedException e) {
@@ -33,14 +29,16 @@ public class GeneticAlgorthm {
 		}
 		System.out.println("genetic ended");
 		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {}
+		int n = 0;
+		try {
+			String cameras = FileUtils.readFileToString(new File(fileToSave));
+			String[] coordinates = cameras.split("\\s+");
+			n = coordinates.length / 2;
+		} catch (IOException e) {
+			System.err.println("cant read results");
 		}
-	}
-
-	public static void main(String[] args) {
-		GeneticAlgorthm ga = new GeneticAlgorthm();
-		ga.process("cam.txt", "bbb.txt");
+		return n;
 	}
 }

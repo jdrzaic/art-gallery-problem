@@ -1,18 +1,14 @@
 package metaheuristics.project.agp.alg.greedy;
 
-import java.io.File;
-import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.commons.io.FileUtils;
 
 import com.vividsolutions.jts.geom.Point;
 import com.vividsolutions.jts.geom.Triangle;
 import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.CoordinateSequence;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryCollection;
 import com.vividsolutions.jts.geom.GeometryFactory;
@@ -22,7 +18,6 @@ import com.vividsolutions.jts.geom.Polygon;
 import com.vividsolutions.jts.triangulate.ConformingDelaunayTriangulationBuilder;
 
 import metaheuristics.project.agp.alg.Algorithm;
-import metaheuristics.project.agp.alg.greedy.heuristics.A6;
 import metaheuristics.project.agp.alg.greedy.heuristics.A7;
 import metaheuristics.project.agp.alg.greedy.heuristics.Heuristic;
 import metaheuristics.project.agp.instances.GalleryInstance;
@@ -177,7 +172,7 @@ public class HeuristicGreedy implements Algorithm{
 			++index;
 		}
 		Polygon p = gf.createPolygon(boundRing, holesRing);
-		return gf.createPolygon(boundRing, holesRing);
+		return p;
 	}
 
 	private List<Camera> createInitialSet(GalleryInstance gi) {

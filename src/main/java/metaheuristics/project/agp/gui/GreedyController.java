@@ -68,7 +68,6 @@ public class GreedyController {
 						HeuristicGreedy hg = new HeuristicGreedy(
 								cover.get(initc), 
 								heuristics.get(heur));
-	                    System.out.println("Before processed");
 	                    try{
 	            		progress.setProgress(0);
 	                    hg.process(gi); 
@@ -76,7 +75,6 @@ public class GreedyController {
 	                    } catch(Exception e){
 	                    	e.printStackTrace();
 	                    }
-	                    System.out.println("procKKKXessed");
 						int n = gi.saveResults(filename);
 	                    final CountDownLatch latch = new CountDownLatch(1);
 						Controller.runVisualisation();

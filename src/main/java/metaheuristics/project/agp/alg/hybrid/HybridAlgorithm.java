@@ -25,12 +25,6 @@ public class HybridAlgorithm {
 		HeuristicGreedy hg = new HeuristicGreedy(is, h);
 		gi.setCameras(hg);
 		gi.saveResults("test_results_and_samples/geninit.txt");
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		System.out.println("calling genetic");
 		GeneticAlgorthm ga = new GeneticAlgorthm();
 		ga.process(filePolygon, fileToSaveFin, "test_results_and_samples/geninit.txt");
 	}

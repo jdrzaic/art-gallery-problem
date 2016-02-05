@@ -221,9 +221,7 @@ public class Controller implements Initializable {
 	}
 
 	private void HybridCase() {
-		if(benchmark != null) System.out.println(benchmark.getName());
 		if(radio_dat.isSelected()) {
-			
 			try {
 				if(draw == 1 && other != null) {
 					benchmark = new File(other.getAbsolutePath());
@@ -239,7 +237,6 @@ public class Controller implements Initializable {
 				other = new File(benchmark.getAbsolutePath());
 			}
 			draw = 1;
-			//benchmark = null;
 			if(drawing.gi == null || drawing.gi.getVertices().size() < 3) {
 				GalleryError();
 			} else {
@@ -251,9 +248,7 @@ public class Controller implements Initializable {
 	}
 
 	private void GenCase() {
-		if(benchmark != null) System.out.println(benchmark.getName());
 		if(radio_dat.isSelected()) {
-			
 			try {
 				if(draw == 1 && other != null) {
 					benchmark = new File(other.getAbsolutePath());
@@ -281,9 +276,7 @@ public class Controller implements Initializable {
 	}
 
 	private void PSOCase() {
-		if(benchmark != null) System.out.println(benchmark.getName());
 		if(radio_dat.isSelected()) {
-			
 			try {
 				if(draw == 1 && other != null) {
 					benchmark = new File(other.getAbsolutePath());
@@ -310,7 +303,6 @@ public class Controller implements Initializable {
 	}
 
 	private void GreedyCase() {
-		if(benchmark != null) System.out.println(benchmark.getName());
 		if(radio_dat.isSelected()) {
 			try {
 				if(draw == 1 && other != null) {
@@ -340,7 +332,7 @@ public class Controller implements Initializable {
 	
 	private void WrongFileAlert() {
 		Alert wrongFileAlert = new Alert(AlertType.ERROR, 
-				"Odabrana datoteka ne sadrži primjer u korektnom zapisu! Pokušajte ponovo.",
+				"Primjer galerije nije odabran ili odabrana datoteka ne sadrži primjer u korektnom zapisu! Pokušajte ponovo.",
 				ButtonType.OK);
 		wrongFileAlert.setHeaderText("Greška");
 		wrongFileAlert.showAndWait();
@@ -349,7 +341,7 @@ public class Controller implements Initializable {
 
 	private void GalleryError() {
 		Alert wrongFileAlert = new Alert(AlertType.ERROR, 
-				"Tlocrt galerija nemoguće je obraditi. Pokušajte ponovo.",
+				"Tlocrt galerije nemoguće je obraditi. Pokušajte ponovo.",
 				ButtonType.OK);
 		wrongFileAlert.setHeaderText("Greška");
 		wrongFileAlert.showAndWait();
@@ -402,7 +394,7 @@ public class Controller implements Initializable {
 	
 	private static class Drawing {
 		GalleryInstance gi;
-		int border = 0;
+		//int border = 0;
 		ArrayList<Coordinate> tmpHole = new ArrayList<>();
 		
 		double tmpx = -1;
@@ -446,6 +438,9 @@ public class Controller implements Initializable {
 		} catch (IOException e) {
 			System.err.println("Error executing bash");
 		}
+		try {
+			Thread.sleep(250);
+		} catch (InterruptedException e) {}
 	}
 	
 	private static void generateBenchmarkFromDraw() {
