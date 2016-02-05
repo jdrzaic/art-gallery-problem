@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ProgressIndicator;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -44,34 +45,28 @@ public class HybridController {
 		cover.put("Unija prve dvije opcije", InitialSet.VERTEX_TRIANGULATION_COVER);
 	}
 	
-	//heuristic greedy fxml
-	/**
-	 * combobox to chose initial cover in greedy
-	 * 		 
-	 * */
-	@FXML private ComboBox<String> pokrivac;
-	/**
-	 * combobox to chose heuristic in greedy
-	 */
-	@FXML private ComboBox<String> heuristika;
-	/**
-	 * button to execute algorithm
-	 */
-	@FXML private Button izvrsi;
-		
-	@FXML private ProgressBar progres; 
+	private String heur;
+	private String initc;
 	
-	public void process(String polygonFile, String toSaveIn) {
+	/**
+	 * @param heur
+	 * @param initc
+	 */
+	public HybridController(String initc, String heur) {
+		super();
+		this.heur = heur;
+		this.initc = initc;
+	}
+	
+	public void process(String polygonFile, String toSaveIn, ProgressIndicator progress) {
 		HybridController.polygonFile = polygonFile;
 		HybridController.toSaveIn = toSaveIn;
 		System.out.println(polygonFile + "  " + toSaveIn);
-		openHeurChoser();
+		onExecHybrid(progress);
 	}
 
-	public void onExecHybrid() {
-		System.out.println("Greedy called");
-		String heur = (String) heuristika.getSelectionModel().getSelectedItem().toString();
-		String initc = (String) pokrivac.getSelectionModel().getSelectedItem().toString();
+	public void onExecHybrid(ProgressIndicator progress) {
+		System.out.println("Hybrid called");
 		System.out.println(heur);
 		System.out.println(initc);
 		Service<Void> service = new Service<Void>() {
@@ -83,8 +78,9 @@ public class HybridController {
 					protected Void call() throws Exception {
 						HybridAlgorithm ha = new HybridAlgorithm(cover.get(initc), heuristics.get(heur));
 	                    final CountDownLatch latch = new CountDownLatch(1);
+	            		progress.setProgress(0);
 	                    ha.process(polygonFile, toSaveIn);
-	                    System.out.println("processed");
+	            		progress.setProgress(1);
 						Controller.runVisualisation();
 						Platform.runLater(new Runnable() {                          
 	                        @Override
@@ -102,24 +98,6 @@ public class HybridController {
 			}
 		};
 		service.start();
-		Stage toClose = (Stage)heuristika.getScene().getWindow();
-		toClose.close();
 	}
-	
-	public void openHeurChoser() {
-		System.out.println("Open heur chooser called");
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("hybrid.fxml"));
-        Parent root1;
-		try {
-			root1 = (Parent) fxmlLoader.load();
-	        Stage stage = new Stage();
-	        stage.initModality(Modality.APPLICATION_MODAL);
-	        stage.initStyle(StageStyle.UNDECORATED);
-	        stage.setTitle("ABC");
-	        stage.setScene(new Scene(root1));  
-	        stage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+
 }

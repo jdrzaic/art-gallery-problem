@@ -123,8 +123,7 @@
                   <Insets left="15.0" top="5.0" />
                </VBox.margin>
 				</ComboBox>
-				<ComboBox fx:id="pokrivac" prefHeight="27.0" prefWidth="236.0" promptText="(početni pokrivač)" BorderPane.alignment="CENTER">
-					<items>
+				<ComboBox fx:id="pokrivac" prefHeight="27.0" prefWidth="236.0" promptText="(početni pokrivač)" BorderPane.alignment="CENTER"><items>
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:value="Vrhovi poligona" />
 							<String fx:value="Triangulacija poligona" />
@@ -138,11 +137,40 @@
                   <Insets left="15.0" top="5.0" />
                </VBox.margin>
 				</ComboBox>
-				<RadioButton fx:id="hybrid" mnemonicParsing="false" text="Hibridni algoritam" toggleGroup="$algoritmi">
+				<RadioButton fx:id="hybrid" mnemonicParsing="false" text="Hibridni algoritam" toggleGroup="$algoritmi"  onAction="#showHybParameters">
 					<VBox.margin>
 						<Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
 					</VBox.margin>
 				</RadioButton>
+           <ComboBox fx:id="hybHeuristika" prefHeight="27.0" prefWidth="224.0" promptText="(odaberite heuristiku)">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="najveća površina" />
+                            <String fx:value="najveći opseg" />
+                        </FXCollections>
+                    </items>
+                    <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </HBox.margin>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+                </ComboBox>
+            <ComboBox fx:id="hybPokrivac" prefHeight="27.0" prefWidth="224.0" promptText="(odaberite početni pokrivač)" BorderPane.alignment="CENTER">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Vrhovi poligona" />
+                            <String fx:value="Triangulacija poligona" />
+                            <String fx:value="Unija prve dvije opcije" />
+                        </FXCollections>
+                    </items>
+                    <BorderPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </BorderPane.margin>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+                </ComboBox>
 			</children>
 			<padding>
 				<Insets right="40.0" />
