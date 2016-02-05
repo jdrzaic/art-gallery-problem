@@ -106,17 +106,27 @@ public class Controller implements Initializable {
 	@FXML private ComboBox<String> heuristika;
 	
 	/**
-	 * 
+	 * combobox to chose initial cover in greedy
+	 * 		 
+	 * */
+	@FXML private ComboBox<String> hybPokrivac;
+	/**
+	 * combobox to chose heuristic in greedy
+	 */
+	@FXML private ComboBox<String> hybHeuristika;
+	
+	/**
+	 * Label above pso iteration input.
 	 */
 	@FXML private Label pso_iter_txt;
 	
 	/**
-	 * 
+	 * Label above pso population input.
 	 */
 	@FXML private Label pso_pop_txt;
 	
 	/**
-	 * 
+	 * Label above pso toleration input.
 	 */
 	@FXML private Label pso_tol_txt;
 	
@@ -144,6 +154,7 @@ public class Controller implements Initializable {
 		bindParametersVisibility();
 		setPSOParamsInvisible();
 		setGreedyParamsInvisible();
+		setHybParamsInvisible();
 		
 		gc = canvas.getGraphicsContext2D();
 		gc.setStroke(Color.BLACK);
@@ -164,6 +175,16 @@ public class Controller implements Initializable {
 	private void setGreedyParamsVisible() {
 		pokrivac.setVisible(true);
 		heuristika.setVisible(true);
+	}
+	
+	private void setHybParamsInvisible() {
+		hybPokrivac.setVisible(false);
+		hybHeuristika.setVisible(false);
+	}
+
+	private void setHybParamsVisible() {
+		hybPokrivac.setVisible(true);
+		hybHeuristika.setVisible(true);
 	}
 	
 	private void setPSOParamsInvisible() {
@@ -193,6 +214,8 @@ public class Controller implements Initializable {
 		pso_tol.managedProperty().bind(pso_iter_txt.visibleProperty());
 		pokrivac.managedProperty().bind(pokrivac.visibleProperty());
 		heuristika.managedProperty().bind(heuristika.visibleProperty());
+		hybPokrivac.managedProperty().bind(hybPokrivac.visibleProperty());
+		hybHeuristika.managedProperty().bind(hybHeuristika.visibleProperty());
 	}
 	
 	/**
@@ -229,8 +252,8 @@ public class Controller implements Initializable {
 					benchmark = new File(other.getAbsolutePath());
 				}
 				draw = 0;
-				HybridController hc = new HybridController();
-				hc.process(benchmark.getAbsolutePath(), "test_results_and_samples/res.txt");
+				HybridController hc = new HybridController(hybPokrivac.getSelectionModel().getSelectedItem().toString(), hybHeuristika.getSelectionModel().getSelectedItem().toString());
+				hc.process(benchmark.getAbsolutePath(), "test_results_and_samples/res.txt", progress);
 			} catch(Exception e) {
 				WrongFileAlert();
 			}
@@ -243,9 +266,9 @@ public class Controller implements Initializable {
 			if(drawing.gi == null || drawing.gi.getVertices().size() < 3) {
 				GalleryError();
 			} else {
-				HybridController hc = new HybridController();
+				HybridController hc = new HybridController(hybPokrivac.getSelectionModel().getSelectedItem().toString(), hybHeuristika.getSelectionModel().getSelectedItem().toString());
 				generateBenchmarkFromDraw();
-				hc.process("test_results_and_samples/pol.txt", "test_results_and_samples/res.txt");
+				hc.process("test_results_and_samples/pol.txt", "test_results_and_samples/res.txt", progress);
 			}
 		}
 	}
@@ -382,6 +405,7 @@ public class Controller implements Initializable {
 	 */
 	public void showPSOParameters(){
 		setGreedyParamsInvisible();
+		setHybParamsInvisible();
 		setPSOParamsVisible();
 	}
 	
@@ -390,7 +414,14 @@ public class Controller implements Initializable {
 	 */
 	public void showGreedyParameters(){
 		setPSOParamsInvisible();
+		setHybParamsInvisible();
 		setGreedyParamsVisible();
+	}
+	
+	public void showHybParameters(){
+		setGreedyParamsInvisible();
+		setPSOParamsInvisible();
+		setHybParamsVisible();
 	}
 	
 	
