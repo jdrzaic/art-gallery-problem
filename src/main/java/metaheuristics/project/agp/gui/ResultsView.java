@@ -50,7 +50,7 @@ public class ResultsView {
         Label title = new Label("Podaci o galeriji");
         title.getStyleClass().add("infotitle");
         Label verticesN = new Label("Broj vrhova       " + vertices);
-        Label holesN = new Label("Broj rupi            " + holes);
+        Label holesN = new Label("Broj rupa            " + holes);
         Label algorithmN = new Label("Algoritam          " + algorithm);
         Label cameraN = new Label("Broj kamera       " + n);
         info.getChildren().addAll(title, verticesN, holesN, algorithmN, cameraN);
