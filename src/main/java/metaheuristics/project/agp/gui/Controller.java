@@ -29,6 +29,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -71,10 +72,6 @@ public class Controller implements Initializable {
 	
 	@FXML private RadioButton hybrid;
 	
-	/**
-	 * checked if file is selected
-	 */
-	@FXML private CheckBox check_dat_sel;
 	/**
 	 * label displaying selected file
 	 */
@@ -168,14 +165,14 @@ public class Controller implements Initializable {
 		setGreedyParamsInvisible();
 		setHybParamsInvisible();
 		gc = canvas.getGraphicsContext2D();
-
+		
 		gc.setStroke(Color.BLACK);
 		gc.setLineWidth(0.5);
 		gc.strokeLine(0, 0, canvas.maxWidth(0), 0);
 		gc.strokeLine(canvas.maxWidth(0), canvas.maxHeight(0), canvas.maxWidth(0), 0);
 		gc.strokeLine(canvas.maxWidth(0), canvas.maxHeight(0), 0, canvas.maxHeight(0));
 		gc.strokeLine(0, 0, 0,canvas.maxHeight(0));
-		
+		Tooltip.install(odabr_dat, new Tooltip(odabr_dat.getText()));
 		onClearClicked();
 	}
 
@@ -250,9 +247,9 @@ public class Controller implements Initializable {
 		FileChooser fc = new FileChooser();
 		File file = fc.showOpenDialog(null);
 		if(file != null) {
-			odabr_dat.setText("odabrana datoteka: " + file.getName());
+			odabr_dat.setText(file.getAbsolutePath());
+			Tooltip.install(odabr_dat, new Tooltip(odabr_dat.getText()));
 			benchmark = file;
-			check_dat_sel.setSelected(true);
 		}
 	}
 	
@@ -310,7 +307,8 @@ public class Controller implements Initializable {
 				}
 				draw = 0;
 				GeneticController gc = new GeneticController();
-				System.out.println(benchmark.getAbsolutePath());
+				//check for error
+				GalleryInstance gi = new BenchmarkFileInstanceLoader().load(benchmark.getAbsolutePath());
 				gc.process(benchmark.getAbsolutePath());
 			} catch(Exception e) {
 				WrongFileAlert();
