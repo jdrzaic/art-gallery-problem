@@ -22,6 +22,7 @@ import metaheuristics.project.agp.alg.greedy.HeuristicGreedy;
 import metaheuristics.project.agp.alg.greedy.HeuristicGreedy.InitialSet;
 import metaheuristics.project.agp.alg.greedy.heuristics.A7;
 import metaheuristics.project.agp.alg.hybrid.HybridAlgorithm;
+import metaheuristics.project.agp.alg.pso.PSO;
 import metaheuristics.project.agp.instances.GalleryInstance;
 import metaheuristics.project.agp.instances.components.Camera;
 import metaheuristics.project.agp.instances.util.BenchmarkFileInstanceLoader;
@@ -165,7 +166,9 @@ public class Tester2 {
 	}
 
 	public static void main(String[] args) {
-		Tester.testAlgorithm(new HeuristicGreedy(InitialSet.VERTEX_TRIANGULATION_COVER, new A7()), 
+		PSO pso = new PSO();
+		pso.init(0.05, 20, 4);
+		Tester.testAlgorithm(new PSO(), 
 				"test_results_and_samples/benchmarks/GBBTestingFiles");
 	}
 }

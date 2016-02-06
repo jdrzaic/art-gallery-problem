@@ -53,7 +53,7 @@ public class TriangleOptimization
 		List<Coordinate> bound = gBest.getpBestCam().visibilityPolygon(gi).getVertices();
 		visiblePolygon = createPolygon(bound);
 	}
-
+	
 	Polygon createPolygon(List<Coordinate> bound) {
 		Coordinate[] boundary = new Coordinate[bound.size() + 1];
 		for (int i = 0; i < boundary.length - 1; ++i)
@@ -71,7 +71,6 @@ public class TriangleOptimization
 				if (par.getCurrValue() > maxAreaCovered) {
 					maxAreaCovered = par.getCurrValue();
 					gBest = par.clone();
-
 				}
 				par.updateSpeed(gBest.getCam());
 				par.updatePosition();

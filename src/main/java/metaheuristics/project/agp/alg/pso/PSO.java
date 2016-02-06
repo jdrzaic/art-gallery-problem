@@ -14,7 +14,9 @@ import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryCollection;
 import com.vividsolutions.jts.geom.GeometryFactory;
+import com.vividsolutions.jts.geom.LinearRing;
 import com.vividsolutions.jts.geom.Polygon;
+import com.vividsolutions.jts.geom.Triangle;
 import com.vividsolutions.jts.triangulate.ConformingDelaunayTriangulationBuilder;
 
 import metaheuristics.project.agp.alg.Algorithm;
@@ -24,11 +26,11 @@ import metaheuristics.project.agp.instances.util.BenchmarkFileInstanceLoader;
 
 public class PSO implements Algorithm {
 
-	public int populationNumPerTriang = 4;
+	public int populationNumPerTriang = 5;
 
 	public int[] populationTestChange = { 1, 5, 10 };
 
-	public int iteration = 30;
+	public int iteration = 20;
 
 	public int[] iterationTestChange = {1, 5, 10 };
 
@@ -136,25 +138,35 @@ public class PSO implements Algorithm {
 	 * 
 	 * @param psoTriangles
 	 */
-	public void findBestCameraPositions(List<TriangleOptimization> psoTriangles,
-			GalleryInstance gi) {
-		ConformingDelaunayTriangulationBuilder cdtb = new ConformingDelaunayTriangulationBuilder();
-		cdtb.setSites(createPolygon(gi.getVertices()));
-		GeometryCollection gc = (GeometryCollection) cdtb.getTriangles(gf);
-		Polygon gallery = createPolygon(gi.getVertices());
+	public void findBestCameraPositions(List<TriangleOptimization> psoTriangles, GalleryInstance gi) {
+		Polygon gallery = createPolygon(gi.getVertices(), gi.getHoles());
+		List<Polygon> polygons = createInitialTriangCover(gi, gallery);
 
-		for (int i = 0; i < gc.getNumGeometries(); ++i) {
-			Polygon p = (Polygon) gc.getGeometryN(i);
-			if (!gallery.contains(p)) {
+		for (Polygon t : polygons) {
+			if (!gallery.contains(t)) {
 				continue;
 			}
-			TriangleOptimization triangleOpt = new TriangleOptimization(gi, populationNumPerTriang, p, iteration);
+			TriangleOptimization triangleOpt = new TriangleOptimization(gi, populationNumPerTriang, t, iteration);
 			triangleOpt.process(gi);
 			psoTriangles.add(triangleOpt);
 		}
 
 		giArea = gi.calculateArea();
+		EPSILON = EPSILON * giArea;
 		Collections.sort(psoTriangles);
+	}
+	
+	private List<Polygon> createInitialTriangCover(GalleryInstance gi, Polygon main) {
+		List<Polygon> ini = new ArrayList<>();
+		ConformingDelaunayTriangulationBuilder cdtb =
+				new ConformingDelaunayTriangulationBuilder();
+		cdtb.setSites(main);
+		GeometryCollection gc = (GeometryCollection)cdtb.getTriangles(gf);
+		for(int i = 0; i < gc.getNumGeometries(); ++i) {
+			Polygon p = (Polygon)gc.getGeometryN(i);
+			ini.add(p);
+		}
+		return ini;
 	}
 
 	/**
@@ -181,7 +193,8 @@ public class PSO implements Algorithm {
 			cover.remove(to.visiblePolygon);
 			finalCameras.remove(to.getBest().getCam());
 			updateCoveredArea();
-			if (max - union.getArea() > EPSILON) {
+			double fail;
+			if ((fail =max - union.getArea()) > EPSILON) {
 				cover.add(to.visiblePolygon);
 				finalCameras.add(to.getBest().getCam());
 				updateCoveredArea();
@@ -203,14 +216,25 @@ public class PSO implements Algorithm {
 	 * @param bound
 	 * @return
 	 */
-	Polygon createPolygon(List<Coordinate> bound) {
+	Polygon createPolygon(List<Coordinate> bound, List<metaheuristics.project.agp.instances.components.Polygon> holes) {
 		Coordinate[] boundary = new Coordinate[bound.size() + 1];
-		for (int i = 0; i < boundary.length - 1; ++i)
-			boundary[i] = bound.get(i);
+		for(int i = 0; i < boundary.length - 1; ++i) boundary[i] = bound.get(i);
 		boundary[boundary.length - 1] = bound.get(0);
-		return gf.createPolygon(boundary);
+		LinearRing boundRing = gf.createLinearRing(boundary);
+		LinearRing[] holesRing = new LinearRing[holes.size()];
+		int index = 0;
+		for(metaheuristics.project.agp.instances.components.Polygon h : holes) {
+			Coordinate[] boundarHole = new Coordinate[h.getVertices().size() + 1];
+			for(int i = 0; i < h.getVertices().size(); ++i) boundarHole[i] = h.getOnIndex(i);
+			boundarHole[h.getVertices().size()] = h.getOnIndex(0);
+			holesRing[index] = gf.createLinearRing(boundarHole);
+			++index;
+		}
+		Polygon p = gf.createPolygon(boundRing, holesRing);
+		return p;
 	}
-
+	
+	
 	@Override
 	public void process(GalleryInstance gi) {
 		List<TriangleOptimization> psoTriangles = new ArrayList<>();
