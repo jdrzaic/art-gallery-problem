@@ -309,7 +309,7 @@ public class Controller implements Initializable {
 				GeneticController gc = new GeneticController();
 				//check for error
 				GalleryInstance gi = new BenchmarkFileInstanceLoader().load(benchmark.getAbsolutePath());
-				gc.process(benchmark.getAbsolutePath());
+				gc.process(benchmark.getAbsolutePath(), progress);
 			} catch(Exception e) {
 				WrongFileAlert();
 			}
@@ -324,7 +324,7 @@ public class Controller implements Initializable {
 				drawing.gi.cameras = new HashSet<>();
 				GeneticController gc = new GeneticController();
 				generateBenchmarkFromDraw();
-				gc.process("test_results_and_samples/pol.txt");
+				gc.process("test_results_and_samples/pol.txt", progress);
 			}
 		}
 	}

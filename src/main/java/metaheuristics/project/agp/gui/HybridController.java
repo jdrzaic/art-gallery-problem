@@ -7,6 +7,8 @@ import java.util.concurrent.CountDownLatch;
 import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -80,9 +82,7 @@ public class HybridController {
 					protected Void call() throws Exception {
 						HybridAlgorithm ha = new HybridAlgorithm(cover.get(initc), heuristics.get(heur), tol);
 	                    final CountDownLatch latch = new CountDownLatch(1);
-	            		progress.setProgress(0);
 	                    int n = ha.process(polygonFile, toSaveIn);
-	            		progress.setProgress(1);
 						Controller.runVisualisation();
 						Platform.runLater(new Runnable() {                          
 	                        @Override
@@ -99,6 +99,16 @@ public class HybridController {
 				};
 			}
 		};
+		service.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+			
+			@Override
+			public void handle(WorkerStateEvent event) {
+		        progress.setProgress(0d);
+		        progress.setVisible(false);
+			}
+		});
+		progress.setVisible(true);
+	    progress.setProgress(-1d);
 		service.start();
 	}
 

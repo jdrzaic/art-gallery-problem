@@ -5,19 +5,22 @@ import java.util.concurrent.CountDownLatch;
 import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.ProgressIndicator;
 import metaheuristics.project.agp.alg.genetic.GeneticAlgorthm;
 
 public class GeneticController {
 	
 	static String filename;
 	
-	public void process(String filename) {
+	public void process(String filename, ProgressIndicator progress) {
 		System.out.println("in genetic controller");
 		this.filename = filename;
-		onExecGenetic();
+		onExecGenetic(progress);
 	}
 
-	public void onExecGenetic() {
+	public void onExecGenetic(ProgressIndicator progress) {
 		Service<Void> service = new Service<Void>() {
 			@Override
 			protected Task<Void> createTask() {
@@ -48,6 +51,16 @@ public class GeneticController {
 				};
 			}
 		};
+		service.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+			
+			@Override
+			public void handle(WorkerStateEvent event) {
+		        progress.setProgress(0d);
+		        progress.setVisible(false);
+			}
+		});
+		progress.setVisible(true);
+	    progress.setProgress(-1d);
 		service.start();
 	}
 }

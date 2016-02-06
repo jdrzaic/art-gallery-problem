@@ -303,6 +303,9 @@
 		</HBox>
 	</bottom>
 	<center>
-		<Canvas fx:id="canvas" height="450.0" onMouseClicked="#onImageViewClicked" styleClass="canvas" width="530.0" />
+		<Canvas fx:id="canvas" height="450.0" onMouseClicked="#onImageViewClicked" styleClass="canvas" width="530.0">
+         <effect>
+            <ColorAdjust />
+         </effect></Canvas>
 	</center>
 </BorderPane>

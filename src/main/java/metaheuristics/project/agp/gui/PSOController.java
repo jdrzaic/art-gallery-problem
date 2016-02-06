@@ -5,6 +5,8 @@ import java.util.concurrent.CountDownLatch;
 import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ProgressIndicator;
 import metaheuristics.project.agp.alg.pso.PSO;
@@ -60,9 +62,7 @@ public class PSOController {
 					protected Void call() throws Exception {
 						PSO pso = new PSO(); 
 						pso.init(tol, iter, pop);
-	            		progress.setProgress(0);
 						pso.process(gi);
-	            		progress.setProgress(1);
 						n = gi.saveResults("test_results_and_samples/res.txt"); 
 						Controller.runVisualisation();
 						Platform.runLater(new Runnable() {                          
@@ -80,6 +80,16 @@ public class PSOController {
 				};
 			}
 		};
+service.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+			
+			@Override
+			public void handle(WorkerStateEvent event) {
+		        progress.setProgress(0d);
+		        progress.setVisible(false);
+			}
+		});
+		progress.setVisible(true);
+	    progress.setProgress(-1d);
 		service.start();
 	}
 	

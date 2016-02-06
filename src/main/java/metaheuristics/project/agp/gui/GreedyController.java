@@ -6,6 +6,8 @@ import java.util.concurrent.CountDownLatch;
 import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.ProgressIndicator;
 import metaheuristics.project.agp.alg.greedy.HeuristicGreedy;
 import metaheuristics.project.agp.alg.greedy.HeuristicGreedy.InitialSet;
@@ -71,9 +73,7 @@ public class GreedyController {
 								cover.get(initc), 
 								heuristics.get(heur));
 						hg.setTol(tol);
-	            		progress.setProgress(0);
 	                    hg.process(gi); 
-	            		progress.setProgress(1);
 						int n = gi.saveResults(filename);
 	                    final CountDownLatch latch = new CountDownLatch(1);
 						Controller.runVisualisation();
@@ -92,6 +92,16 @@ public class GreedyController {
 				};
 			}
 		};
+		service.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+			
+			@Override
+			public void handle(WorkerStateEvent event) {
+		        progress.setProgress(0d);
+		        progress.setVisible(false);
+			}
+		});
+		progress.setVisible(true);
+	    progress.setProgress(-1d);
 		service.start();
 	}
 	
