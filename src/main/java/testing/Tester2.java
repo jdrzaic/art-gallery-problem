@@ -115,7 +115,7 @@ public class Tester2 {
 	}
 	
 	public static String createResult(Path file) {
-		HybridAlgorithm ha = new HybridAlgorithm(InitialSet.TRIANGULATION_COVER, new A7());
+		HybridAlgorithm ha = new HybridAlgorithm(InitialSet.TRIANGULATION_COVER, new A7(), 0.01);
 		long start = System.currentTimeMillis();
 		ha.process(file.toString(), resultsFolder + file.getFileName() + ".txt");
 		long end = System.currentTimeMillis() - start;
