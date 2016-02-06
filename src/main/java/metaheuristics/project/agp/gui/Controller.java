@@ -31,6 +31,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.FileChooser;
 import metaheuristics.project.agp.instances.GalleryInstance;
 import metaheuristics.project.agp.instances.components.Polygon;
@@ -151,6 +152,11 @@ public class Controller implements Initializable {
 	
 	@FXML private Label gre_tol_txt;
 	
+
+	@FXML private TextField hyb_tol;
+	
+	@FXML private Label hyb_tol_txt;
+	
 	@FXML private ProgressIndicator progress;
 	
 	GraphicsContext gc;
@@ -162,7 +168,6 @@ public class Controller implements Initializable {
 		setGreedyParamsInvisible();
 		setHybParamsInvisible();
 		gc = canvas.getGraphicsContext2D();
-	    canvas.setStyle("-fx-background-color: #336699;");
 
 		gc.setStroke(Color.BLACK);
 		gc.setLineWidth(0.5);
@@ -191,11 +196,15 @@ public class Controller implements Initializable {
 	private void setHybParamsInvisible() {
 		hybPokrivac.setVisible(false);
 		hybHeuristika.setVisible(false);
+		hyb_tol.setVisible(false);
+		hyb_tol_txt.setVisible(false);
 	}
 
 	private void setHybParamsVisible() {
 		hybPokrivac.setVisible(true);
 		hybHeuristika.setVisible(true);
+		hyb_tol.setVisible(true);
+		hyb_tol_txt.setVisible(true);
 	}
 	
 	private void setPSOParamsInvisible() {
@@ -229,6 +238,8 @@ public class Controller implements Initializable {
 		hybHeuristika.managedProperty().bind(hybHeuristika.visibleProperty());
 		gre_tol.managedProperty().bind(gre_tol_txt.visibleProperty());
 		gre_tol_txt.managedProperty().bind(gre_tol_txt.visibleProperty());
+		hyb_tol.managedProperty().bind(hyb_tol_txt.visibleProperty());
+		hyb_tol_txt.managedProperty().bind(hyb_tol_txt.visibleProperty());
 
 	}
 	
@@ -268,7 +279,8 @@ public class Controller implements Initializable {
 					benchmark = new File(other.getAbsolutePath());
 				}
 				draw = 0;
-				HybridController hc = new HybridController(hybPokrivac.getSelectionModel().getSelectedItem().toString(), hybHeuristika.getSelectionModel().getSelectedItem().toString());
+				HybridController hc = new HybridController(hybPokrivac.getSelectionModel().getSelectedItem().toString(), 
+						hybHeuristika.getSelectionModel().getSelectedItem().toString(), Double.valueOf(hyb_tol.getText()));
 				hc.process(benchmark.getAbsolutePath(), "test_results_and_samples/res.txt", progress);
 			} catch(Exception e) {
 				WrongFileAlert();
@@ -282,7 +294,8 @@ public class Controller implements Initializable {
 				GalleryError();
 			} else {
 				drawing.gi.cameras = new HashSet<>();
-				HybridController hc = new HybridController(hybPokrivac.getSelectionModel().getSelectedItem().toString(), hybHeuristika.getSelectionModel().getSelectedItem().toString());
+				HybridController hc = new HybridController(hybPokrivac.getSelectionModel().getSelectedItem().toString(), 
+						hybHeuristika.getSelectionModel().getSelectedItem().toString(), Double.valueOf(hyb_tol.getText()));
 				generateBenchmarkFromDraw();
 				hc.process("test_results_and_samples/pol.txt", "test_results_and_samples/res.txt", progress);
 			}
@@ -449,6 +462,8 @@ public class Controller implements Initializable {
 	
 	public void onClearClicked() {
 		gc.clearRect(2, 2, canvas.maxWidth(0)-5, canvas.maxHeight(0)-5);
+		gc.setFill(Paint.valueOf("white"));
+		gc.fillRect(2, 2, canvas.maxWidth(0)-5, canvas.maxHeight(0)-5);
 		drawing = new Drawing();
 
 	}

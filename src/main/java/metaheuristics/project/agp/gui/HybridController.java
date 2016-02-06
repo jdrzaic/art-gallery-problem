@@ -47,15 +47,17 @@ public class HybridController {
 	
 	private String heur;
 	private String initc;
+	private double tol;
 	
 	/**
 	 * @param heur
 	 * @param initc
 	 */
-	public HybridController(String initc, String heur) {
+	public HybridController(String initc, String heur, double tol) {
 		super();
 		this.heur = heur;
 		this.initc = initc;
+		this.tol = tol;
 	}
 	
 	public void process(String polygonFile, String toSaveIn, ProgressIndicator progress) {
@@ -76,7 +78,7 @@ public class HybridController {
 
 					@Override
 					protected Void call() throws Exception {
-						HybridAlgorithm ha = new HybridAlgorithm(cover.get(initc), heuristics.get(heur));
+						HybridAlgorithm ha = new HybridAlgorithm(cover.get(initc), heuristics.get(heur), tol);
 	                    final CountDownLatch latch = new CountDownLatch(1);
 	            		progress.setProgress(0);
 	                    int n = ha.process(polygonFile, toSaveIn);

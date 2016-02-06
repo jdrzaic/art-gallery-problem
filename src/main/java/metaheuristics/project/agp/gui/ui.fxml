@@ -49,6 +49,9 @@
 					<font>
 						<Font name="System Bold" size="17.0" />
 					</font>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
 				</Label>
 				<RadioButton fx:id="radio_gen" mnemonicParsing="false" selected="true" text="Genetski algoritam">
 					<toggleGroup>
@@ -57,8 +60,11 @@
 					<padding>
 						<Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
 					</padding>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
 				</RadioButton>
-				<RadioButton fx:id="pso_gen" mnemonicParsing="false" onAction="#showPSOParameters" text="PSO" toggleGroup="$algoritmi">
+				<RadioButton fx:id="pso_gen" mnemonicParsing="false" onAction="#showPSOParameters" text="PSO algoritam" toggleGroup="$algoritmi">
 					<padding>
 						<Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
 					</padding>
@@ -100,7 +106,7 @@
                <VBox.margin>
                   <Insets left="25.0" />
                </VBox.margin></TextField>
-				<RadioButton fx:id="heur_ger" mnemonicParsing="false" onAction="#showGreedyParameters" text="Heur. greedy" toggleGroup="$algoritmi">
+				<RadioButton fx:id="heur_ger" mnemonicParsing="false" onAction="#showGreedyParameters" text="Heuristički greedy" toggleGroup="$algoritmi">
 					<VBox.margin>
 						<Insets />
 					</VBox.margin>
@@ -184,6 +190,19 @@
                   <Insets left="25.0" top="5.0" />
                </VBox.margin>
                 </ComboBox>
+            <Label fx:id="hyb_tol_txt" layoutX="35.0" layoutY="359.0" text=" Tolerancija:">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets left="25.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="hyb_tol" layoutX="35.0" layoutY="381.0">
+               <VBox.margin>
+                  <Insets left="25.0" />
+               </VBox.margin>
+            </TextField>
 			</children>
 			<padding>
 				<Insets right="40.0" />

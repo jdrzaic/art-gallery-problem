@@ -88,7 +88,7 @@ public class HeuristicGreedy implements Algorithm{
  	}
 	
 	public void setTol(double tol) {
-		EPSILON = tol;
+		EPSILON = tol < 0.001 ? 0.001 : tol;
 	}
 	
 	private boolean checkIfCovered(Camera c) {

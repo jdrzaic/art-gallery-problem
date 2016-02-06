@@ -114,7 +114,7 @@ public class Tester {
 	}
 	
 	public static String createResult(Path file) {
-		HybridAlgorithm ha = new HybridAlgorithm(InitialSet.TRIANGULATION_COVER, new A7());
+		HybridAlgorithm ha = new HybridAlgorithm(InitialSet.TRIANGULATION_COVER, new A7(), 0.01);
 		long start = System.currentTimeMillis();
 		ha.process(file.toString(), resultsFolder + file.getFileName() + ".txt");
 		long end = System.currentTimeMillis() - start;
@@ -155,9 +155,8 @@ public class Tester {
 				sb.append(c.toString() + " ");
 			}
 			bw.write(sb.toString());
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
+		} catch (Exception e) {} 
+		finally {
 			try {
 				bw.close();
 			} catch (IOException e) {}

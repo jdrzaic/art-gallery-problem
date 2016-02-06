@@ -12,10 +12,12 @@ public class HybridAlgorithm {
 
 	InitialSet is;
 	Heuristic h;
+	double tol;
 	
-	public HybridAlgorithm(InitialSet is, Heuristic h) {
+	public HybridAlgorithm(InitialSet is, Heuristic h, double tol) {
 		this.is = is;
 		this.h= h;
+		this.tol = tol;
 	}
 	
 	public int process(String filePolygon, String fileToSaveFin) {
@@ -23,14 +25,10 @@ public class HybridAlgorithm {
 		BenchmarkFileInstanceLoader bfil = new BenchmarkFileInstanceLoader();
 		GalleryInstance gi = bfil.load(filePolygon);
 		HeuristicGreedy hg = new HeuristicGreedy(is, h);
+		hg.setTol(tol);
 		gi.setCameras(hg);
 		gi.saveResults("test_results_and_samples/geninit.txt");
 		GeneticAlgorthm ga = new GeneticAlgorthm();
 		return ga.process(filePolygon, fileToSaveFin, "test_results_and_samples/geninit.txt");
-	}
-	
-	public static void main(String[] args) {
-		HybridAlgorithm ha = new HybridAlgorithm(InitialSet.TRIANGULATION_COVER, new A7());
-		ha.process("cam.txt", "res.txt");
 	}
 }
