@@ -355,7 +355,8 @@ public class Controller implements Initializable {
 				draw = 0;
 				GalleryInstance gi = bfil.load(benchmark.getAbsolutePath());
 				System.out.println(gi.getVertices().toString());
-				GreedyController gc = new GreedyController(pokrivac.getSelectionModel().getSelectedItem().toString(), heuristika.getSelectionModel().getSelectedItem().toString());
+				GreedyController gc = new GreedyController(pokrivac.getSelectionModel().getSelectedItem().toString(), 
+						heuristika.getSelectionModel().getSelectedItem().toString(), Double.valueOf(gre_tol.getText()));
 				gc.process(gi, "test_results_and_samples/res.txt", progress);
 			} catch(Exception e) {
 				WrongFileAlert();
@@ -369,7 +370,8 @@ public class Controller implements Initializable {
 				GalleryError();
 			} else {
 				drawing.gi.cameras = new HashSet<>();
-				GreedyController gc = new GreedyController(pokrivac.getSelectionModel().getSelectedItem().toString(), heuristika.getSelectionModel().getSelectedItem().toString());
+				GreedyController gc = new GreedyController(pokrivac.getSelectionModel().getSelectedItem().toString(),
+						heuristika.getSelectionModel().getSelectedItem().toString(), Double.valueOf(gre_tol.getText()));
 				gc.process(drawing.gi, "test_results_and_samples/res.txt", progress);
 			}
 		}

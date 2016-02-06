@@ -28,6 +28,8 @@ import metaheuristics.project.agp.instances.util.BenchmarkFileInstanceLoader;
 
 public class Tester {
 	
+	static String resultsFolder = "test_results_and_samples/results/TestingResults/2009a-simplerand-greedy-union-98.8/";
+	
 	static BenchmarkFileInstanceLoader bfil = new BenchmarkFileInstanceLoader();
 
 	public static void testAlgorithm(Algorithm alg, String root) {
@@ -48,15 +50,23 @@ public class Tester {
 		Algorithm alg;
 		StringBuilder sb = new StringBuilder();
 		Writer bw = null;
+		Writer errorw = null;
 		@Override
 		public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
-			File f  = new File("agp2009a-simplerand-hybrid/" + dir.getFileName() + ".txt");
+			File f  = new File(resultsFolder + dir.getFileName() + ".txt");
 			f.getParentFile().mkdirs(); 
 			f.createNewFile();
 			bw = new BufferedWriter(
 					 new OutputStreamWriter(
 					 new BufferedOutputStream(
-					 new FileOutputStream("agp2009a-simplerand-hybrid/" + dir.getFileName() + ".txt")),"UTF-8"));
+					 new FileOutputStream(resultsFolder + dir.getFileName() + ".txt")),"UTF-8"));
+			File error  = new File(resultsFolder + dir.getFileName() + ".error");
+			error.getParentFile().mkdirs(); 
+			error.createNewFile();
+			errorw = new BufferedWriter(
+					 new OutputStreamWriter(
+					 new BufferedOutputStream(
+					 new FileOutputStream(resultsFolder + dir.getFileName() + ".error")),"UTF-8"));
 			return FileVisitResult.CONTINUE;
 		}
 
@@ -66,11 +76,12 @@ public class Tester {
 			System.out.println(file.toString());
 			try {
 				//sb.append(createResult(alg, file));
-				bw.write(createResult(file) + System.lineSeparator());
+				bw.write(createResult(alg, file) + System.lineSeparator());
 				bw.flush();
 				//sb.append(createResult(file));
 			} catch(Exception e) {
 				System.err.println(file.toString());
+				errorw.write(file.toString() + System.getProperty("line.separator"));
 				return FileVisitResult.CONTINUE;
 			}
 			sb.append(System.getProperty("line.separator"));
@@ -105,7 +116,7 @@ public class Tester {
 	public static String createResult(Path file) {
 		HybridAlgorithm ha = new HybridAlgorithm(InitialSet.TRIANGULATION_COVER, new A7());
 		long start = System.currentTimeMillis();
-		ha.process(file.toString(), "agp2009a-simplerand-hybrid/" + file.getFileName() + ".txt");
+		ha.process(file.toString(), resultsFolder + file.getFileName() + ".txt");
 		long end = System.currentTimeMillis() - start;
 		GalleryInstance gi = new BenchmarkFileInstanceLoader().load(file.toString());
 		StringBuilder sb = new StringBuilder();
@@ -118,7 +129,7 @@ public class Tester {
 		}
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(
-					"agp2009a-simplerand-hybrid/" + file.getFileName() + ".txt"), "UTF-8"));
+					resultsFolder + file.getFileName() + ".txt"), "UTF-8"));
 			String[] coordinates = br.readLine().split("\\s+");
 			int cameraNum = coordinates.length / 2;
 			sb.append(" " + cameraNum + " " + end);
@@ -132,13 +143,13 @@ public class Tester {
 	private static void saveCameras(GalleryInstance gi, Path dir) {
 		BufferedWriter bw = null;
 		try {
-			File f  = new File("simplep-simpllehAGP2013-greedy/" + dir.getFileName() + ".txt");
+			File f  = new File(resultsFolder + dir.getFileName() + ".txt");
 			f.getParentFile().mkdirs(); 
 			f.createNewFile();
 			bw = new BufferedWriter(
 					 new OutputStreamWriter(
 					 new BufferedOutputStream(
-					 new FileOutputStream("simplep-simpllehAGP2013-greedy/" + dir.getFileName() + ".txt")),"UTF-8"));
+					 new FileOutputStream(resultsFolder + dir.getFileName() + ".txt")),"UTF-8"));
 			StringBuilder sb = new StringBuilder();
 			for(Camera c : gi.getCameras()) {
 				sb.append(c.toString() + " ");
@@ -154,6 +165,7 @@ public class Tester {
 	}
 
 	public static void main(String[] args) {
-		Tester.testAlgorithm(new HeuristicGreedy(InitialSet.TRIANGULATION_COVER, new A7()), "agp2009a-simplerand");
+		Tester.testAlgorithm(new HeuristicGreedy(InitialSet.VERTEX_TRIANGULATION_COVER, new A7()), 
+				"test_results_and_samples/benchmarks/agp2009a-simplerand");
 	}
 }

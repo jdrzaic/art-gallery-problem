@@ -36,15 +36,17 @@ public class GreedyController {
 	
 	private String heur;
 	private String initc;
+	private double tol;
 	
 	/**
 	 * @param heur
 	 * @param initc
 	 */
-	public GreedyController(String initc, String heur) {
+	public GreedyController(String initc, String heur, double tol) {
 		super();
 		this.heur = heur;
 		this.initc = initc;
+		this.tol  = tol;
 	}
 
 	public void process(GalleryInstance gi, String filename, ProgressIndicator progress) {
@@ -68,7 +70,7 @@ public class GreedyController {
 						HeuristicGreedy hg = new HeuristicGreedy(
 								cover.get(initc), 
 								heuristics.get(heur));
-
+						hg.setTol(tol);
 	            		progress.setProgress(0);
 	                    hg.process(gi); 
 	            		progress.setProgress(1);

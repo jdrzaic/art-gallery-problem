@@ -45,7 +45,6 @@ public class Camera extends Coordinate{
 	 */
 	public Polygon visibilityPolygon(GalleryInstance gi) {
 		TreeMap<Double, Coordinate> vPolygonCoords = new TreeMap<Double, Coordinate>();
-		//last was already in cause neighbour of camera this.
 		goOver(gi, vPolygonCoords, -1);
 		for(int i = 0; i < gi.getHoles().size(); ++i) {
 			goOver(gi, vPolygonCoords, i);
@@ -53,6 +52,11 @@ public class Camera extends Coordinate{
 		ArrayList<Coordinate> vertices = new ArrayList<Coordinate>();
 		vertices.addAll(vPolygonCoords.values());
 		return new Polygon(vertices);
+	}
+	
+	public Polygon visibilityPolygon2(GalleryInstance gi) {
+		
+		return null;
 	}
 
 	private void goOver(GalleryInstance gi, TreeMap<Double, Coordinate> vPolygonCoords, int n) {
@@ -125,13 +129,5 @@ public class Camera extends Coordinate{
 	
 	public String toString() {
 		return "" + this.x + " " + this.y;
-	}
-	
-	public static void main(String[] args) {
-		BenchmarkFileInstanceLoader bfil = new BenchmarkFileInstanceLoader();
-		
-		GalleryInstance gig = bfil.load("test.pol");
-		Camera cc = new Camera(1.5, 0.9999);
-		
 	}
 }

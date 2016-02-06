@@ -18,11 +18,9 @@ import com.vividsolutions.jts.geom.Polygon;
 import com.vividsolutions.jts.triangulate.ConformingDelaunayTriangulationBuilder;
 
 import metaheuristics.project.agp.alg.Algorithm;
-import metaheuristics.project.agp.alg.greedy.heuristics.A7;
 import metaheuristics.project.agp.alg.greedy.heuristics.Heuristic;
 import metaheuristics.project.agp.instances.GalleryInstance;
 import metaheuristics.project.agp.instances.components.Camera;
-import metaheuristics.project.agp.instances.util.BenchmarkFileInstanceLoader;
 import metaheuristics.project.agp.instances.util.Maths;
 
 public class HeuristicGreedy implements Algorithm{
@@ -37,7 +35,7 @@ public class HeuristicGreedy implements Algorithm{
 	//how many cameras at once
 	public static int k = 1;
 	
-	public static double EPSILON = 0.018;
+	public static double EPSILON = 0.012;
 
 	private GeometryFactory gf = new GeometryFactory();
 	
@@ -88,6 +86,10 @@ public class HeuristicGreedy implements Algorithm{
 			}
 		}
  	}
+	
+	public void setTol(double tol) {
+		EPSILON = tol;
+	}
 	
 	private boolean checkIfCovered(Camera c) {
 		double areaAll = main.getArea();
@@ -241,17 +243,5 @@ public class HeuristicGreedy implements Algorithm{
 		Coordinate v2 = Maths.cRound(new Coordinate(side2.p1.x - side2.p0.x, side2.p1.y - side2.p0.y));
 		Coordinate vb = Maths.cRound(new Coordinate((v1.x + v2.x) / 2, (v1.y + v2.y) / 2));
 		return vb;
-	}
-	
-
-	
-	public static void main(String[] args) {
-		HeuristicGreedy hg = new HeuristicGreedy(InitialSet.TRIANGULATION_COVER, new A7());
-		GalleryInstance gi = new BenchmarkFileInstanceLoader().load(
-				"simple_polygons_with_simple_holes_AGP2013/gB_simple-simple_25:100v-10h_15.pol");
-		System.out.println(gi.getVertices().toString());
-		hg.process(gi);
-		//hg.saveResults("holes_test");
-		System.out.println(gi.cameraNum());
 	}
 }
