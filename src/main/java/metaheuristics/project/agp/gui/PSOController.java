@@ -59,6 +59,7 @@ public class PSOController {
 					@Override
 					protected Void call() throws Exception {
 						PSO pso = new PSO(); 
+						pso.init(tol, iter, pop);
 	            		progress.setProgress(0);
 						pso.process(gi);
 	            		progress.setProgress(1);

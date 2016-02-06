@@ -1,6 +1,11 @@
 package metaheuristics.project.agp.alg.pso;
 
-
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,6 +20,7 @@ import com.vividsolutions.jts.triangulate.ConformingDelaunayTriangulationBuilder
 import metaheuristics.project.agp.alg.Algorithm;
 import metaheuristics.project.agp.instances.GalleryInstance;
 import metaheuristics.project.agp.instances.components.Camera;
+import metaheuristics.project.agp.instances.util.BenchmarkFileInstanceLoader;
 
 public class PSO implements Algorithm {
 
