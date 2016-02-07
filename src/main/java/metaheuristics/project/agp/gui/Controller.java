@@ -57,22 +57,25 @@ public class Controller implements Initializable {
 
 	/**
 	 * Menu item in main gui menu.
-	 * when clicked, opens file chooser
+	 * When clicked, opens file chooser.
 	 */
 	@FXML private MenuItem file_chose;
 	/**
-	 * select genetic algorithm
+	 * Select genetic algorithm.
 	 */
 	@FXML private RadioButton radio_gen;
 	/**
-	 * select pso algorithm
+	 * Select pso algorithm.
 	 */
 	@FXML private RadioButton pso_gen;
 	/**
-	 * select greedy algorithm
+	 * Select greedy algorithm.
 	 */
 	@FXML private RadioButton heur_ger;
 	
+	/**
+	 * Select hybrid algorithm.
+	 */
 	@FXML private RadioButton hybrid;
 	
 	/**
@@ -178,12 +181,12 @@ public class Controller implements Initializable {
 	@FXML private Label gre_tol_txt;
 	
 	/**
-	 * Hybride toleration input.
+	 * hybrid toleration input.
 	 */
 	@FXML private TextField hyb_tol;
 	
 	/**
-	 * Label for hybride toleration input.
+	 * Label for hybrid toleration input.
 	 */
 	@FXML private Label hyb_tol_txt;
 	
@@ -246,7 +249,7 @@ public class Controller implements Initializable {
 	}
 
 	/**
-	 * Method sets hybride parameters visible.
+	 * Method sets hybrid parameters visible.
 	 */
 	private void setHybParamsVisible() {
 		hybPokrivac.setVisible(true);
@@ -523,7 +526,7 @@ public class Controller implements Initializable {
 	}
 	
 	/**
-	 * Method shows hybride parameters and makes others invisible.
+	 * Method shows hybrid parameters and makes others invisible.
 	 */
 	public void showHybParameters(){
 		setGreedyParamsInvisible();

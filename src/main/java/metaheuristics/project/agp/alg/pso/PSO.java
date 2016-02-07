@@ -103,6 +103,7 @@ public class PSO implements Algorithm {
 
 		updateCoveredArea();
 		double max = union.getArea();
+		Collections.sort(psoTriangles);
 
 		for (TriangleOptimization to : psoTriangles) {
 			cover.remove(to.visiblePolygon);
@@ -112,8 +113,6 @@ public class PSO implements Algorithm {
 				cover.add(to.visiblePolygon);
 				finalCameras.add(to.getBest().getCam());
 				updateCoveredArea();
-			} else {
-				eps -= dif;
 			}
 		}
 

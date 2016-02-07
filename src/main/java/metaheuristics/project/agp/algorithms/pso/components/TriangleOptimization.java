@@ -10,8 +10,7 @@ import com.vividsolutions.jts.geom.Polygon;
 import metaheuristics.project.agp.alg.Algorithm;
 import metaheuristics.project.agp.instances.GalleryInstance;
 
-public class TriangleOptimization
-		implements Algorithm, Comparable<TriangleOptimization> {
+public class TriangleOptimization implements Algorithm, Comparable<TriangleOptimization> {
 
 	private static GeometryFactory gf = new GeometryFactory();
 
@@ -81,7 +80,7 @@ public class TriangleOptimization
 
 	@Override
 	public int compareTo(TriangleOptimization o) {
-		return Double.valueOf(maxAreaCovered).compareTo(o.maxAreaCovered);
+		return -Double.valueOf(maxAreaCovered).compareTo(o.maxAreaCovered);
 	}
 
 	/**
