@@ -1,0 +1,8 @@
+gB_simple-simple_25_100v-10h_24.pol 25 10 8 41
+gB_simple-simple_75_300v-30h_17.pol 75 30 22 1332
+gB_simple-simple_100_400v-40h_18.pol 100 40 31 10183
+gB_simple-simple_50_200v-20h_26.pol 50 20 19 368
+gB_simple-simple_75_300v-30h_25.pol 75 30 22 1170
+gB_simple-simple_50_200v-20h_27.pol 50 20 19 372
+gB_simple-simple_50_200v-20h_30.pol 50 20 18 279
+gB_simple-simple_50_200v-20h_15.pol 50 20 16 333
