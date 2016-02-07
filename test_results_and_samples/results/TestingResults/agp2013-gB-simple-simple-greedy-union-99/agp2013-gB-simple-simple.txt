@@ -1,8 +1,166 @@
-gB_simple-simple_25_100v-10h_24.pol 25 10 8 41
-gB_simple-simple_75_300v-30h_17.pol 75 30 22 1332
-gB_simple-simple_100_400v-40h_18.pol 100 40 31 10183
-gB_simple-simple_50_200v-20h_26.pol 50 20 19 368
-gB_simple-simple_75_300v-30h_25.pol 75 30 22 1170
-gB_simple-simple_50_200v-20h_27.pol 50 20 19 372
-gB_simple-simple_50_200v-20h_30.pol 50 20 18 279
-gB_simple-simple_50_200v-20h_15.pol 50 20 16 333
+gB_simple-simple_25_100v-10h_1.pol 25 10 11 29
+gB_simple-simple_25_100v-10h_10.pol 25 10 13 15
+gB_simple-simple_25_100v-10h_11.pol 25 10 11 12
+gB_simple-simple_25_100v-10h_12.pol 25 10 12 13
+gB_simple-simple_25_100v-10h_13.pol 25 10 12 12
+gB_simple-simple_25_100v-10h_14.pol 25 10 11 11
+gB_simple-simple_25_100v-10h_15.pol 25 10 11 10
+gB_simple-simple_25_100v-10h_16.pol 25 10 10 12
+gB_simple-simple_25_100v-10h_17.pol 25 10 11 11
+gB_simple-simple_25_100v-10h_18.pol 25 10 12 10
+gB_simple-simple_25_100v-10h_19.pol 25 10 10 12
+gB_simple-simple_25_100v-10h_2.pol 25 10 10 13
+gB_simple-simple_25_100v-10h_20.pol 25 10 10 19
+gB_simple-simple_25_100v-10h_21.pol 25 10 11 19
+gB_simple-simple_25_100v-10h_22.pol 25 10 12 11
+gB_simple-simple_25_100v-10h_23.pol 25 10 13 13
+gB_simple-simple_25_100v-10h_25.pol 25 10 10 15
+gB_simple-simple_25_100v-10h_26.pol 25 10 8 16
+gB_simple-simple_25_100v-10h_27.pol 25 10 10 18
+gB_simple-simple_25_100v-10h_28.pol 25 10 10 18
+gB_simple-simple_25_100v-10h_29.pol 25 10 12 16
+gB_simple-simple_25_100v-10h_3.pol 25 10 13 23
+gB_simple-simple_25_100v-10h_30.pol 25 10 12 24
+gB_simple-simple_25_100v-10h_4.pol 25 10 12 19
+gB_simple-simple_25_100v-10h_5.pol 25 10 10 20
+gB_simple-simple_25_100v-10h_6.pol 25 10 12 22
+gB_simple-simple_25_100v-10h_7.pol 25 10 12 23
+gB_simple-simple_25_100v-10h_8.pol 25 10 10 17
+gB_simple-simple_25_100v-10h_9.pol 25 10 9 16
+gB_simple-simple_50_200v-20h_1.pol 50 20 19 207
+gB_simple-simple_50_200v-20h_10.pol 50 20 18 152
+gB_simple-simple_50_200v-20h_11.pol 50 20 18 138
+gB_simple-simple_50_200v-20h_12.pol 50 20 25 118
+gB_simple-simple_50_200v-20h_13.pol 50 20 22 121
+gB_simple-simple_50_200v-20h_14.pol 50 20 16 100
+gB_simple-simple_50_200v-20h_16.pol 50 20 20 102
+gB_simple-simple_50_200v-20h_17.pol 50 20 23 123
+gB_simple-simple_50_200v-20h_18.pol 50 20 19 93
+gB_simple-simple_50_200v-20h_19.pol 50 20 19 102
+gB_simple-simple_50_200v-20h_2.pol 50 20 22 91
+gB_simple-simple_50_200v-20h_20.pol 50 20 18 95
+gB_simple-simple_50_200v-20h_21.pol 50 20 21 116
+gB_simple-simple_50_200v-20h_22.pol 50 20 18 101
+gB_simple-simple_50_200v-20h_23.pol 50 20 20 103
+gB_simple-simple_50_200v-20h_24.pol 50 20 22 99
+gB_simple-simple_50_200v-20h_25.pol 50 20 22 109
+gB_simple-simple_50_200v-20h_28.pol 50 20 21 102
+gB_simple-simple_50_200v-20h_29.pol 50 20 18 97
+gB_simple-simple_50_200v-20h_3.pol 50 20 24 148
+gB_simple-simple_50_200v-20h_4.pol 50 20 23 121
+gB_simple-simple_50_200v-20h_5.pol 50 20 21 117
+gB_simple-simple_50_200v-20h_6.pol 50 20 19 124
+gB_simple-simple_50_200v-20h_7.pol 50 20 20 108
+gB_simple-simple_50_200v-20h_8.pol 50 20 20 111
+gB_simple-simple_50_200v-20h_9.pol 50 20 19 115
+gB_simple-simple_75_300v-30h_1.pol 75 30 27 556
+gB_simple-simple_75_300v-30h_10.pol 75 30 30 564
+gB_simple-simple_75_300v-30h_11.pol 75 30 28 653
+gB_simple-simple_75_300v-30h_12.pol 75 30 26 443
+gB_simple-simple_75_300v-30h_13.pol 75 30 26 486
+gB_simple-simple_75_300v-30h_14.pol 75 30 33 613
+gB_simple-simple_75_300v-30h_15.pol 75 30 29 588
+gB_simple-simple_75_300v-30h_16.pol 75 30 28 532
+gB_simple-simple_75_300v-30h_18.pol 75 30 26 714
+gB_simple-simple_75_300v-30h_19.pol 75 30 28 629
+gB_simple-simple_75_300v-30h_2.pol 75 30 32 791
+gB_simple-simple_75_300v-30h_20.pol 75 30 28 530
+gB_simple-simple_75_300v-30h_21.pol 75 30 32 582
+gB_simple-simple_75_300v-30h_22.pol 75 30 28 481
+gB_simple-simple_75_300v-30h_23.pol 75 30 24 401
+gB_simple-simple_75_300v-30h_24.pol 75 30 28 577
+gB_simple-simple_75_300v-30h_26.pol 75 30 29 553
+gB_simple-simple_75_300v-30h_27.pol 75 30 29 501
+gB_simple-simple_75_300v-30h_28.pol 75 30 29 626
+gB_simple-simple_75_300v-30h_29.pol 75 30 34 649
+gB_simple-simple_75_300v-30h_3.pol 75 30 28 577
+gB_simple-simple_75_300v-30h_30.pol 75 30 27 487
+gB_simple-simple_75_300v-30h_4.pol 75 30 30 464
+gB_simple-simple_75_300v-30h_5.pol 75 30 30 422
+gB_simple-simple_75_300v-30h_6.pol 75 30 29 563
+gB_simple-simple_75_300v-30h_7.pol 75 30 28 495
+gB_simple-simple_75_300v-30h_8.pol 75 30 31 559
+gB_simple-simple_75_300v-30h_9.pol 75 30 28 469
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
