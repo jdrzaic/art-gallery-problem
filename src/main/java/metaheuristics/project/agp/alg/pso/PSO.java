@@ -28,11 +28,7 @@ public class PSO implements Algorithm {
 
 	public int populationNumPerTriang = 5;
 
-	public int[] populationTestChange = { 1, 5, 10 };
-
 	public int iteration = 20;
-
-	public int[] iterationTestChange = {1, 5, 10 };
 
 	public GalleryInstance gi;
 
@@ -45,6 +41,8 @@ public class PSO implements Algorithm {
 	public double giArea;
 
 	public double EPSILON = 0.01;
+	
+	public double difference;
 
 	public String[] testFiles = {
 			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-80-5.pol",
@@ -70,70 +68,6 @@ public class PSO implements Algorithm {
 
 	public int ID = 0;
 
-//	/**
-//	 * 
-//	 * @param args
-//	 */
-//	public static void main(String[] args) throws FileNotFoundException {
-//		try {
-//			// information about test output
-//			FileOutputStream fos = new FileOutputStream(new File(
-//					"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/results/TestingResults/results80-100.txt"));
-//			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
-//			// points output with apropriate ID
-//			FileOutputStream fos2 = new FileOutputStream(new File(
-//					"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/results/TestingResults/points80-100.txt"));
-//			BufferedWriter bw2 = new BufferedWriter(
-//					new OutputStreamWriter(fos2));
-//			PSO pso = new PSO();
-//			for (String file : pso.testFiles) {
-//				System.out.println("Poceo sam za :  " + file);
-//				pso.gi = new BenchmarkFileInstanceLoader().load(file);
-//				for (int pop : pso.populationTestChange) {
-//					pso.populationNumPerTriang = pop;
-//					for (int iter : pso.iterationTestChange) {
-//						System.out.println("ID testa :  " + pso.ID);
-//						pso.iteration = iter;
-//						bw.write("ID:   " + pso.ID + "\n");
-//						bw.write("Test sample:  " + file + "\n");
-//						bw.write("Population number:  " + pop + "\n");
-//						bw.write("Number of iterations:  " + iter + "\n");
-//						List<TriangleOptimization> psoTriangles = new ArrayList<>();
-//						long time = System.currentTimeMillis();
-//						pso.findBestCameraPositions(psoTriangles, pso.gi);
-//						pso.calculateMinCameraNum(psoTriangles, pso.gi);
-//						bw.write("Proslo vrijeme: "
-//								+ (System.currentTimeMillis() - time)
-//								+ " \nBroj potrebnih kamera: "
-//								+ pso.cover.size() + "\n");
-//						bw.write("Kamere pokrivaju:  "
-//								+ pso.union.buffer(0).getArea() + "  od  "
-//								+ pso.giArea + "\n");
-//						bw.write("Points: \n");
-//						int newLine = 0;
-//						bw2.write("ID:   " + pso.ID + "\n");
-//						for (Camera cam : pso.finalCameras) {
-//							newLine++;
-//							bw2.write("(" + cam.x + ", " + cam.y + "),  ");
-//							if (newLine % 6 == 0) {
-//								bw2.write("\n");
-//							}
-//						}
-//						bw.write("\n");
-//						bw2.write("\n");
-//						pso.ID++;
-//					}
-//					bw.write("\n");
-//				}
-//
-//			}
-//			bw.close();
-//			bw2.close();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
-
 	/**
 	 * 
 	 * @param psoTriangles
@@ -152,7 +86,7 @@ public class PSO implements Algorithm {
 		}
 
 		giArea = gi.calculateArea();
-		EPSILON = EPSILON * giArea;
+		difference = EPSILON * giArea;
 		Collections.sort(psoTriangles);
 	}
 	
@@ -182,7 +116,6 @@ public class PSO implements Algorithm {
 
 		for (TriangleOptimization to : psoTriangles) {
 			cover.add(to.visiblePolygon);
-			finalCameras.add(to.getBest().getCam());
 		}
 
 		updateCoveredArea();
@@ -191,10 +124,8 @@ public class PSO implements Algorithm {
 
 		for (TriangleOptimization to : psoTriangles) {
 			cover.remove(to.visiblePolygon);
-			finalCameras.remove(to.getBest().getCam());
 			updateCoveredArea();
-			double fail;
-			if ((fail =max - union.getArea()) > EPSILON) {
+			if (max - union.getArea() > difference) {
 				cover.add(to.visiblePolygon);
 				finalCameras.add(to.getBest().getCam());
 				updateCoveredArea();

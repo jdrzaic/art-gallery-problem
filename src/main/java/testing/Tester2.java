@@ -1,27 +1,20 @@
 package testing;
 
 import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.io.Writer;
-import java.nio.file.*;
+import java.nio.file.FileVisitResult;
+import java.nio.file.FileVisitor;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
 
-import org.apache.commons.io.FileUtils;
-
 import metaheuristics.project.agp.alg.Algorithm;
-import metaheuristics.project.agp.alg.greedy.HeuristicGreedy;
-import metaheuristics.project.agp.alg.greedy.HeuristicGreedy.InitialSet;
-import metaheuristics.project.agp.alg.greedy.heuristics.A7;
-import metaheuristics.project.agp.alg.hybrid.HybridAlgorithm;
 import metaheuristics.project.agp.alg.pso.PSO;
 import metaheuristics.project.agp.instances.GalleryInstance;
 import metaheuristics.project.agp.instances.components.Camera;
@@ -29,7 +22,7 @@ import metaheuristics.project.agp.instances.util.BenchmarkFileInstanceLoader;
 
 public class Tester2 {
 	
-	static String resultsFolder = "test_results_and_samples/results/TestingResults/2009a-simplerand-greedy-union-98.8/";
+	static String resultsFolder = "test_results_and_samples/results/TestingResults/2009a-simplerand-pso-union-98.8/";
 	
 	static BenchmarkFileInstanceLoader bfil = new BenchmarkFileInstanceLoader();
 
@@ -44,7 +37,7 @@ public class Tester2 {
 	
 	public static class TestWalker implements FileVisitor<Path> {
 
-		public TestWalker(Algorithm alg) {
+		public TestWalker(Algorithm alg) { 
 			this.alg = alg;
 		}
 		
@@ -52,6 +45,8 @@ public class Tester2 {
 		StringBuilder sb = new StringBuilder();
 		Writer bw = null;
 		Writer errorw = null;
+		
+		
 		@Override
 		public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
 			File f  = new File(resultsFolder + dir.getFileName() + ".txt");
@@ -113,34 +108,7 @@ public class Tester2 {
 		sb.append(file.getFileName() + " " + gi.getVertices().size() + " " + gi.getHoles().size() + " " + gi.cameraNum() + " " + length);
 		return sb.toString();
 	}
-	
-	public static String createResult(Path file) {
-		HybridAlgorithm ha = new HybridAlgorithm(InitialSet.TRIANGULATION_COVER, new A7(), 0.01);
-		long start = System.currentTimeMillis();
-		ha.process(file.toString(), resultsFolder + file.getFileName() + ".txt");
-		long end = System.currentTimeMillis() - start;
-		GalleryInstance gi = new BenchmarkFileInstanceLoader().load(file.toString());
-		StringBuilder sb = new StringBuilder();
-		sb.append(file.getFileName() + " " + gi.getVertices().size() + " " + gi.getHoles().size());
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(
-					resultsFolder + file.getFileName() + ".txt"), "UTF-8"));
-			String[] coordinates = br.readLine().split("\\s+");
-			int cameraNum = coordinates.length / 2;
-			sb.append(" " + cameraNum + " " + end);
-			br.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return sb.toString();
-	}
-	
+
 	private static void saveCameras(GalleryInstance gi, Path dir) {
 		BufferedWriter bw = null;
 		try {
@@ -167,8 +135,7 @@ public class Tester2 {
 
 	public static void main(String[] args) {
 		PSO pso = new PSO();
-		pso.init(0.05, 20, 4);
-		Tester.testAlgorithm(new PSO(), 
-				"test_results_and_samples/benchmarks/GBBTestingFiles");
+		pso.init(0.02, 15, 5);
+		Tester2.testAlgorithm(new PSO(), "test_results_and_samples/benchmarks/GBBTestingFiles");
 	}
 }
