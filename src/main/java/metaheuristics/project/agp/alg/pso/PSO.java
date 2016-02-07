@@ -1,11 +1,5 @@
 package metaheuristics.project.agp.alg.pso;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -16,57 +10,55 @@ import com.vividsolutions.jts.geom.GeometryCollection;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.LinearRing;
 import com.vividsolutions.jts.geom.Polygon;
-import com.vividsolutions.jts.geom.Triangle;
 import com.vividsolutions.jts.triangulate.ConformingDelaunayTriangulationBuilder;
 
 import metaheuristics.project.agp.alg.Algorithm;
+import metaheuristics.project.agp.algorithms.pso.components.TriangleOptimization;
 import metaheuristics.project.agp.instances.GalleryInstance;
 import metaheuristics.project.agp.instances.components.Camera;
-import metaheuristics.project.agp.instances.util.BenchmarkFileInstanceLoader;
 
 public class PSO implements Algorithm {
 
-	public int populationNumPerTriang = 5;
+	/**
+	 * Algorithm population number.
+	 */
+	public int population = 3;
 
-	public int iteration = 20;
+	/**
+	 * Algorithm iteration number.
+	 */
+	public int iteration = 15;
+	
+	/**
+	 * Algorithm toleration percentage.
+	 */
+	public double toleration = 0.01;
 
+	/**
+	 * Gallery instance.
+	 */
 	public GalleryInstance gi;
 
+	/**
+	 * Geometry factory.
+	 */
 	public GeometryFactory gf = new GeometryFactory();
 
+	/**
+	 * List of visibility polygons for every camera.
+	 */
 	public List<Polygon> cover;
 
 	public List<Camera> finalCameras;
 
 	public double giArea;
 
-	public double EPSILON = 0.01;
+	public double eps;
 	
-	public double difference;
-
-	public String[] testFiles = {
-			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-80-5.pol",
-			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-80-10.pol",
-			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-80-15.pol",
-			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-80-20.pol",
-			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-80-25.pol",
-			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-80-30.pol",
-			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-100-1.pol",
-			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-100-5.pol",
-			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-100-10.pol",
-			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-100-15.pol",
-			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-100-20.pol",
-			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-100-25.pol",
-			"/home/gbbanusic/Programiranje/PIOA/AGP/art-gallery-problem2/agp2009a-simplerand/randsimple-100-30.pol" 
-			};
-
-	public void init(double epsilon, int iteracije, int population) {
-		EPSILON = epsilon;
-		iteration = iteracije;
-		populationNumPerTriang = population;
-	}
-
-	public int ID = 0;
+	/**
+	 * @param psoTriangles
+	 */
+	public Geometry union;
 
 	/**
 	 * 
@@ -80,13 +72,11 @@ public class PSO implements Algorithm {
 			if (!gallery.contains(t)) {
 				continue;
 			}
-			TriangleOptimization triangleOpt = new TriangleOptimization(gi, populationNumPerTriang, t, iteration);
+			TriangleOptimization triangleOpt = new TriangleOptimization(gi, population, t, iteration);
 			triangleOpt.process(gi);
 			psoTriangles.add(triangleOpt);
 		}
 
-		giArea = gi.calculateArea();
-		difference = EPSILON * giArea;
 		Collections.sort(psoTriangles);
 	}
 	
@@ -103,32 +93,27 @@ public class PSO implements Algorithm {
 		return ini;
 	}
 
-	/**
-	 * @param psoTriangles
-	 * 
-	 */
-	public Geometry union;
-
 	public void calculateMinCameraNum(List<TriangleOptimization> psoTriangles, GalleryInstance gi) {
 		cover = new ArrayList<>();
 		finalCameras = new ArrayList<>();
-		// provjera da li se dodavanjem kamere neznatno povecala vidljivost
 
 		for (TriangleOptimization to : psoTriangles) {
 			cover.add(to.visiblePolygon);
 		}
 
 		updateCoveredArea();
-
 		double max = union.getArea();
 
 		for (TriangleOptimization to : psoTriangles) {
 			cover.remove(to.visiblePolygon);
 			updateCoveredArea();
-			if (max - union.getArea() > difference) {
+			double dif = max - union.getArea();
+			if (dif  > eps) {
 				cover.add(to.visiblePolygon);
 				finalCameras.add(to.getBest().getCam());
 				updateCoveredArea();
+			} else {
+				eps -= dif;
 			}
 		}
 
@@ -169,13 +154,25 @@ public class PSO implements Algorithm {
 	@Override
 	public void process(GalleryInstance gi) {
 		List<TriangleOptimization> psoTriangles = new ArrayList<>();
-
-		long time = System.currentTimeMillis();
-
+		
+		giArea = gi.calculateArea();
+		eps = toleration * giArea;
+		
 		findBestCameraPositions(psoTriangles, gi);
 		calculateMinCameraNum(psoTriangles, gi);
-
 		return;
+	}
+	
+	/**
+	 * Method for changin initial parameters: toleration percentage, iteration and population number.
+	 * @param epsilon
+	 * @param iteracije
+	 * @param population
+	 */
+	public void init(double epsilon, int iteracije, int population) {
+		toleration = epsilon;
+		iteration = iteracije;
+		population = population;
 	}
 
 }

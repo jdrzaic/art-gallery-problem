@@ -1,4 +1,4 @@
-package metaheuristics.project.agp.alg.pso;
+package metaheuristics.project.agp.algorithms.pso.components;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,6 @@ import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.Polygon;
 
 import metaheuristics.project.agp.alg.Algorithm;
-import metaheuristics.project.agp.algorithms.pso.components.Particle;
 import metaheuristics.project.agp.instances.GalleryInstance;
 
 public class TriangleOptimization

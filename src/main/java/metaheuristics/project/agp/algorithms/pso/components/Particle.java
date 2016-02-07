@@ -1,10 +1,7 @@
 package metaheuristics.project.agp.algorithms.pso.components;
 
-import java.text.DecimalFormat;
-import java.util.List;
 import java.util.Random;
 
-import com.vividsolutions.jts.algorithm.LineIntersector;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.LineSegment;
@@ -14,31 +11,46 @@ import com.vividsolutions.jts.geom.Polygon;
 import metaheuristics.project.agp.instances.GalleryInstance;
 import metaheuristics.project.agp.instances.components.Camera;
 
+/**
+ * Class represents a particle in PSO algorithm.
+ * @author gbbanusic
+ *
+ */
 public class Particle {
 
-	private static double EPSILON = 0.0005;
+	/**
+	 * Divisor for speed bounds.
+	 */
+	private static int sideDivisor = 5;
 
-	private static int maxDivisor = 5;
-
+	/**
+	 * Geometry factory.
+	 */
 	private static GeometryFactory gf = new GeometryFactory();
 
 	/**
-	 * 
+	 * Individuality factor.
 	 */
-	private static double c1 = 2;
-
-	private static double c2 = 2;
+	public static double c1 = 2;
 
 	/**
-	 * 
+	 * Social factor.
+	 */
+	public static double c2 = 2;
+
+	/**
+	 * Random number generator.
 	 */
 	private Random rand = new Random();
 
 	/**
 	 * Camera positions
 	 */
-	private Camera cam;
+	private Camera camera;
 
+	/**
+	 * Personal best camera.
+	 */
 	private Camera pBestCam;
 
 	/**
@@ -46,6 +58,9 @@ public class Particle {
 	 */
 	private GalleryInstance gi;
 
+	/**
+	 * Triangle with camera inside.
+	 */
 	private Polygon triangle;
 
 	/**
@@ -53,6 +68,9 @@ public class Particle {
 	 */
 	private double currValue;
 
+	/**
+	 * Personal best value.
+	 */
 	private double pBestValue;
 
 	/**
@@ -61,10 +79,15 @@ public class Particle {
 	private double[] speed;
 
 	/**
-	 * 
+	 * Speed bounds, calculated by maximal side in triangle.
 	 */
 	private double[][] speedBounds;
 
+	/**
+	 * Constructor creating a particle with given gallery instance and triangle for camera position bounds.
+	 * @param gi is the gallery instance.
+	 * @param triangle
+	 */
 	public Particle(GalleryInstance gi, Polygon triangle) {
 		this.gi = gi;
 		this.triangle = triangle;
@@ -73,22 +96,29 @@ public class Particle {
 		this.speedBounds = new double[2][2];
 		generateSpeedBounds();
 		generateRandomPointAndSpeedInTriangle();
-		this.pBestCam = cam;
+		this.pBestCam = camera;
 	}
 
-	private Particle(GalleryInstance gi, Polygon triangle, Camera cam,
-			Camera pBest, double currValue, double pBestValue) {
-		this.cam = new Camera(cam.x, cam.y);
+	/**
+	 * Constructor for cloning solutions..
+	 * @param gi is the gallery instance.
+	 * @param triangle
+	 * @param cam is the current camera.
+	 * @param pBest is the personal best camera.
+	 * @param currValue is the current value.
+	 * @param pBestValue is the personal best value.
+	 */
+	private Particle(GalleryInstance gi, Polygon triangle, Camera cam,	Camera pBest, double currValue, double pBestValue) {
+		this.camera = new Camera(cam.x, cam.y);
 		this.pBestCam = new Camera(pBest.x, pBest.y);
 		this.gi = gi;
 		this.triangle = triangle;
 		this.currValue = currValue;
 		this.pBestValue = pBestValue;
-
 	}
 
 	/**
-	 * 
+	 * Method for initializing speed bounds.
 	 */
 	private void generateSpeedBounds() {
 		Coordinate[] cor = triangle.getCoordinates();
@@ -100,27 +130,14 @@ public class Particle {
 				Math.max(Math.abs(cor[0].y - cor[1].y),
 						Math.abs(cor[0].y - cor[2].y)),
 				Math.abs(cor[2].y - cor[1].y));
-		speedBounds[0][0] = x / maxDivisor;
-		speedBounds[0][1] = -x / maxDivisor;
-		speedBounds[1][0] = y / maxDivisor;
-		speedBounds[1][1] = -y / maxDivisor;
+		speedBounds[0][0] = x / sideDivisor;
+		speedBounds[0][1] = -x / sideDivisor;
+		speedBounds[1][0] = y / sideDivisor;
+		speedBounds[1][1] = -y / sideDivisor;
 	}
 
 	/**
-	 * Claculate vector lenght.
-	 * 
-	 * @param a
-	 * @param b
-	 * @return
-	 */
-	private double vecLength(Coordinate a, Coordinate b) {
-		return Math.sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
-	}
-
-	/**
-	 * Generate random point within triangle.
-	 * 
-	 * @param triangle2
+	 * Generate random point within triangle with random speed between speed bounds.
 	 */
 	private void generateRandomPointAndSpeedInTriangle() {
 		Coordinate[] verts = triangle.getCoordinates();
@@ -143,9 +160,12 @@ public class Particle {
 				- speedBounds[1][1];
 		checkSpeedBounds();
 
-		this.cam = new Camera(x, y);
+		this.camera = new Camera(x, y);
 	}
 
+	/**
+	 * Method checks whether speed is between its bounds.
+	 */
 	private void checkSpeedBounds() {
 		if (speed[0] > speedBounds[0][0]) {
 			speed[0] = speedBounds[0][0];
@@ -165,34 +185,38 @@ public class Particle {
 	 */
 	public void evaluate() {
 		double temp = -1;
-		temp = cam.visibilityPolygon(gi).calculateArea();
+		temp = camera.visibilityPolygon(gi).calculateArea();
 		if (temp > pBestValue) {
 			pBestValue = temp;
-			pBestCam = new Camera(cam.x, cam.y);
+			pBestCam = new Camera(camera.x, camera.y);
 		}
 		currValue = temp;
 	}
 
+	/**
+	 * Update particle speed depending on global best solution.
+	 * @param gBest is the global best solution.
+	 */
 	public void updateSpeed(Camera gBest) {
-		double xCord = speed[0] + c1 * rand.nextDouble() * (pBestCam.x - cam.x)
-				+ c2 * rand.nextDouble() * (gBest.x - cam.x);
-		double yCord = speed[1] + c1 * rand.nextDouble() * (pBestCam.y - cam.y)
-				+ c2 * rand.nextDouble() * (gBest.y - cam.y);
+		double xCord = speed[0] + c1 * rand.nextDouble() * (pBestCam.x - camera.x)
+				+ c2 * rand.nextDouble() * (gBest.x - camera.x);
+		double yCord = speed[1] + c1 * rand.nextDouble() * (pBestCam.y - camera.y)
+				+ c2 * rand.nextDouble() * (gBest.y - camera.y);
 		speed[0] = xCord;
 		speed[1] = yCord;
 		checkSpeedBounds();
 	}
 
-	/**
-	 * 
-	 */
 	@Override
 	public Particle clone() {
-		return new Particle(gi, triangle, cam, pBestCam, currValue, pBestValue);
+		return new Particle(gi, triangle, camera, pBestCam, currValue, pBestValue);
 	}
 
+	/**
+	 * Method updates particle position.
+	 */
 	public void updatePosition() {
-		Point p = gf.createPoint(new Coordinate(speed[0] + cam.x, speed[1] + cam.y));
+		Point p = gf.createPoint(new Coordinate(speed[0] + camera.x, speed[1] + camera.y));
 		if(!p.within(triangle)){
 			return;
 		}
@@ -201,49 +225,49 @@ public class Particle {
 		LineSegment ls2 = new LineSegment(verts[1], verts[2]);
 		LineSegment ls3 = new LineSegment(verts[0], verts[2]);
 		LineSegment speedVec = new LineSegment(
-				new Coordinate(speed[0] + cam.x, speed[1] + cam.y), cam);
+				new Coordinate(speed[0] + camera.x, speed[1] + camera.y), camera);
 
 		Coordinate c;
 		if ((c = ls1.intersection(speedVec)) != null) {
 
-			cam = new Camera( c);
+			camera = new Camera( c);
 			
-			Point point = gf.createPoint(cam);
+			Point point = gf.createPoint(camera);
 			if(!point.within(triangle)){
 				System.out.println("Vani je.........");
 			}
 		} else if ((c = ls2.intersection(speedVec)) != null) {
-			cam = new Camera( c);
+			camera = new Camera( c);
 			
 			Point point = gf.createPoint(c);
 			if(!point.within(triangle)){
 				System.out.println("Vani je.........");
 			}
 		} else if ((c = ls3.intersection(speedVec)) != null) {
-			cam = new Camera(c);	
+			camera = new Camera(c);	
 				Point point = gf.createPoint(c);
 				if(!point.within(triangle)){
 					System.out.println("Vani je.........");
 				}
 		} else {
-			cam.x = speed[0] + cam.x;
-			cam.y = speed[1] + cam.y;
+			camera.x = speed[0] + camera.x;
+			camera.y = speed[1] + camera.y;
 		}
 	}
 
 	/**
-	 * @return the cam
+	 * @return the camera
 	 */
 	public Camera getCam() {
-		return cam;
+		return camera;
 	}
 
 	/**
-	 * @param cam
-	 *            the cam to set
+	 * @param camera
+	 *            the camera to set
 	 */
 	public void setCam(Camera cam) {
-		this.cam = cam;
+		this.camera = cam;
 	}
 
 	/**

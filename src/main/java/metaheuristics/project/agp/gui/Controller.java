@@ -22,7 +22,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
@@ -38,7 +37,11 @@ import metaheuristics.project.agp.instances.GalleryInstance;
 import metaheuristics.project.agp.instances.components.Polygon;
 import metaheuristics.project.agp.instances.util.BenchmarkFileInstanceLoader;
 
-
+/**
+ * 
+ * @author jdrzaic, gbbanusic
+ *
+ */
 public class Controller implements Initializable {
 
 	public static final String fileResults = "test_results_and_samples/res.txt";
@@ -96,66 +99,102 @@ public class Controller implements Initializable {
 
 	
 	/**
-	 * combobox to chose initial cover in greedy
-	 * 		 
+	 * Combobox to chose initial cover in greedy.
 	 * */
 	@FXML private ComboBox<String> pokrivac;
+	
 	/**
-	 * combobox to chose heuristic in greedy
+	 * Combobox to chose heuristic in greedy.
 	 */
 	@FXML private ComboBox<String> heuristika;
 	
 	/**
-	 * combobox to chose initial cover in greedy
-	 * 		 
+	 * Combobox to chose initial cover in greedy. 
 	 * */
 	@FXML private ComboBox<String> hybPokrivac;
 	/**
-	 * combobox to chose heuristic in greedy
+	 * Combobox to chose heuristic in greedy.
 	 */
 	@FXML private ComboBox<String> hybHeuristika;
 	
 	/**
-	 * Label above pso iteration input.
+	 * Label for pso iteration input.
 	 */
 	@FXML private Label pso_iter_txt;
 	
 	/**
-	 * Label above pso population input.
+	 * Label for pso population input.
 	 */
 	@FXML private Label pso_pop_txt;
 	
 	/**
-	 * Label above pso toleration input.
+	 * Label for pso toleration input.
 	 */
 	@FXML private Label pso_tol_txt;
 	
 	/**
-	 * 
+	 * Label for pso toleration input.
+	 */
+	@FXML private Label pso_indiv_txt;
+	
+	/**
+	 * Label for pso social factor input.
+	 */
+	@FXML private Label pso_soc_txt;
+	
+	/**
+	  * PSO iteration input.
 	 */
 	@FXML private TextField pso_iter;
 	
 	/**
-	 * 
+	  * PSO population input.
 	 */
 	@FXML private TextField pso_pop;
 	
 	/**
-	 * 
+	 * PSO toleration input.
 	 */
 	@FXML private TextField pso_tol;
 	
+	/**
+	 * PSO individual factor input.
+	 */
+	@FXML private TextField pso_indiv;
+	
+	/**
+	 * PSO social factor input.
+	 */
+	@FXML private TextField pso_soc;
+	
+	/**
+	 * Greedy toleration input.
+	 */
 	@FXML private TextField gre_tol;
 	
+	/**
+	 * Label for greedy toleration input.
+	 */
 	@FXML private Label gre_tol_txt;
 	
-
+	/**
+	 * Hybride toleration input.
+	 */
 	@FXML private TextField hyb_tol;
 	
+	/**
+	 * Label for hybride toleration input.
+	 */
 	@FXML private Label hyb_tol_txt;
 	
+	/**
+	 * Progress indicator whether an algorithm is running.
+	 */
 	@FXML private ProgressIndicator progress;
 	
+	/**
+	 * Graphics context.
+	 */
 	GraphicsContext gc;
 
 	@Override
@@ -176,6 +215,9 @@ public class Controller implements Initializable {
 		onClearClicked();
 	}
 
+	/**
+	 * Method sets greedy parameters invisible.
+	 */
 	private void setGreedyParamsInvisible() {
 		pokrivac.setVisible(false);
 		heuristika.setVisible(false);
@@ -183,6 +225,9 @@ public class Controller implements Initializable {
 		gre_tol_txt.setVisible(false);
 	}
 
+	/**
+	 * Method sets greedy parameters visible.
+	 */
 	private void setGreedyParamsVisible() {
 		pokrivac.setVisible(true);
 		heuristika.setVisible(true);
@@ -190,6 +235,9 @@ public class Controller implements Initializable {
 		gre_tol_txt.setVisible(true);
 	}
 	
+	/**
+	 * Method sets gybride parameters invisible.
+	 */
 	private void setHybParamsInvisible() {
 		hybPokrivac.setVisible(false);
 		hybHeuristika.setVisible(false);
@@ -197,6 +245,9 @@ public class Controller implements Initializable {
 		hyb_tol_txt.setVisible(false);
 	}
 
+	/**
+	 * Method sets hybride parameters visible.
+	 */
 	private void setHybParamsVisible() {
 		hybPokrivac.setVisible(true);
 		hybHeuristika.setVisible(true);
@@ -204,6 +255,9 @@ public class Controller implements Initializable {
 		hyb_tol_txt.setVisible(true);
 	}
 	
+	/**
+	 * Method sets PSO parameters invisible.
+	 */
 	private void setPSOParamsInvisible() {
 		pso_pop.setVisible(false);
 		pso_iter.setVisible(false);
@@ -211,8 +265,15 @@ public class Controller implements Initializable {
 		pso_pop_txt.setVisible(false);
 		pso_iter_txt.setVisible(false);
 		pso_tol.setVisible(false);
+		pso_soc_txt.setVisible(false);
+		pso_soc.setVisible(false);
+		pso_indiv_txt.setVisible(false);
+		pso_indiv.setVisible(false);
 	}
 	
+	/**
+	 * Method sets PSO parameters visible.
+	 */
 	private void setPSOParamsVisible() {
 		pso_pop.setVisible(true);
 		pso_iter.setVisible(true);
@@ -220,15 +281,26 @@ public class Controller implements Initializable {
 		pso_pop_txt.setVisible(true);
 		pso_iter_txt.setVisible(true);
 		pso_tol.setVisible(true);
+		pso_soc_txt.setVisible(true);
+		pso_soc.setVisible(true);
+		pso_indiv_txt.setVisible(true);
+		pso_indiv.setVisible(true);
 	}
 
+	/**
+	 * Method binds javafx elements to their container depending on their visibility.
+	 */
 	private void bindParametersVisibility() {
 		pso_iter_txt.managedProperty().bind(pso_iter_txt.visibleProperty());
-		pso_pop_txt.managedProperty().bind(pso_iter_txt.visibleProperty());
-		pso_tol_txt.managedProperty().bind(pso_iter_txt.visibleProperty());
-		pso_iter.managedProperty().bind(pso_iter_txt.visibleProperty());
-		pso_pop.managedProperty().bind(pso_iter_txt.visibleProperty());
-		pso_tol.managedProperty().bind(pso_iter_txt.visibleProperty());
+		pso_pop_txt.managedProperty().bind(pso_pop_txt.visibleProperty());
+		pso_tol_txt.managedProperty().bind(pso_tol_txt.visibleProperty());
+		pso_iter.managedProperty().bind(pso_iter.visibleProperty());
+		pso_pop.managedProperty().bind(pso_pop.visibleProperty());
+		pso_tol.managedProperty().bind(pso_tol.visibleProperty());
+		pso_soc_txt.managedProperty().bind(pso_soc_txt.visibleProperty());
+		pso_soc.managedProperty().bind(pso_soc.visibleProperty());
+		pso_indiv.managedProperty().bind(pso_indiv.visibleProperty());
+		pso_indiv_txt.managedProperty().bind(pso_indiv_txt.visibleProperty());
 		pokrivac.managedProperty().bind(pokrivac.visibleProperty());
 		heuristika.managedProperty().bind(heuristika.visibleProperty());
 		hybPokrivac.managedProperty().bind(hybPokrivac.visibleProperty());
@@ -241,7 +313,7 @@ public class Controller implements Initializable {
 	}
 	
 	/**
-	 * Method for choosing file for algorithms.
+	 * File choosing method.
 	 */
 	public void onFileChooseClicked() {
 		FileChooser fc = new FileChooser();
@@ -307,8 +379,6 @@ public class Controller implements Initializable {
 				}
 				draw = 0;
 				GeneticController gc = new GeneticController();
-				//check for error
-				GalleryInstance gi = new BenchmarkFileInstanceLoader().load(benchmark.getAbsolutePath());
 				gc.process(benchmark.getAbsolutePath(), progress);
 			} catch(Exception e) {
 				WrongFileAlert();
@@ -336,7 +406,7 @@ public class Controller implements Initializable {
 					benchmark = new File(other.getAbsolutePath());
 				}
 				draw = 0;
-				PSOController psoc = new PSOController(pso_pop.getText(), pso_iter.getText(), pso_tol.getText());
+				PSOController psoc = new PSOController(pso_pop.getText(), pso_iter.getText(), pso_tol.getText(),pso_indiv.getText(), pso_soc.getText());
 				psoc.process(benchmark.getAbsolutePath(), progress);
 			} catch(Exception e) {
 				WrongFileAlert();
@@ -350,7 +420,7 @@ public class Controller implements Initializable {
 				GalleryError();
 			} else {
 				drawing.gi.cameras = new HashSet<>();
-				PSOController psoc = new PSOController(pso_pop.getText(), pso_iter.getText(), pso_tol.getText());
+				PSOController psoc = new PSOController(pso_pop.getText(), pso_iter.getText(), pso_tol.getText(), pso_indiv.getText(), pso_soc.getText());
 				generateBenchmarkFromDraw();
 				psoc.process("test_results_and_samples/pol.txt", progress);
 			}
@@ -405,9 +475,7 @@ public class Controller implements Initializable {
 		wrongFileAlert.showAndWait();
 	}
 
-	/**
-	 * 
-	 */
+	
 	public void onImageViewClicked() {
 	    canvas.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
@@ -428,7 +496,7 @@ public class Controller implements Initializable {
 	}
 	
 	/**
-	 * 
+	 * Method shows PSO parameters and makes others invisible.
 	 */
 	public void showPSOParameters(){
 		setGreedyParamsInvisible();
@@ -437,7 +505,7 @@ public class Controller implements Initializable {
 	}
 	
 	/**
-	 * 
+	 * Method shows greedy parameters and makes others invisible.
 	 */
 	public void showGreedyParameters(){
 		setPSOParamsInvisible();
@@ -445,12 +513,18 @@ public class Controller implements Initializable {
 		setGreedyParamsVisible();
 	}
 	
+	/**
+	 * Method shows genetic parameters and makes others invisible.
+	 */
 	public void showGenParameters() {
 		setGreedyParamsInvisible();
 		setHybParamsInvisible();
 		setPSOParamsInvisible();
 	}
 	
+	/**
+	 * Method shows hybride parameters and makes others invisible.
+	 */
 	public void showHybParameters(){
 		setGreedyParamsInvisible();
 		setPSOParamsInvisible();
