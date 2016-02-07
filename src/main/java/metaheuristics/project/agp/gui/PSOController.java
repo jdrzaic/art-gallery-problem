@@ -107,7 +107,7 @@ public class PSOController {
 				};
 			}
 		};
-service.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+		service.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
 			
 			@Override
 			public void handle(WorkerStateEvent event) {
