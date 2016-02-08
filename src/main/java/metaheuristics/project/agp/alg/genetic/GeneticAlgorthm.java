@@ -18,7 +18,6 @@ public class GeneticAlgorthm {
 		try {
 			Process p = Runtime.getRuntime().exec("./GeneticAlgorithm " +  
 				  filePolygon  + " " + initCover + " " + fileToSave);
-			System.out.println(filePolygon + "  " + fileToSave);
 			try {
 				p.waitFor();
 			} catch (InterruptedException e) {
