@@ -1,0 +1,12 @@
+randsimple-200-15.pol 200 0 35 1946
+randsimple-200-5.pol 200 0 37 2598
+randsimple-200-10.pol 200 0 38 2405
+randsimple-200-20.pol 200 0 30 2567
+randsimple-200-30.pol 200 0 34 2450
+randsimple-200-25.pol 200 0 33 2454
+
+
+
+
+
+

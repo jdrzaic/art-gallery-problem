@@ -1,0 +1,54 @@
+randsimple-60-30.pol 60 0 8 39
+randsimple-80-25.pol 80 0 13 80
+randsimple-20-20.pol 20 0 3 1
+randsimple-80-15.pol 80 0 11 73
+randsimple-20-30.pol 20 0 4 1
+randsimple-20-25.pol 20 0 3 1
+randsimple-60-25.pol 60 0 7 46
+randsimple-60-10.pol 60 0 10 42
+randsimple-20-5.pol 20 0 3 1
+randsimple-80-20.pol 80 0 14 274
+randsimple-20-15.pol 20 0 3 3
+randsimple-100-20.pol 100 0 16 442
+randsimple-80-5.pol 80 0 15 203
+randsimple-40-25.pol 40 0 8 18
+randsimple-100-10.pol 100 0 17 405
+randsimple-40-5.pol 40 0 7 9
+randsimple-100-30.pol 100 0 15 194
+randsimple-60-5.pol 60 0 12 34
+randsimple-80-30.pol 80 0 12 101
+randsimple-60-20.pol 60 0 11 48
+randsimple-40-15.pol 40 0 7 9
+randsimple-40-20.pol 40 0 6 11
+randsimple-40-30.pol 40 0 6 15
+randsimple-80-10.pol 80 0 12 137
+randsimple-40-10.pol 40 0 6 13
+randsimple-20-10.pol 20 0 4 1
+randsimple-60-15.pol 60 0 10 26
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

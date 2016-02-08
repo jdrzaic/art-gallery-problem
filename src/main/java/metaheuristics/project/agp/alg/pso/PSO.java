@@ -169,9 +169,9 @@ public class PSO implements Algorithm {
 	 * @param population
 	 */
 	public void init(double epsilon, int iteracije, int population) {
-		toleration = epsilon;
-		iteration = iteracije;
-		population = population;
+		this.toleration = epsilon;
+		this.iteration = iteracije;
+		this.population = population;
 	}
 
 }
