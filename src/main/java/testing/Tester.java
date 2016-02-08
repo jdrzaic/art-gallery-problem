@@ -18,6 +18,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 import org.apache.commons.io.FileUtils;
 
 import metaheuristics.project.agp.alg.Algorithm;
+import metaheuristics.project.agp.alg.genetic.GeneticAlgorthm;
 import metaheuristics.project.agp.alg.greedy.HeuristicGreedy;
 import metaheuristics.project.agp.alg.greedy.HeuristicGreedy.InitialSet;
 import metaheuristics.project.agp.alg.greedy.heuristics.A7;
@@ -28,8 +29,8 @@ import metaheuristics.project.agp.instances.util.BenchmarkFileInstanceLoader;
 
 public class Tester {
 	
-	static String resultsFolder = "test_results_and_samples/results/TestingResults/2009a-simplerand-greedy-union-98.8/";
-	
+	static String resultsFolder = "test_results_and_samples/results/TestingResults/agp2013-gB-simple-simple-hybrid-union-99.5/";
+	static String initCoverFolder = "test_results_and_samples/results/TestingResults/agp2013-gB-simple-simple-greedy-union-99";
 	static BenchmarkFileInstanceLoader bfil = new BenchmarkFileInstanceLoader();
 
 	public static void testAlgorithm(Algorithm alg, String root) {
@@ -76,7 +77,7 @@ public class Tester {
 			System.out.println(file.toString());
 			try {
 				//sb.append(createResult(alg, file));
-				bw.write(createResult(alg, file) + System.lineSeparator());
+				bw.write(createResult(file) + System.lineSeparator());
 				bw.flush();
 				//sb.append(createResult(file));
 			} catch(Exception e) {
@@ -114,9 +115,9 @@ public class Tester {
 	}
 	
 	public static String createResult(Path file) {
-		HybridAlgorithm ha = new HybridAlgorithm(InitialSet.TRIANGULATION_COVER, new A7(), 0.01);
+		GeneticAlgorthm ga = new GeneticAlgorthm();
 		long start = System.currentTimeMillis();
-		ha.process(file.toString(), resultsFolder + file.getFileName() + ".txt");
+		ga.process(file.toString(), resultsFolder + file.getFileName() + ".txt", initCoverFolder + file.getFileName() + ".txt");
 		long end = System.currentTimeMillis() - start;
 		GalleryInstance gi = new BenchmarkFileInstanceLoader().load(file.toString());
 		StringBuilder sb = new StringBuilder();
@@ -165,6 +166,6 @@ public class Tester {
 
 	public static void main(String[] args) {
 		Tester.testAlgorithm(new HeuristicGreedy(InitialSet.VERTEX_TRIANGULATION_COVER, new A7()), 
-				"test_results_and_samples/benchmarks/agp2009a-simplerand");
+				"test_results_and_samples/benchmarks/agp2013-gB-simple-simple");
 	}
 }

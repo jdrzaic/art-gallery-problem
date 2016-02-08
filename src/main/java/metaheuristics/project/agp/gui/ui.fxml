@@ -53,7 +53,7 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
 				</Label>
-				<RadioButton fx:id="radio_gen" mnemonicParsing="false" selected="true" text="Genetski algoritam" onAction="#showGenParameters">
+				<RadioButton fx:id="radio_gen" mnemonicParsing="false" onAction="#showGenParameters" selected="true" text="Genetski algoritam">
 					<toggleGroup>
 						<ToggleGroup fx:id="algoritmi" />
 					</toggleGroup>
@@ -117,7 +117,7 @@
                   <Font name="Verdana" size="12.0" />
                </font>
 				</Label>
-				<TextField fx:id="pso_tol">
+				<TextField fx:id="pso_tol" text="0.01">
                <VBox.margin>
                   <Insets left="25.0" />
                </VBox.margin>
@@ -207,7 +207,7 @@
                   <Font name="Verdana" size="12.0" />
                </font>
             </Label>
-            <TextField fx:id="gre_tol" layoutX="35.0" layoutY="238.0">
+            <TextField fx:id="gre_tol" layoutX="35.0" layoutY="238.0" text="0.01">
                <VBox.margin>
                   <Insets left="25.0" />
                </VBox.margin>
@@ -260,7 +260,7 @@
                   <Font name="Verdana" size="12.0" />
                </font>
             </Label>
-            <TextField fx:id="hyb_tol" layoutX="35.0" layoutY="381.0">
+            <TextField fx:id="hyb_tol" layoutX="35.0" layoutY="381.0" text="0.01">
                <VBox.margin>
                   <Insets left="25.0" />
                </VBox.margin>

@@ -23,20 +23,40 @@ import metaheuristics.project.agp.instances.GalleryInstance;
 import metaheuristics.project.agp.instances.components.Camera;
 import metaheuristics.project.agp.instances.util.Maths;
 
+
+/**
+ * Heuristic algorithm solving art gallery problem.
+ * Uses {@link GalleryInstance} za reprezentaciju galerije.
+ * 
+ * @author jelenadrzaic
+ *
+ */
 public class HeuristicGreedy implements Algorithm{
 
+	/**
+	 * Enum - pocetni pokrivaci iz kojeg biramo kamere
+	 * @author jelenadrzaic
+	 *
+	 */
 	public enum InitialSet {
 		VERTEX_COVER,
-		SIDES_EXTENSION,
 		VERTEX_TRIANGULATION_COVER,
 		TRIANGULATION_COVER
 	}
 	
-	//how many cameras at once
+	/**
+	 * Broj kamera koje ubacujemo u jednoj iteraciji algoritma
+	 */
 	public static int k = 1;
 	
-	public static double EPSILON = 0.012;
+	/**
+	 * Tolerancija "nepokrivenosti" galerije
+	 */
+	public static double EPSILON = 0.005;
 
+	/**
+	 * Instanca {@link GeometryFactory} koristena u implementaciji
+	 */
 	private GeometryFactory gf = new GeometryFactory();
 	
 	private Polygon main;
@@ -88,7 +108,8 @@ public class HeuristicGreedy implements Algorithm{
  	}
 	
 	public void setTol(double tol) {
-		EPSILON = tol < 0.001 ? 0.001 : tol;
+		EPSILON = tol < 0.005 ? 0.005 : tol;
+		System.out.println(EPSILON);
 	}
 	
 	private boolean checkIfCovered(Camera c) {
