@@ -106,7 +106,7 @@
                <VBox.margin>
                   <Insets left="25.0" />
                </VBox.margin></TextField>
-				<Label fx:id="pso_tol_txt" text=" Tolerancija (%):">
+				<Label fx:id="pso_tol_txt" text=" Tolerancija 2 kamere:">
 					<padding>
 						<Insets top="5.0" />
 					</padding>

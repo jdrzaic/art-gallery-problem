@@ -135,7 +135,7 @@ public class Tester2 {
 
 	public static void main(String[] args) {
 		PSO pso = new PSO();
-		pso.init(0.01, 9, 3);
-		Tester2.testAlgorithm(new PSO(), "test_results_and_samples/benchmarks/GBBTestingFiles");
+		pso.init(0.001, 8, 4);
+		Tester2.testAlgorithm(pso, "test_results_and_samples/benchmarks/GBBTestingFiles");
 	}
 }

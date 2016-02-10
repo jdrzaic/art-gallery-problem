@@ -44,21 +44,12 @@ public class PSO implements Algorithm {
 	 */
 	public GeometryFactory gf = new GeometryFactory();
 
-	/**
-	 * List of visibility polygons for every camera.
-	 */
-	public List<Polygon> cover;
-
 	public List<Camera> finalCameras;
 
 	public double giArea;
 
 	public double eps;
 	
-	/**
-	 * @param psoTriangles
-	 */
-	public Geometry union;
 
 	/**
 	 * 
@@ -67,15 +58,31 @@ public class PSO implements Algorithm {
 	public void findBestCameraPositions(List<TriangleOptimization> psoTriangles, GalleryInstance gi) {
 		Polygon gallery = createPolygon(gi.getVertices(), gi.getHoles());
 		List<Polygon> polygons = createInitialTriangCover(gi, gallery);
-
+		List<Polygon> cover = new ArrayList<>();
+		Geometry initUnion = null;
+		int k = 0;
+		double area = 0;
 		for (Polygon t : polygons) {
-			if (!gallery.contains(t)) {
+			TriangleOptimization triangleOpt = new TriangleOptimization(gi, population, t, iteration);
+			if(!gf.createPoint(triangleOpt.getBest().getCam()).within(gallery)){
 				continue;
 			}
-			TriangleOptimization triangleOpt = new TriangleOptimization(gi, population, t, iteration);
+
+			if(initUnion != null){
+				area = initUnion.getArea();
+			}
+			cover.add(triangleOpt.visiblePolygon);
+			initUnion = updateCoveredArea(cover);
+			if(initUnion.getArea() - area < 0.007 * giArea){
+				cover.remove(triangleOpt.visiblePolygon);
+				initUnion = updateCoveredArea(cover);
+				continue;
+			}
+			k++;
 			triangleOpt.process(gi);
 			psoTriangles.add(triangleOpt);
 		}
+		System.out.println(k);
 
 		Collections.sort(psoTriangles);
 	}
@@ -94,36 +101,37 @@ public class PSO implements Algorithm {
 	}
 
 	public void calculateMinCameraNum(List<TriangleOptimization> psoTriangles, GalleryInstance gi) {
-		cover = new ArrayList<>();
+		List<Polygon> cover = new ArrayList<>();
 		finalCameras = new ArrayList<>();
+		Geometry union = null;
 
 		for (TriangleOptimization to : psoTriangles) {
 			cover.add(to.visiblePolygon);
 		}
 
-		updateCoveredArea();
+		union = updateCoveredArea(cover);
 		double max = union.getArea();
 		Collections.sort(psoTriangles);
 
 		for (TriangleOptimization to : psoTriangles) {
 			cover.remove(to.visiblePolygon);
-			updateCoveredArea();
+			union = updateCoveredArea(cover);
 			double dif = max - union.getArea();
 			if (dif  > eps) {
 				cover.add(to.visiblePolygon);
 				finalCameras.add(to.getBest().getCam());
-				updateCoveredArea();
+				union = updateCoveredArea(cover);
 			}
 		}
 
 		gi.getCameras().addAll(finalCameras);
 	}
 
-	public void updateCoveredArea() {
+	public Geometry updateCoveredArea (List<Polygon> cover) {
 		Polygon[] polygons = cover.toArray(new Polygon[cover.size()]);
 		GeometryCollection polygonCollection = gf
 				.createGeometryCollection(polygons);
-		union = polygonCollection.buffer(0);
+		return polygonCollection.buffer(0);
 	}
 
 	/**

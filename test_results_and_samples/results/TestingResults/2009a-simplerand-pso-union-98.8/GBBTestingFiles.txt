@@ -1,0 +1,366 @@
+randsimple-300-1.pol 300 0 40 1085
+randsimple-200-15.pol 200 0 28 374
+randsimple-60-30.pol 60 0 6 10
+randsimple-80-25.pol 80 0 11 26
+randsimple-20-20.pol 20 0 4 0
+randsimple-60-22.pol 60 0 8 9
+randsimple-100-4.pol 100 0 17 60
+randsimple-80-15.pol 80 0 12 24
+randsimple-40-18.pol 40 0 8 3
+randsimple-60-17.pol 60 0 10 9
+randsimple-40-14.pol 40 0 8 2
+randsimple-20-3.pol 20 0 4 0
+randsimple-80-26.pol 80 0 12 25
+randsimple-60-19.pol 60 0 10 9
+randsimple-20-30.pol 20 0 3 0
+randsimple-200-17.pol 200 0 33 373
+randsimple-20-27.pol 20 0 4 0
+randsimple-20-25.pol 20 0 3 0
+randsimple-60-24.pol 60 0 7 14
+randsimple-80-23.pol 80 0 11 31
+randsimple-40-16.pol 40 0 7 3
+randsimple-100-27.pol 100 0 14 34
+randsimple-200-16.pol 200 0 26 421
+randsimple-80-13.pol 80 0 14 24
+randsimple-20-17.pol 20 0 3 0
+randsimple-20-29.pol 20 0 3 0
+randsimple-80-1.pol 80 0 11 16
+randsimple-20-9.pol 20 0 3 0
+randsimple-200-27.pol 200 0 25 355
+randsimple-20-2.pol 20 0 7 0
+randsimple-40-21.pol 40 0 7 2
+randsimple-60-25.pol 60 0 8 10
+randsimple-100-25.pol 100 0 16 41
+randsimple-60-21.pol 60 0 10 12
+randsimple-200-19.pol 200 0 28 368
+randsimple-200-3.pol 200 0 26 386
+randsimple-200-13.pol 200 0 28 342
+randsimple-80-29.pol 80 0 10 18
+randsimple-100-21.pol 100 0 15 48
+randsimple-40-8.pol 40 0 6 2
+randsimple-200-23.pol 200 0 35 446
+randsimple-200-6.pol 200 0 27 348
+randsimple-20-14.pol 20 0 5 0
+randsimple-20-22.pol 20 0 5 0
+randsimple-200-5.pol 200 0 23 302
+randsimple-100-13.pol 100 0 13 50
+randsimple-200-18.pol 200 0 27 431
+randsimple-80-22.pol 80 0 12 21
+randsimple-60-10.pol 60 0 9 9
+randsimple-60-13.pol 60 0 11 10
+randsimple-20-5.pol 20 0 4 0
+randsimple-200-2.pol 200 0 26 298
+randsimple-100-29.pol 100 0 14 52
+randsimple-40-7.pol 40 0 9 3
+randsimple-80-20.pol 80 0 15 27
+randsimple-20-18.pol 20 0 4 0
+randsimple-100-12.pol 100 0 14 33
+randsimple-20-15.pol 20 0 3 0
+randsimple-40-9.pol 40 0 6 3
+randsimple-200-10.pol 200 0 32 397
+randsimple-200-24.pol 200 0 22 342
+randsimple-20-7.pol 20 0 4 0
+randsimple-60-4.pol 60 0 10 11
+randsimple-40-4.pol 40 0 6 2
+randsimple-100-20.pol 100 0 14 35
+randsimple-80-11.pol 80 0 15 30
+randsimple-200-12.pol 200 0 27 327
+randsimple-60-29.pol 60 0 12 12
+randsimple-80-9.pol 80 0 16 27
+randsimple-60-28.pol 60 0 8 11
+randsimple-300-15.pol 300 0 34 882
+randsimple-80-8.pol 80 0 14 32
+randsimple-100-23.pol 100 0 12 34
+randsimple-80-19.pol 80 0 12 29
+randsimple-200-20.pol 200 0 27 370
+randsimple-80-28.pol 80 0 11 24
+randsimple-80-12.pol 80 0 12 21
+randsimple-200-30.pol 200 0 23 274
+randsimple-40-13.pol 40 0 7 3
+randsimple-100-9.pol 100 0 13 56
+randsimple-60-14.pol 60 0 8 10
+randsimple-60-3.pol 60 0 10 11
+randsimple-80-4.pol 80 0 12 30
+randsimple-100-8.pol 100 0 16 39
+randsimple-80-5.pol 80 0 15 33
+randsimple-20-16.pol 20 0 3 0
+randsimple-40-27.pol 40 0 6 3
+randsimple-40-25.pol 40 0 10 3
+randsimple-80-18.pol 80 0 13 37
+randsimple-200-7.pol 200 0 26 394
+randsimple-60-18.pol 60 0 9 8
+randsimple-20-12.pol 20 0 4 0
+randsimple-60-8.pol 60 0 9 9
+randsimple-80-2.pol 80 0 11 24
+randsimple-80-27.pol 80 0 15 30
+randsimple-20-8.pol 20 0 3 0
+randsimple-200-22.pol 200 0 30 349
+randsimple-100-16.pol 100 0 14 48
+randsimple-200-26.pol 200 0 24 327
+randsimple-100-15.pol 100 0 14 50
+randsimple-60-23.pol 60 0 8 9
+randsimple-100-6.pol 100 0 14 45
+randsimple-40-2.pol 40 0 7 3
+randsimple-100-24.pol 100 0 16 61
+randsimple-40-19.pol 40 0 7 2
+randsimple-60-27.pol 60 0 10 9
+randsimple-80-17.pol 80 0 15 30
+randsimple-100-14.pol 100 0 14 47
+randsimple-40-6.pol 40 0 8 3
+randsimple-200-29.pol 200 0 28 347
+randsimple-100-10.pol 100 0 14 37
+randsimple-80-6.pol 80 0 13 20
+randsimple-40-5.pol 40 0 5 2
+randsimple-100-30.pol 100 0 16 37
+randsimple-200-25.pol 200 0 25 321
+randsimple-100-2.pol 100 0 20 55
+randsimple-200-9.pol 200 0 29 411
+randsimple-60-12.pol 60 0 9 14
+randsimple-60-26.pol 60 0 9 12
+randsimple-80-21.pol 80 0 13 39
+randsimple-100-3.pol 100 0 12 43
+randsimple-20-13.pol 20 0 3 0
+randsimple-60-5.pol 60 0 9 8
+randsimple-80-30.pol 80 0 13 23
+randsimple-20-23.pol 20 0 5 0
+randsimple-40-11.pol 40 0 9 3
+randsimple-60-20.pol 60 0 10 13
+randsimple-200-14.pol 200 0 24 292
+randsimple-100-22.pol 100 0 17 49
+randsimple-40-23.pol 40 0 8 3
+randsimple-200-8.pol 200 0 30 407
+randsimple-20-11.pol 20 0 3 0
+randsimple-40-15.pol 40 0 9 3
+randsimple-40-1.pol 40 0 10 3
+randsimple-20-4.pol 20 0 3 0
+randsimple-80-7.pol 80 0 14 27
+randsimple-200-21.pol 200 0 23 260
+randsimple-20-1.pol 20 0 6 0
+randsimple-40-20.pol 40 0 6 2
+randsimple-40-30.pol 40 0 6 2
+randsimple-40-12.pol 40 0 6 3
+randsimple-60-6.pol 60 0 10 8
+randsimple-100-26.pol 100 0 15 53
+randsimple-80-10.pol 80 0 13 27
+randsimple-60-16.pol 60 0 7 11
+randsimple-40-3.pol 40 0 7 3
+randsimple-100-18.pol 100 0 14 69
+randsimple-200-1.pol 200 0 23 311
+randsimple-60-1.pol 60 0 12 13
+randsimple-100-5.pol 100 0 17 51
+randsimple-300-30.pol 300 0 38 1085
+randsimple-100-7.pol 100 0 17 55
+randsimple-20-28.pol 20 0 4 0
+randsimple-200-28.pol 200 0 29 341
+randsimple-40-10.pol 40 0 8 3
+randsimple-40-28.pol 40 0 6 2
+randsimple-80-14.pol 80 0 13 30
+randsimple-20-19.pol 20 0 4 0
+randsimple-40-22.pol 40 0 8 3
+randsimple-60-2.pol 60 0 8 8
+randsimple-20-10.pol 20 0 4 0
+randsimple-100-17.pol 100 0 12 51
+randsimple-60-11.pol 60 0 8 9
+randsimple-60-7.pol 60 0 9 8
+randsimple-40-26.pol 40 0 7 3
+randsimple-100-1.pol 100 0 15 41
+randsimple-40-29.pol 40 0 7 3
+randsimple-20-24.pol 20 0 3 0
+randsimple-40-24.pol 40 0 6 2
+randsimple-20-6.pol 20 0 4 0
+randsimple-200-4.pol 200 0 30 379
+randsimple-100-19.pol 100 0 14 49
+randsimple-20-21.pol 20 0 4 0
+randsimple-200-11.pol 200 0 27 320
+randsimple-60-9.pol 60 0 10 13
+randsimple-20-26.pol 20 0 5 0
+randsimple-100-28.pol 100 0 14 58
+randsimple-100-11.pol 100 0 12 57
+randsimple-80-16.pol 80 0 14 20
+randsimple-80-3.pol 80 0 9 24
+randsimple-60-15.pol 60 0 10 13
+randsimple-80-24.pol 80 0 12 22
+randsimple-40-17.pol 40 0 4 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
