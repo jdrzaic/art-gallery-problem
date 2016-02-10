@@ -44,7 +44,7 @@ public class TriangleOptimization implements Algorithm, Comparable<TriangleOptim
 		}
 		
 		this.gBest = particles.get(0).clone();
-
+		createVisiblePolygon();
 	}
 
 	private void createVisiblePolygon() {
