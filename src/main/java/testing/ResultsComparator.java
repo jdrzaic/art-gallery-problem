@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import metaheuristics.project.agp.alg.Algorithm;
 
 public class ResultsComparator {
-
+	
 	public void compareResults(String benchmarkResults, String customResults) {
 		try {
 			BufferedReader br1 = new BufferedReader(new InputStreamReader(new FileInputStream(benchmarkResults), "UTF-8"));
@@ -30,9 +30,8 @@ public class ResultsComparator {
 			String inputB = null;
 			ArrayList<String> benchmarkData = new ArrayList<>();
 			while((inputB = br1.readLine()) != null) {
-				if(inputB.contains("All Vertices") != true) continue;
 				String[] parsed = inputB.split("\\s+");
-				benchmarkData.add(parsed[0].substring(1, parsed[0].length() - 1) + ".pol " + parsed[5]);
+				benchmarkData.add(parsed[0] + ".pol " + parsed[2]);
 			}
 			ArrayList<String> customData = new ArrayList<>();
 			String inputC = null;
@@ -40,15 +39,56 @@ public class ResultsComparator {
 				String[] parsed = inputC.split("\\s+");
 				customData.add(parsed[0] + " " + parsed[3]);
 			}
-			BufferedWriter bw = new BufferedWriter(new FileWriter("toGraph/agp2009aToGraphhyb.txt"));
+			BufferedWriter bw = new BufferedWriter(new FileWriter("test_results_and_samples/graphFin/2013referent_pso.txt"));
 			for(String b : benchmarkData) {
 				for(String c : customData) {
+					System.out.println("pair");
+					System.out.println(b.split("\\s+")[0]);
+					System.out.println(c.split("\\s+")[0]);
 					if(c.startsWith(b.split("\\s+")[0])) {
-						int diff = Integer.valueOf(b.split("\\s+")[1]) - Integer.valueOf(c.split("\\s+")[1]);
-						bw.write(b.split("\\s+")[0] + " " + diff + System.getProperty("line.separator"));
+						System.out.println("match\n");
+						bw.write(b.split("\\s+")[0] + " " + b.split("\\s+")[1] + " " + c.split("\\s+")[1] + System.getProperty("line.separator"));
 					}
 				}
 			}
+			bw.flush();
+			br1.close();
+			bw.close();
+			br2.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void compareResultsOur(String benchmarkResults, String customResults) {
+		try {
+			BufferedReader br1 = new BufferedReader(new InputStreamReader(new FileInputStream(benchmarkResults), "UTF-8"));
+			BufferedReader br2 = new BufferedReader(new InputStreamReader(new FileInputStream(customResults), "UTF-8"));
+			String inputB = null;
+			ArrayList<String> benchmarkData = new ArrayList<>();
+			while((inputB = br1.readLine()) != null) {
+				String[] parsed = inputB.split("\\s+");
+				benchmarkData.add(parsed[0] + " " + parsed[3]);
+			}
+			ArrayList<String> customData = new ArrayList<>();
+			String inputC = null;
+			while((inputC = br2.readLine()) != null) {
+				String[] parsed = inputC.split("\\s+");
+				customData.add(parsed[0] + " " + parsed[3]);
+			}
+			BufferedWriter bw = new BufferedWriter(new FileWriter("test_results_and_samples/graphFin/2009greedy_hybrid.txt"));
+			for(String b : benchmarkData) {
+				for(String c : customData) {
+					System.out.println("pair");
+					System.out.println(b.split("\\s+")[0]);
+					System.out.println(c.split("\\s+")[0]);
+					if(c.startsWith(b.split("\\s+")[0])) {
+						System.out.println("match\n");
+						bw.write(b.split("\\s+")[0] + " " + b.split("\\s+")[1] + " " + c.split("\\s+")[1] + System.getProperty("line.separator"));
+					}
+				}
+			}
+			bw.flush();
 			br1.close();
 			bw.close();
 			br2.close();
@@ -59,6 +99,9 @@ public class ResultsComparator {
 	
 	public static void main(String[] args) {
 		ResultsComparator rc = new ResultsComparator();
-		rc.compareResults("toGraph/agp2009a-simplerand.csv", "agp2009a-simplerand-hybrid/agp2009a-simplerand.txt");
+		//rc.compareResultsOur("test_results_and_samples/results/TestingResults/2009a-simplerand-greedy-union-98.8/agp2009a-simplerand.txt", 
+			//	"test_results_and_samples/results/TestingResults/2009a-simplerand-hybrid-union-99.0/agp2009a-simplerand300.txt");
+		rc.compareResults("test_results_and_samples/results/dataResults/agp2013a-simplev-simpleh.csv", 
+				"test_results_and_samples/results/TestingResults/2009a-simplerand-pso-union-98.8/2013pso.txt");
 	}
 }

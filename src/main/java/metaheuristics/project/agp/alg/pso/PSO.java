@@ -72,6 +72,7 @@ public class PSO implements Algorithm {
 				area = initUnion.getArea();
 			}
 			cover.add(triangleOpt.visiblePolygon);
+			System.out.println("added");
 			initUnion = updateCoveredArea(cover);
 			if(initUnion.getArea() - area < 0.007 * giArea){
 				cover.remove(triangleOpt.visiblePolygon);
@@ -117,6 +118,7 @@ public class PSO implements Algorithm {
 			cover.remove(to.visiblePolygon);
 			union = updateCoveredArea(cover);
 			double dif = max - union.getArea();
+			System.out.println(dif);
 			if (dif  > eps) {
 				cover.add(to.visiblePolygon);
 				finalCameras.add(to.getBest().getCam());

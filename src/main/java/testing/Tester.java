@@ -29,8 +29,8 @@ import metaheuristics.project.agp.instances.util.BenchmarkFileInstanceLoader;
 
 public class Tester {
 	
-	static String resultsFolder = "test_results_and_samples/results/TestingResults/agp2013-gB-simple-simple-hybrid-union-99.5/";
-	static String initCoverFolder = "test_results_and_samples/results/TestingResults/agp2013-gB-simple-simple-greedy-union-99";
+	static String resultsFolder = "test_results_and_samples/results/TestingResults/2009a-simplerand-hybrid-union-99.8-2/";
+	static String initCoverFolder = "test_results_and_samples/results/TestingResults/2009a-simplerand-greedy-union-99.5/";
 	static BenchmarkFileInstanceLoader bfil = new BenchmarkFileInstanceLoader();
 
 	public static void testAlgorithm(Algorithm alg, String root) {
@@ -39,7 +39,7 @@ public class Tester {
 			Files.walkFileTree(start, new TestWalker(alg));
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}   
 	}
 	
 	public static class TestWalker implements FileVisitor<Path> {
@@ -125,7 +125,6 @@ public class Tester {
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		try {
@@ -134,6 +133,7 @@ public class Tester {
 			String[] coordinates = br.readLine().split("\\s+");
 			int cameraNum = coordinates.length / 2;
 			sb.append(" " + cameraNum + " " + end);
+			System.out.println("cameras genetic");
 			br.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -166,6 +166,6 @@ public class Tester {
 
 	public static void main(String[] args) {
 		Tester.testAlgorithm(new HeuristicGreedy(InitialSet.VERTEX_TRIANGULATION_COVER, new A7()), 
-				"test_results_and_samples/benchmarks/agp2013-gB-simple-simple");
+				"test_results_and_samples/benchmarks/agp2009a-simplerand300");
 	}
 }

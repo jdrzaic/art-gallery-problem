@@ -22,7 +22,7 @@ import metaheuristics.project.agp.instances.util.BenchmarkFileInstanceLoader;
 
 public class Tester2 {
 	
-	static String resultsFolder = "test_results_and_samples/results/TestingResults/2009a-simplerand-pso-union-98.8/";
+	static String resultsFolder = "test_results_and_samples/results/TestingResults/2009a-simplerand-pso-union-98.8rest/";
 	
 	static BenchmarkFileInstanceLoader bfil = new BenchmarkFileInstanceLoader();
 
@@ -76,6 +76,7 @@ public class Tester2 {
 				bw.flush();
 				//sb.append(createResult(file));
 			} catch(Exception e) {
+				e.printStackTrace();
 				System.err.println(file.toString());
 				errorw.write(file.toString() + System.getProperty("line.separator"));
 				return FileVisitResult.CONTINUE;
