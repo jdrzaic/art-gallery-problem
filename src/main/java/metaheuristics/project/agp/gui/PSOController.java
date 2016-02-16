@@ -31,9 +31,15 @@ public class PSOController {
 	private int iter;
 	
 	/**
-	 * Toleration number for PSO algorithm.
+	 *  Percentage toleration between already visible area and 
+	 * newly added camera visibility polygon.
 	 */
 	private double tol;
+	
+	/**
+	 * Toleration for choosing triangles for PSO.
+	 */
+	private double triangTol;
 	
 	/**
 	 * Gallery instance.
@@ -51,7 +57,7 @@ public class PSOController {
 	 * @param iter is the number of iteration.
 	 * @param tol is the toleration percentage.
 	 */
-	public PSOController(String pop, String iter, String tol, String indivFact, String socFact) {
+	public PSOController(String pop, String iter, String tol, String indivFact, String socFact, String triangTol) {
 		super();
 		this.pop = Integer.parseInt(pop);
 		this.iter = Integer.parseInt(iter);
@@ -76,9 +82,6 @@ public class PSOController {
 	 * @param progress is the algorithm progress indicator.
 	 */
 	public void onExecPSO(ProgressIndicator progress) {
-		// TODO remove
-		System.out.println(iter);
-		System.out.println(tol);
 		Service<Void> service = new Service<Void>() {
 			@Override
 			protected Task<Void> createTask() {
@@ -88,7 +91,7 @@ public class PSOController {
 					@Override
 					protected Void call() throws Exception {
 						PSO pso = new PSO(); 
-						pso.init(tol, iter, pop);
+						pso.init(tol, iter, pop, triangTol);
 						pso.process(gi);
 						n = gi.saveResults("test_results_and_samples/res.txt"); 
 						Controller.runVisualisation();

@@ -146,6 +146,11 @@ public class Controller implements Initializable {
 	@FXML private Label pso_soc_txt;
 	
 	/**
+	 * Label for pso triangle choosing toleration  input.
+	 */
+	@FXML private Label pso_triang_tol_txt;
+	
+	/**
 	  * PSO iteration input.
 	 */
 	@FXML private TextField pso_iter;
@@ -174,6 +179,11 @@ public class Controller implements Initializable {
 	 * Greedy toleration input.
 	 */
 	@FXML private TextField gre_tol;
+	
+	/**
+	 * PSO triangle choosing toleration input.
+	 */
+	@FXML private TextField pso_triang_tol;
 	
 	/**
 	 * Label for greedy toleration input.
@@ -272,6 +282,8 @@ public class Controller implements Initializable {
 		pso_soc.setVisible(false);
 		pso_indiv_txt.setVisible(false);
 		pso_indiv.setVisible(false);
+		pso_triang_tol.setVisible(false);
+		pso_triang_tol_txt.setVisible(false);
 	}
 	
 	/**
@@ -288,6 +300,8 @@ public class Controller implements Initializable {
 		pso_soc.setVisible(true);
 		pso_indiv_txt.setVisible(true);
 		pso_indiv.setVisible(true);
+		pso_triang_tol.setVisible(true);
+		pso_triang_tol_txt.setVisible(true);
 	}
 
 	/**
@@ -312,6 +326,8 @@ public class Controller implements Initializable {
 		gre_tol_txt.managedProperty().bind(gre_tol_txt.visibleProperty());
 		hyb_tol.managedProperty().bind(hyb_tol_txt.visibleProperty());
 		hyb_tol_txt.managedProperty().bind(hyb_tol_txt.visibleProperty());
+		pso_triang_tol.managedProperty().bind(pso_triang_tol.visibleProperty());
+		pso_triang_tol_txt.managedProperty().bind(pso_triang_tol_txt.visibleProperty());
 
 	}
 	
@@ -409,7 +425,7 @@ public class Controller implements Initializable {
 					benchmark = new File(other.getAbsolutePath());
 				}
 				draw = 0;
-				PSOController psoc = new PSOController(pso_pop.getText(), pso_iter.getText(), pso_tol.getText(),pso_indiv.getText(), pso_soc.getText());
+				PSOController psoc = new PSOController(pso_pop.getText(), pso_iter.getText(), pso_tol.getText(),pso_indiv.getText(), pso_soc.getText(), pso_triang_tol.getText());
 				psoc.process(benchmark.getAbsolutePath(), progress);
 			} catch(Exception e) {
 				WrongFileAlert();
@@ -423,7 +439,7 @@ public class Controller implements Initializable {
 				GalleryError();
 			} else {
 				drawing.gi.cameras = new HashSet<>();
-				PSOController psoc = new PSOController(pso_pop.getText(), pso_iter.getText(), pso_tol.getText(), pso_indiv.getText(), pso_soc.getText());
+				PSOController psoc = new PSOController(pso_pop.getText(), pso_iter.getText(), pso_tol.getText(), pso_indiv.getText(), pso_soc.getText(),  pso_triang_tol.getText());
 				generateBenchmarkFromDraw();
 				psoc.process("test_results_and_samples/pol.txt", progress);
 			}
