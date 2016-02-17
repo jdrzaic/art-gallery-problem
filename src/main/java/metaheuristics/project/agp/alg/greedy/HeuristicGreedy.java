@@ -89,6 +89,7 @@ public class HeuristicGreedy implements Algorithm{
 			visPolygons.put(init.get(i), 
 					//za rupe, al ovdje ne treba
 					createPolygon(bound, new ArrayList<>()));
+			System.out.println(init.get(i).x + "  " + init.get(i).y);
 		}
 		boolean covered = false;
 		while(!covered) {

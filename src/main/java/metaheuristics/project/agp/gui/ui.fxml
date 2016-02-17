@@ -44,13 +44,13 @@
 			<children>
 				<Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="142.0" text="Algoritam" textAlignment="CENTER">
 					<padding>
-						<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+						<Insets bottom="5.0" left="5.0" right="5.0" />
 					</padding>
 					<font>
 						<Font name="Verdana Bold" size="20.0" />
 					</font>
                <VBox.margin>
-                  <Insets bottom="10.0" />
+                  <Insets bottom="5.0" />
                </VBox.margin>
 				</Label>
 				<RadioButton fx:id="radio_gen" mnemonicParsing="false" onAction="#showGenParameters" selected="true" text="Genetski algoritam">
@@ -58,7 +58,7 @@
 						<ToggleGroup fx:id="algoritmi" />
 					</toggleGroup>
 					<padding>
-						<Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+						<Insets bottom="10.0" left="5.0" right="5.0" top="5.0" />
 					</padding>
                <VBox.margin>
                   <Insets />
@@ -69,7 +69,7 @@
 				</RadioButton>
 				<RadioButton fx:id="pso_gen" mnemonicParsing="false" onAction="#showPSOParameters" text="PSO algoritam" toggleGroup="$algoritmi">
 					<padding>
-						<Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+						<Insets bottom="10.0" left="5.0" right="5.0" top="5.0" />
 					</padding>
                <font>
                   <Font name="Verdana" size="13.0" />
@@ -86,7 +86,7 @@
                   <Font name="Verdana" size="12.0" />
                </font>
 				</Label>
-				<TextField fx:id="pso_iter">
+				<TextField fx:id="pso_iter" text="8">
 					<VBox.margin>
 						<Insets left="25.0" />
 					</VBox.margin>
@@ -102,11 +102,11 @@
                   <Font name="Verdana" size="12.0" />
                </font>
 				</Label>
-				<TextField fx:id="pso_pop">
+				<TextField fx:id="pso_pop" text="5">
                <VBox.margin>
                   <Insets left="25.0" />
                </VBox.margin></TextField>
-				<Label fx:id="pso_tol_txt" text=" Tolerancija 2 kamere:">
+				<Label fx:id="pso_tol_txt" prefHeight="20.0" prefWidth="175.0" text="Tolerancija kamera (%)">
 					<padding>
 						<Insets top="5.0" />
 					</padding>
@@ -117,11 +117,27 @@
                   <Font name="Verdana" size="12.0" />
                </font>
 				</Label>
-				<TextField fx:id="pso_tol" text="0.01">
+				<TextField fx:id="pso_tol"  text="0.001">
                <VBox.margin>
                   <Insets left="25.0" />
                </VBox.margin>
                </TextField>
+            <Label fx:id="pso_triang_tol_txt" scaleShape="false" text="Tolerancija izbora (%)">
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font>
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets left="25.0" top="5.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="pso_triang_tol" text="0.004">
+               <VBox.margin>
+                  <Insets left="25.0" />
+               </VBox.margin>
+            </TextField>
                
                <Label fx:id="pso_indiv_txt" scaleShape="false" text=" Individualni faktor:">
                     <padding>
@@ -134,7 +150,7 @@
                   <Font name="Verdana" size="12.0" />
                </font>
                 </Label>
-                <TextField fx:id="pso_indiv">
+                <TextField fx:id="pso_indiv" text="2">
                     <VBox.margin>
                         <Insets left="25.0" />
                     </VBox.margin>
@@ -151,7 +167,7 @@
                   <Font name="Verdana" size="12.0" />
                </font>
                 </Label>
-                <TextField fx:id="pso_soc">
+                <TextField fx:id="pso_soc" text="2">
                     <VBox.margin>
                         <Insets left="25.0" />
                     </VBox.margin>
@@ -161,7 +177,7 @@
 						<Insets />
 					</VBox.margin>
 					<padding>
-						<Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+						<Insets bottom="10.0" left="5.0" right="5.0" top="5.0" />
 					</padding>
                <font>
                   <Font name="Verdana" size="13.0" />
@@ -214,7 +230,7 @@
             </TextField>
 				<RadioButton fx:id="hybrid" mnemonicParsing="false" onAction="#showHybParameters" text="Hibridni algoritam" toggleGroup="$algoritmi">
 					<VBox.margin>
-						<Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+						<Insets bottom="10.0" left="5.0" right="5.0" top="5.0" />
 					</VBox.margin>
                <font>
                   <Font name="Verdana" size="13.0" />
