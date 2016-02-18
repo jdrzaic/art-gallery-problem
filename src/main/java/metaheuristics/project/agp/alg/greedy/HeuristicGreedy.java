@@ -52,7 +52,7 @@ public class HeuristicGreedy implements Algorithm{
 	/**
 	 * Tolerancija "nepokrivenosti" galerije
 	 */
-	public static double EPSILON = 0.005;
+	public static double EPSILON = 0.01;
 
 	/**
 	 * Instanca {@link GeometryFactory} koristena u implementaciji
@@ -109,7 +109,7 @@ public class HeuristicGreedy implements Algorithm{
  	}
 	
 	public void setTol(double tol) {
-		EPSILON = tol < 0.7 ? 0.007 : tol / 100;
+		EPSILON = tol < 1 ? 0.01 : tol / 100;
 		System.out.println(EPSILON);
 	}
 	
