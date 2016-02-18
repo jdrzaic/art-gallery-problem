@@ -1,8 +1,10 @@
 package metaheuristics.project.agp.instances.components;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.LineSegment;
@@ -21,7 +23,7 @@ import metaheuristics.project.agp.instances.util.Maths;
  */
 public class Camera extends Coordinate{
 
-	public static double ALPHA = 0.00001;
+	public static double ALPHA = 0.000001;
 	public static double EPSILON = 0.00000001;
 	
 	/**
@@ -55,8 +57,43 @@ public class Camera extends Coordinate{
 	}
 	
 	public Polygon visibilityPolygon2(GalleryInstance gi) {
+		TreeSet<PolarPoint> pointSet = new TreeSet<>(new Comparator<PolarPoint>() {
+			@Override
+			public int compare(PolarPoint o1, PolarPoint o2) {
+				return Double.compare(o1.angle(), o2.angle());
+			}
+		});
+		addPoints(pointSet, gi.getVertices(), -1);
+		int nOfHoles = gi.getHoles().size();
+		for(int i = 0; i < nOfHoles; ++i) {
+			addPoints(pointSet, gi.getHoles().get(i).getVertices(), i);
+		}
 		
 		return null;
+	}
+
+	private void addPoints(TreeSet<PolarPoint> pointSet, List<Coordinate> vertices, int hole) {
+		int vSize = vertices.size();
+		LineSegment ls1 = new LineSegment(this, vertices.get(0));
+		PolarPoint point1 =  new PolarPoint(vertices.get(0), ls1.angle(), hole);
+		pointSet.add(point1);
+		double angle1 = ls1.angle();
+		for(int i = 1; i <= vSize; ++i) {
+			LineSegment ls2 = new LineSegment(this, vertices.get(i % vSize));
+			double angle2 = ls2.angle();
+			PolarPoint point2 = new PolarPoint(vertices.get(i % vSize), ls1.angle(), hole);
+			pointSet.add(point2);
+			if(angle1 < angle2) {
+				point1.setStarts(i - 1);
+				point2.setEnds(i - 1);
+			} else {
+				point1.setEnds(i - 1);
+				point2.setStarts(i - 1);
+			}
+			ls1 = ls2;
+			point1 = point2;
+			angle1 = angle2;
+		}
 	}
 
 	private void goOver(GalleryInstance gi, TreeMap<Double, Coordinate> vPolygonCoords, int n) {
@@ -129,5 +166,43 @@ public class Camera extends Coordinate{
 	
 	public String toString() {
 		return "" + this.x + " " + this.y;
+	}
+	
+	public static class PolarPoint {
+		double polar;
+		ArrayList<Integer> starts = new ArrayList<>();
+		ArrayList<Integer> ends = new ArrayList<>();
+		int hole;
+		Coordinate c;
+		
+		public PolarPoint(Coordinate c, double polar, int hole) {
+			this.c = c;
+			this.polar = polar;
+			this.hole = hole;
+		}
+
+		public void setStarts(int i){
+			this.starts.add(i);
+		}
+		
+		public void setEnds(int i) {
+			this.ends.add(i);
+		}
+		
+		public ArrayList<Integer> starts() {
+			return starts;
+		}
+		
+		public ArrayList<Integer> ends() {
+			return ends;
+		}
+		
+		public double angle() {
+			return polar;
+		}
+		
+		public int hole() {
+			return hole;
+		}
 	}
 }

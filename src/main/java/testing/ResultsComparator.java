@@ -39,7 +39,7 @@ public class ResultsComparator {
 				String[] parsed = inputC.split("\\s+");
 				customData.add(parsed[0] + " " + parsed[3]);
 			}
-			BufferedWriter bw = new BufferedWriter(new FileWriter("test_results_and_samples/graphFin/2013referent_pso.txt"));
+			BufferedWriter bw = new BufferedWriter(new FileWriter("test_results_and_samples/graphFin/GBBtest.txt"));
 			for(String b : benchmarkData) {
 				for(String c : customData) {
 					System.out.println("pair");
@@ -101,7 +101,7 @@ public class ResultsComparator {
 		ResultsComparator rc = new ResultsComparator();
 		//rc.compareResultsOur("test_results_and_samples/results/TestingResults/2009a-simplerand-greedy-union-98.8/agp2009a-simplerand.txt", 
 			//	"test_results_and_samples/results/TestingResults/2009a-simplerand-hybrid-union-99.0/agp2009a-simplerand300.txt");
-		rc.compareResults("test_results_and_samples/results/dataResults/agp2013a-simplev-simpleh.csv", 
-				"test_results_and_samples/results/TestingResults/2009a-simplerand-pso-union-98.8/2013pso.txt");
+		rc.compareResults("test_results_and_samples/results/dataResults/randsimple.csv", 
+				"test_results_and_samples/results/TestingResults/GBBTestingFiles.txt");
 	}
 }
