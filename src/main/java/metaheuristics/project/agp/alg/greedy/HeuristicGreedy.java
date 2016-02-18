@@ -59,17 +59,41 @@ public class HeuristicGreedy implements Algorithm{
 	 */
 	private GeometryFactory gf = new GeometryFactory();
 	
+	/**
+	 * Polygon - gallery.
+	 */
 	private Polygon main;
 	
+	/**
+	 * Heuristic function used.
+	 */
 	private Heuristic h;
+	
+	/**
+	 * Initial set from which cameras are chosen.
+	 */
 	private InitialSet is;
 	
+	/**
+	 * Map of cameras and its visibility polygons.
+	 */
 	private HashMap<Camera, Polygon> visPolygons;
 		
+	/**
+	 * current part of gallery covered.
+	 */
 	Geometry coverUnion;
 	
+	/**
+	 * Instance to cover.
+	 */
 	GalleryInstance gi;
 
+	/**
+	 * Class constructor.
+	 * @param is type of initial cover
+	 * @param h heuristic function used
+	 */
 	public HeuristicGreedy(InitialSet is, Heuristic h) {
 		this.is = is;
 		this.h = h;
@@ -82,6 +106,7 @@ public class HeuristicGreedy implements Algorithm{
 		this.visPolygons = new HashMap<>();
 		this.coverUnion = null;
 		this.main = createPolygon(gi.getVertices(), gi.getHoles());
+		System.out.println("polygon created");
 		List<Camera> init = createInitialSet(gi);
 		System.out.println("here" + init.toString());
 		for(int i = 0; i < init.size(); ++i) {
@@ -108,11 +133,20 @@ public class HeuristicGreedy implements Algorithm{
 		}
  	}
 	
+	/** 
+	 * Tollerance setter
+	 * @param tol tollerance, in percents
+	 */
 	public void setTol(double tol) {
 		EPSILON = tol < 1 ? 0.01 : tol / 100;
-		System.out.println(EPSILON);
+		System.out.println("tu: " + EPSILON);
 	}
 	
+	/**
+	 * Method checks if gallery is covered after adding camera c.
+	 * @param c camera to add
+	 * @return true if gallery is covered, false otherwise
+	 */
 	private boolean checkIfCovered(Camera c) {
 		double areaAll = main.getArea();
 		if(coverUnion == null) {
@@ -129,6 +163,10 @@ public class HeuristicGreedy implements Algorithm{
         return false;
 	}
 
+	/**
+	 * Best camera according to heuristic function used.
+	 * @return best camera to add
+	 */
 	private Camera findBest() {
 		double maxmi = -1;
 		Camera max = null;
@@ -180,7 +218,12 @@ public class HeuristicGreedy implements Algorithm{
 		return toAdd1;
 	}
 	
-	/** @TODO add holes support */
+	/**
+	 * Method creates polygon with given bound and holes.
+	 * @param bound bound of a polygon to create
+	 * @param holes holes of a polygon to create
+	 * @return created polygon
+	 */
 	Polygon createPolygon(List<Coordinate> bound, List<metaheuristics.project.agp.instances.components.Polygon> holes) {
 		Coordinate[] boundary = new Coordinate[bound.size() + 1];
 		for(int i = 0; i < boundary.length - 1; ++i) boundary[i] = bound.get(i);
@@ -199,6 +242,11 @@ public class HeuristicGreedy implements Algorithm{
 		return p;
 	}
 
+	/**
+	 * Method returns initial cover for gallery.
+	 * @param gi gallery to cover
+	 * @return initial cover
+	 */
 	private List<Camera> createInitialSet(GalleryInstance gi) {
 		switch (is) {
 		case VERTEX_COVER:
@@ -214,6 +262,11 @@ public class HeuristicGreedy implements Algorithm{
 		}
 	}
 
+	/**
+	 * Method creates initial cover using Delaunay triangulation.
+	 * @param gi gallery to cover
+	 * @return initial cover generated
+	 */
 	private List<Camera> createInitialTriangCover(GalleryInstance gi) {
 		List<Camera> ini = new ArrayList<>();
 		ConformingDelaunayTriangulationBuilder cdtb =
@@ -232,12 +285,22 @@ public class HeuristicGreedy implements Algorithm{
 		return ini;
 	}
 
+	/**
+	 * Method returns initial cover containing vertices of the polygon.
+	 * @param gi gallery to cover
+	 * @return vertex cover
+	 */
 	private List<Camera> createInitialVertexCover(GalleryInstance gi) {
 		List<Camera> ini = new ArrayList<Camera>();
 		addCandidates(gi.getVertices(), ini);
 		return ini;
 	}
 
+	/**
+	 * Method adds gallery vertices to list.
+	 * @param vertices vertices of a gallery
+	 * @param ini list of cameras
+	 */
 	private void addCandidates(List<Coordinate> vertices, List<Camera> ini) {
 		int size = vertices.size();
 		for(int i = 0; i < size; ++i) {
@@ -248,6 +311,7 @@ public class HeuristicGreedy implements Algorithm{
 		
 	}
 
+	
 	private Camera calcInside(List<Coordinate> vertices, Coordinate v, Coordinate bisector) {
 		double norm = Math.sqrt(bisector.x * bisector.x + bisector.y * bisector.y);
 		Coordinate vbNormalized = Maths.cRound(new Coordinate(bisector.x / norm, bisector.y / norm));

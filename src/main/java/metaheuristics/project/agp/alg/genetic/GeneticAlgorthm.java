@@ -5,12 +5,31 @@ import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
 
+/**
+ * Genetic algorithm for solving Art Gallery Problem.
+ * @author jelenadrzaic
+ *
+ */
 public class GeneticAlgorthm {
 	
+	/**
+	 * Main method. Returns number ofcameras needed to cover polygon stored
+	 * in file "filePolygon". Saves coordinates of cameras into file "fileToSave".
+	 * @param filePolygon file containing polygon
+	 * @param fileToSave file to save cameras into.
+	 * @return number of cameras
+	 */
 	public int process(String filePolygon, String fileToSave) {
 		return process(filePolygon, fileToSave, "");
 	}
 	
+	/**
+	 * Same as method above.
+	 * @param filePolygon file contains polygon to cove.
+	 * @param fileToSave file to save results into.
+	 * @param initCover initial cover (set of cameras) used by algorithm.
+	 * @return number of cameras
+	 */
 	public int process(String filePolygon, String fileToSave, String initCover) {
 		System.out.println("genetic calld");
 		try {
