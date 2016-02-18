@@ -7,8 +7,6 @@ import org.apache.commons.io.FileUtils;
 
 public class GeneticAlgorthm {
 	
-	public GeneticAlgorthm() {}
-
 	public int process(String filePolygon, String fileToSave) {
 		return process(filePolygon, fileToSave, "");
 	}
