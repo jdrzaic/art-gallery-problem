@@ -595,8 +595,10 @@ public class Controller implements Initializable {
 			generateBenchmarkFromDraw();
 		}
 		try {
-			Process p = Runtime.getRuntime().exec("./ArtGallery " +  
-					benchmark.getAbsolutePath() +  " test_results_and_samples/res.txt  test_results_and_samples/res.png");
+			String execName = System.getProperty("os.name").startsWith("Windows") ? "./ArtGallery.exe" : "./ArtGallery";
+			String cmd = execName + " \"" +  
+					benchmark.getAbsolutePath() +  "\" \"test_results_and_samples/res.txt\"  \"test_results_and_samples/res.png\"";
+			Process p = Runtime.getRuntime().exec(cmd);
 			try {
 				p.waitFor();
 			} catch (InterruptedException e) {

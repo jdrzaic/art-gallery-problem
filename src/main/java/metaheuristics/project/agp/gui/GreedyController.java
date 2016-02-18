@@ -27,8 +27,8 @@ public class GreedyController {
 	
 	static {
 		heuristics = new HashMap<>();
-		heuristics.put("najveÄ‡a povrÅ¡ina", new A7());
-		heuristics.put("najveÄ‡i opseg", new A6());
+		heuristics.put("najveæa površina", new A7());
+		heuristics.put("najveæi opseg", new A6());
 		
 		cover = new HashMap<>();
 		cover.put("Vrhovi poligona", InitialSet.VERTEX_COVER);

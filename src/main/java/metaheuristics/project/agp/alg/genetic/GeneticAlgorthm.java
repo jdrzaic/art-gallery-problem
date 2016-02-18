@@ -16,7 +16,8 @@ public class GeneticAlgorthm {
 	public int process(String filePolygon, String fileToSave, String initCover) {
 		System.out.println("genetic calld");
 		try {
-			Process p = Runtime.getRuntime().exec("./GeneticAlgorithm " +  
+			String execName = System.getProperty("os.name").startsWith("Windows") ? "./GeneticAlgorithm.exe" : "./GeneticAlgorithm";
+			Process p = Runtime.getRuntime().exec(execName + " " +  
 				  filePolygon  + " " + initCover + " " + fileToSave);
 			try {
 				p.waitFor();
