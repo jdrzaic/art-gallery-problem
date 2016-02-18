@@ -596,9 +596,17 @@ public class Controller implements Initializable {
 			generateBenchmarkFromDraw();
 		}
 		try {
-			String execName = System.getProperty("os.name").startsWith("Windows") ? "./ArtGallery.exe" : "./ArtGallery";
-			String cmd = execName + " \"" +  
-					benchmark.getAbsolutePath() +  "\" \"test_results_and_samples/res.txt\"  \"test_results_and_samples/res.png\"";
+			String os = System.getProperty("os.name");
+			String cmd = null;
+			if(os.startsWith("Windows")) {
+				String execName = "./ArtGallery.exe";
+				cmd = execName + " \"" +  
+						benchmark.getAbsolutePath() +  "\" \"test_results_and_samples/res.txt\"  \"test_results_and_samples/res.png\"";
+			} else {
+				String execName = "./ArtGallery";
+				cmd = execName + " " + benchmark.getAbsolutePath() +  " test_results_and_samples/res.txt  test_results_and_samples/res.png";
+			}
+			System.out.println(cmd);
 			Process p = Runtime.getRuntime().exec(cmd);
 			try {
 				p.waitFor();

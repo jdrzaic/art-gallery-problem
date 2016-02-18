@@ -106,15 +106,10 @@ public class HeuristicGreedy implements Algorithm{
 		this.visPolygons = new HashMap<>();
 		this.coverUnion = null;
 		this.main = createPolygon(gi.getVertices(), gi.getHoles());
-		System.out.println("polygon created");
 		List<Camera> init = createInitialSet(gi);
-		System.out.println("here" + init.toString());
 		for(int i = 0; i < init.size(); ++i) {
 			List<Coordinate> bound = init.get(i).visibilityPolygon(gi).getVertices();
-			visPolygons.put(init.get(i), 
-					//za rupe, al ovdje ne treba
-					createPolygon(bound, new ArrayList<>()));
-			System.out.println(init.get(i).x + "  " + init.get(i).y);
+			visPolygons.put(init.get(i), createPolygon(bound, new ArrayList<>()));
 		}
 		boolean covered = false;
 		while(!covered) {
@@ -139,7 +134,6 @@ public class HeuristicGreedy implements Algorithm{
 	 */
 	public void setTol(double tol) {
 		EPSILON = tol < 1 ? 0.01 : tol / 100;
-		System.out.println("tu: " + EPSILON);
 	}
 	
 	/**
