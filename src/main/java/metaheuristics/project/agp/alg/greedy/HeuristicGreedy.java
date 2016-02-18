@@ -109,7 +109,7 @@ public class HeuristicGreedy implements Algorithm{
  	}
 	
 	public void setTol(double tol) {
-		EPSILON = tol < 0.2 ? 0.002 : tol / 100;
+		EPSILON = tol < 0.7 ? 0.007 : tol / 100;
 		System.out.println(EPSILON);
 	}
 	
