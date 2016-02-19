@@ -1,6 +1,7 @@
 package metaheuristics.project.agp.alg.genetic;
 
 import java.io.File;
+import java.io.*;
 import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
@@ -33,11 +34,23 @@ public class GeneticAlgorthm {
 	public int process(String filePolygon, String fileToSave, String initCover) {
 		System.out.println("genetic calld");
 		try {
-			String execName = System.getProperty("os.name").startsWith("Windows") ? "./GeneticAlgorithm.exe" : "./GeneticAlgorithm";
-			Process p = Runtime.getRuntime().exec(execName + " " +  
-				  filePolygon  + " " + initCover + " " + fileToSave);
+			String os = System.getProperty("os.name");
+			String execName = "";
+			String cmd = "";
+			if(os.startsWith("Windows")) {
+				execName = "./GeneticAlgorithm.exe";
+				String maybeInitCover = initCover.isEmpty() ? "" : "\"" + initCover + "\"";
+				cmd = execName + " \"" + filePolygon  + "\" " + maybeInitCover + " \"" + fileToSave + "\"";
+			} else {
+				execName = "./GeneticAlgorithm";
+				cmd = execName + " " + filePolygon  + " " + initCover + " " + fileToSave;
+			}
+			System.out.println(cmd);
+			Process p = Runtime.getRuntime().exec(cmd);
 			try {
 				p.waitFor();
+				copy(p.getInputStream(), System.out);
+				copy(p.getErrorStream(), System.out);
 			} catch (InterruptedException e) {
 				System.err.println("Error wainting bash");
 			}
@@ -58,4 +71,12 @@ public class GeneticAlgorthm {
 		}
 		return n;
 	}
+
+	  static void copy(InputStream in, OutputStream out) throws IOException {
+	    while (true) {
+	      int c = in.read();
+	      if (c == -1) break;
+	      out.write((char)c);
+	    }
+	  }
 }
