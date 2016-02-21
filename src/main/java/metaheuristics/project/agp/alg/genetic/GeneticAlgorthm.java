@@ -33,7 +33,6 @@ public class GeneticAlgorthm {
 	 */
 	public int process(String filePolygon, String fileToSave, String initCover) {
 		try {
-
 			String os = System.getProperty("os.name");
 			String execName = "";
 			String cmd = "";
