@@ -27,6 +27,7 @@ public class HybridController {
 	
 	static {
 		heuristics = new HashMap<>();
+		//UTF8
 		heuristics.put("najveća površina", new A7());
 		heuristics.put("najveći opseg", new A6());
 		
