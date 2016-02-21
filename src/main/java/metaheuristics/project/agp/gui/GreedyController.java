@@ -53,16 +53,12 @@ public class GreedyController {
 	}
 
 	public void process(GalleryInstance gi, String filename, ProgressIndicator progress) {
-		this.gi = gi;
-		System.out.println(gi.getVertices().toString());
-		this.filename = filename;
+		GreedyController.gi = gi;
+		GreedyController.filename = filename;
 		onExecGreedy(progress);
 	}
 
 	public void onExecGreedy(ProgressIndicator progress) {
-		System.out.println("Greedy called");
-		System.out.println(heur);
-		System.out.println(initc);
 		Service<Void> service = new Service<Void>() {
 			@Override
 			protected Task<Void> createTask() {

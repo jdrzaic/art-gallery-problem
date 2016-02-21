@@ -1,6 +1,5 @@
 package metaheuristics.project.agp.gui;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.concurrent.CountDownLatch;
 
@@ -9,17 +8,7 @@ import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import metaheuristics.project.agp.alg.greedy.HeuristicGreedy.InitialSet;
 import metaheuristics.project.agp.alg.greedy.heuristics.A6;
 import metaheuristics.project.agp.alg.greedy.heuristics.A7;
@@ -65,14 +54,11 @@ public class HybridController {
 	public void process(String polygonFile, String toSaveIn, ProgressIndicator progress) {
 		HybridController.polygonFile = polygonFile;
 		HybridController.toSaveIn = toSaveIn;
-		System.out.println(polygonFile + "  " + toSaveIn);
 		onExecHybrid(progress);
 	}
 
 	public void onExecHybrid(ProgressIndicator progress) {
-		System.out.println("Hybrid called");
-		System.out.println(heur);
-		System.out.println(initc);
+
 		Service<Void> service = new Service<Void>() {
 			@Override
 			protected Task<Void> createTask() {
