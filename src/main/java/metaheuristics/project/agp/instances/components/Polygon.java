@@ -88,14 +88,4 @@ public class Polygon {
 				com.vividsolutions.jts.geom.Polygon(lr, null, new GeometryFactory());
 		return p.getArea();
 	}
-	
-	public static void main(String[] args) {
-		List<Coordinate> l = new ArrayList<Coordinate>();
-		l.add(new Coordinate(0, 0));
-		l.add(new Coordinate(0, 5));
-		l.add(new Coordinate(1, 1));
-		l.add(new Coordinate(1, 0));
-		Polygon p = new Polygon(l);
-		System.out.print(p.calculateArea());
-	}
 }

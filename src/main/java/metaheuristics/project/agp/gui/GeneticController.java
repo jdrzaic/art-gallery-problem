@@ -15,8 +15,7 @@ public class GeneticController {
 	static String filename;
 	
 	public void process(String filename, ProgressIndicator progress) {
-		System.out.println("in genetic controller");
-		this.filename = filename;
+		GeneticController.filename = filename;
 		onExecGenetic(progress);
 	}
 
@@ -30,11 +29,7 @@ public class GeneticController {
 					protected Void call() throws Exception {
 						GeneticAlgorthm ga = new GeneticAlgorthm();
 	                    final CountDownLatch latch = new CountDownLatch(1);
-	                    System.out.println("Before processed");
-	                    System.out.println("benchmark: " + filename);
 	                    int n = ga.process(filename, "test_results_and_samples/res.txt");
-	                    //Thread.sleep(1000);
-	                    System.out.println("processed");
 						Controller.runVisualisation();
 						Platform.runLater(new Runnable() {                          
 	                        @Override

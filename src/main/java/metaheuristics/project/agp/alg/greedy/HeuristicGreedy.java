@@ -129,7 +129,7 @@ public class HeuristicGreedy implements Algorithm{
  	}
 	
 	/** 
-	 * Tollerance setter
+	 * Tollerance setter.
 	 * @param tol tollerance, in percents
 	 */
 	public void setTol(double tol) {
@@ -305,7 +305,13 @@ public class HeuristicGreedy implements Algorithm{
 		
 	}
 
-	
+	/**
+	 * Returns camera translated for EPSILON into the polygon, if value is on vertex of a polygon.
+	 * @param vertices vertices of a polygon
+	 * @param v coordinate to translate
+	 * @param bisector angle bisector 
+	 * @return translated camera
+	 */ 
 	private Camera calcInside(List<Coordinate> vertices, Coordinate v, Coordinate bisector) {
 		double norm = Math.sqrt(bisector.x * bisector.x + bisector.y * bisector.y);
 		Coordinate vbNormalized = Maths.cRound(new Coordinate(bisector.x / norm, bisector.y / norm));
@@ -318,6 +324,12 @@ public class HeuristicGreedy implements Algorithm{
 		return new Camera(cand2.x, cand2.y);
 	}
 
+	/**
+	 * Method calculates angle bisector of line segments passed.
+	 * @param side1 line segment
+	 * @param side2 line segment
+	 * @return angle bisector
+	 */
 	private Coordinate calcBisector(LineSegment side1, LineSegment side2) {
 		Coordinate v1 = Maths.cRound(new Coordinate(side1.p1.x - side1.p0.x, side1.p1.y - side1.p0.y));
 		Coordinate v2 = Maths.cRound(new Coordinate(side2.p1.x - side2.p0.x, side2.p1.y - side2.p0.y));

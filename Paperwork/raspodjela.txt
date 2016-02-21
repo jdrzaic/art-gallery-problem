@@ -5,9 +5,9 @@ Elementi projekta:
     Algoritmi:
         Genetski               - Luka
         Lokalno traženje       - Jelena
-        2 inspirirana prirodom - Gregor
+        inspirirani prirodom - Gregor
     Testiranje:
-    	Analiza				   - ????
-    Projektna dokumentacija:   - ????
+    	Analiza				   - Jelena
+    Projektna dokumentacija:   - Luka
     
     Konačna prezentacija       - Luka

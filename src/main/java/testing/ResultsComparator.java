@@ -1,25 +1,12 @@
 package testing;
 
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.io.Writer;
-import java.nio.file.FileVisitResult;
-import java.nio.file.FileVisitor;
-import java.nio.file.Path;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 
-import metaheuristics.project.agp.alg.Algorithm;
 
 public class ResultsComparator {
 	
@@ -42,11 +29,7 @@ public class ResultsComparator {
 			BufferedWriter bw = new BufferedWriter(new FileWriter("test_results_and_samples/graphFin/GBBtest.txt"));
 			for(String b : benchmarkData) {
 				for(String c : customData) {
-					System.out.println("pair");
-					System.out.println(b.split("\\s+")[0]);
-					System.out.println(c.split("\\s+")[0]);
 					if(c.startsWith(b.split("\\s+")[0])) {
-						System.out.println("match\n");
 						bw.write(b.split("\\s+")[0] + " " + b.split("\\s+")[1] + " " + c.split("\\s+")[1] + System.getProperty("line.separator"));
 					}
 				}
@@ -79,9 +62,7 @@ public class ResultsComparator {
 			BufferedWriter bw = new BufferedWriter(new FileWriter("test_results_and_samples/graphFin/2009greedy_hybrid.txt"));
 			for(String b : benchmarkData) {
 				for(String c : customData) {
-					System.out.println("pair");
-					System.out.println(b.split("\\s+")[0]);
-					System.out.println(c.split("\\s+")[0]);
+
 					if(c.startsWith(b.split("\\s+")[0])) {
 						System.out.println("match\n");
 						bw.write(b.split("\\s+")[0] + " " + b.split("\\s+")[1] + " " + c.split("\\s+")[1] + System.getProperty("line.separator"));

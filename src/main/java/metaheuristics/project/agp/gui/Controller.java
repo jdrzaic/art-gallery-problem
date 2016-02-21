@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.EventListener;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 
@@ -341,7 +340,11 @@ public class Controller implements Initializable {
 		if(file != null) {
 			odabr_dat.setText(file.getAbsolutePath());
 			Tooltip.install(odabr_dat, new Tooltip(odabr_dat.getText()));
-			benchmark = file;
+			if(draw == 1) {
+				other = file;
+			} else {
+				benchmark = file;
+			}
 		}
 	}
 	
@@ -364,6 +367,7 @@ public class Controller implements Initializable {
 	private void HybridCase() {
 		if(radio_dat.isSelected()) {
 			try {
+				System.out.println(benchmark.getName());
 				if(draw == 1 && other != null) {
 					benchmark = new File(other.getAbsolutePath());
 				}
@@ -455,7 +459,6 @@ public class Controller implements Initializable {
 				}
 				draw = 0;
 				GalleryInstance gi = bfil.load(benchmark.getAbsolutePath());
-				System.out.println(gi.getVertices().toString());
 				GreedyController gc = new GreedyController(pokrivac.getSelectionModel().getSelectedItem().toString(), 
 						heuristika.getSelectionModel().getSelectedItem().toString(), Double.valueOf(gre_tol.getText()));
 				gc.process(gi, "test_results_and_samples/res.txt", progress);
@@ -617,7 +620,7 @@ public class Controller implements Initializable {
 			System.err.println("Error executing bash");
 		}
 		try {
-			Thread.sleep(250);
+			Thread.sleep(1500);
 		} catch (InterruptedException e) {}
 	}
 	

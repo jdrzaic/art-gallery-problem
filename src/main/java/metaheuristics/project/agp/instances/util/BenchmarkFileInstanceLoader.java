@@ -2,8 +2,6 @@ package metaheuristics.project.agp.instances.util;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,16 +38,13 @@ public class BenchmarkFileInstanceLoader implements InstanceLoader{
 		try {
 			inputStream = new FileInputStream(filename);
 		    everything = IOUtils.toString(inputStream);
-		} catch(IOException e) {
-			System.out.println(e.getMessage());
-		}finally {
+		} catch(IOException e) {}
+		finally {
 		    try {
 		    	if(inputStream != null) {
 		    		inputStream.close();
 		    	}
-			} catch (IOException ignorable) {
-				ignorable.getMessage();
-			}
+			} catch (IOException ignorable) {}
 		}
 		return everything;
 	}
@@ -67,7 +62,6 @@ public class BenchmarkFileInstanceLoader implements InstanceLoader{
 		int i = 0;
 		while(true) {
 			int nOfVertices = Integer.valueOf(comps[i]);
-			//todo new method
 			Polygon p = new Polygon();
 			for(int j = 1; j < 2 * nOfVertices + 1; j += 2) {
 				double x = parseFraction(comps[j + i]);
@@ -75,7 +69,6 @@ public class BenchmarkFileInstanceLoader implements InstanceLoader{
 				Coordinate v = new Coordinate(x, y);
 				p.addVertex(v);
 			}
-			//method end
 			boundaries.add(p);
 			if(i == 0) i++;
 			i += 2 * nOfVertices + 1;

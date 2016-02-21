@@ -1,17 +1,14 @@
 package metaheuristics.project.agp.instances.components;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.TreeMap;
-import java.util.TreeSet;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.LineSegment;
 import com.vividsolutions.jts.math.Vector2D;
 
 import metaheuristics.project.agp.instances.GalleryInstance;
-import metaheuristics.project.agp.instances.util.BenchmarkFileInstanceLoader;
 import metaheuristics.project.agp.instances.util.Maths;
 
 /**
@@ -21,6 +18,7 @@ import metaheuristics.project.agp.instances.util.Maths;
  * @author jelena
  *
  */
+@SuppressWarnings("serial")
 public class Camera extends Coordinate{
 
 	public static double ALPHA = 0.000001;
@@ -53,49 +51,11 @@ public class Camera extends Coordinate{
 		}
 		ArrayList<Coordinate> vertices = new ArrayList<Coordinate>();
 		vertices.addAll(vPolygonCoords.values());
+		System.out.println("vis");
 		return new Polygon(vertices);
 	}
 	
-	public Polygon visibilityPolygon2(GalleryInstance gi) {
-		TreeSet<PolarPoint> pointSet = new TreeSet<>(new Comparator<PolarPoint>() {
-			@Override
-			public int compare(PolarPoint o1, PolarPoint o2) {
-				return Double.compare(o1.angle(), o2.angle());
-			}
-		});
-		addPoints(pointSet, gi.getVertices(), -1);
-		int nOfHoles = gi.getHoles().size();
-		for(int i = 0; i < nOfHoles; ++i) {
-			addPoints(pointSet, gi.getHoles().get(i).getVertices(), i);
-		}
-		
-		return null;
-	}
-
-	private void addPoints(TreeSet<PolarPoint> pointSet, List<Coordinate> vertices, int hole) {
-		int vSize = vertices.size();
-		LineSegment ls1 = new LineSegment(this, vertices.get(0));
-		PolarPoint point1 =  new PolarPoint(vertices.get(0), ls1.angle(), hole);
-		pointSet.add(point1);
-		double angle1 = ls1.angle();
-		for(int i = 1; i <= vSize; ++i) {
-			LineSegment ls2 = new LineSegment(this, vertices.get(i % vSize));
-			double angle2 = ls2.angle();
-			PolarPoint point2 = new PolarPoint(vertices.get(i % vSize), ls1.angle(), hole);
-			pointSet.add(point2);
-			if(angle1 < angle2) {
-				point1.setStarts(i - 1);
-				point2.setEnds(i - 1);
-			} else {
-				point1.setEnds(i - 1);
-				point2.setStarts(i - 1);
-			}
-			ls1 = ls2;
-			point1 = point2;
-			angle1 = angle2;
-		}
-	}
-
+	
 	private void goOver(GalleryInstance gi, TreeMap<Double, Coordinate> vPolygonCoords, int n) {
 		List<Coordinate> ends = (n == -1) ? gi.getVertices() : gi.getHoleOnIndex(n).getVertices();
 		for(int i = 0; i < ends.size(); ++i) {
@@ -135,7 +95,6 @@ public class Camera extends Coordinate{
 				Coordinate is = Maths.cRound(ls.lineIntersection(side));
 				double dist = is.distance(ls.p0);
 				if((mindist == -1 || dist < mindist) && side.distance(is) < EPSILON && 
-						//so that is on the right side
 						new Vector2D(ls.p0, ls.p1).dot(new Vector2D(ls.p0, is)) >= 0) {
 					mindist = dist;
 					minCoord =is;

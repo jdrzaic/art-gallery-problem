@@ -5,24 +5,19 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
-
-import org.apache.commons.io.FileUtils;
 
 import metaheuristics.project.agp.alg.Algorithm;
 import metaheuristics.project.agp.alg.genetic.GeneticAlgorthm;
 import metaheuristics.project.agp.alg.greedy.HeuristicGreedy;
 import metaheuristics.project.agp.alg.greedy.HeuristicGreedy.InitialSet;
 import metaheuristics.project.agp.alg.greedy.heuristics.A7;
-import metaheuristics.project.agp.alg.hybrid.HybridAlgorithm;
 import metaheuristics.project.agp.instances.GalleryInstance;
 import metaheuristics.project.agp.instances.components.Camera;
 import metaheuristics.project.agp.instances.util.BenchmarkFileInstanceLoader;

@@ -3,7 +3,12 @@ package metaheuristics.project.agp.alg.greedy.heuristics;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
 
-
+/**
+ * One of the heuristic functions used by GreedyAlgorithm.
+ * 
+ * @author jelenadrzaic
+ *
+ */
 public class A6 extends Heuristic {
 
 	@Override

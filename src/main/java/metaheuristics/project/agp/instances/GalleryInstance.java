@@ -140,7 +140,6 @@ public class GalleryInstance extends Polygon{
 			fw.write(sb.toString());
 			fw.flush();
 			fw.close();
-			//FileUtils.writeStringToFile(file, sb.toString());
 		} catch (IOException ignorable) {}
 		return cameraNum();
 	}

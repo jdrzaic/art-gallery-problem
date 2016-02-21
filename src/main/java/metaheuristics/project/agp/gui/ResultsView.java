@@ -8,10 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -26,8 +23,6 @@ public class ResultsView {
 
 		System.out.println("opening");
 		Stage primaryStage  = new Stage();		
-		//primaryStage.setWidth(1000);
-		//primaryStage.setHeight(500);
 		primaryStage.setResizable(true);
 		primaryStage.setTitle("Rezultat - "+ benchmark);
         Group root = new Group();
@@ -64,7 +59,6 @@ public class ResultsView {
         primaryStage.setHeight(500);
         primaryStage.setWidth(imv.getFitWidth() + 350);
         primaryStage.initStyle(StageStyle.DECORATED);
-        //primaryStage.sizeToScene();
         primaryStage.show();
 
 	}
