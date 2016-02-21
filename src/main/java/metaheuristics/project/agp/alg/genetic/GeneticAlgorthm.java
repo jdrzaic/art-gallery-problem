@@ -3,6 +3,8 @@ package metaheuristics.project.agp.alg.genetic;
 import java.io.File;
 import java.io.*;
 import java.io.IOException;
+import java.lang.ProcessBuilder.Redirect;
+import java.util.*;
 
 import org.apache.commons.io.FileUtils;
 
@@ -33,23 +35,19 @@ public class GeneticAlgorthm {
 	 */
 	public int process(String filePolygon, String fileToSave, String initCover) {
 		try {
-			String os = System.getProperty("os.name");
-			String execName = "";
-			String cmd = "";
-			if(os.startsWith("Windows")) {
-				execName = "./GeneticAlgorithm.exe";
-				String maybeInitCover = initCover.isEmpty() ? "" : "\"" + initCover + "\"";
-				cmd = execName + " \"" + filePolygon  + "\" " + maybeInitCover + " \"" + fileToSave + "\"";
-			} else {
-				execName = "./GeneticAlgorithm";
-				cmd = execName + " " + filePolygon  + " " + initCover + " " + fileToSave;
-			}
+			List<String> cmd = new ArrayList<String>();
+			cmd.add("GeneticAlgorithm");
+			cmd.add(filePolygon);
+			if (!initCover.isEmpty()) cmd.add(initCover);
+			cmd.add(fileToSave);
+			
 			System.out.println(cmd);
-			Process p = Runtime.getRuntime().exec(cmd);
+			ProcessBuilder builder = new ProcessBuilder(cmd);
+			builder.redirectErrorStream(true);
+			builder.redirectOutput(Redirect.INHERIT);
+			Process p = builder.start();
 			try {
 				p.waitFor();
-				copy(p.getInputStream(), System.out);
-				copy(p.getErrorStream(), System.out);
 			} catch (InterruptedException e) {
 				System.err.println("Error wainting bash");
 			}
@@ -69,12 +67,25 @@ public class GeneticAlgorthm {
 		}
 		return n;
 	}
+}
 
-	  static void copy(InputStream in, OutputStream out) throws IOException {
-	    while (true) {
-	      int c = in.read();
-	      if (c == -1) break;
-	      out.write((char)c);
-	    }
-	  }
+class StreamGobbler extends Thread {
+    InputStream is;
+
+    // reads everything from is until empty. 
+    StreamGobbler(InputStream is) {
+        this.is = is;
+    }
+
+    public void run() {
+        try {
+            InputStreamReader isr = new InputStreamReader(is);
+            BufferedReader br = new BufferedReader(isr);
+            String line=null;
+            while ( (line = br.readLine()) != null)
+                System.out.println(line);    
+        } catch (IOException ioe) {
+            ioe.printStackTrace();  
+        }
+    }
 }
